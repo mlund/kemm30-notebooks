@@ -14,8 +14,8 @@ Prefix commands with `uv run` so Quarto executes notebooks with the project's Py
 
 ```bash
 uv run jupyter lab                                          # edit notebooks
-uv run quarto preview intermolecular_interactions.ipynb --to revealjs    # live slides; re-render on save
-uv run quarto render intermolecular_interactions.ipynb --to revealjs --execute   # build intermolecular_interactions.html
+uv run quarto preview intermolecular/day1_lecture.ipynb --to revealjs    # live slides; re-render on save
+uv run quarto render intermolecular/day1_lecture.ipynb --to revealjs --execute   # build intermolecular/day1_lecture.html
 ```
 
 Run the cells and save before previewing: `preview` shows the outputs stored in
@@ -38,7 +38,7 @@ Slides are 1050×700 px; if content is cut off, split the slide.
 
 ## Files
 
-- `intermolecular_interactions.ipynb` — the lecture (edit this)
+- `intermolecular/day1_lecture.ipynb` — the lecture (edit this)
 - `pyproject.toml`, `uv.lock`, `.python-version` — pinned environment;
   `uv lock --upgrade` to update
 
