@@ -33,6 +33,11 @@ the notebook, `render --execute` re-runs everything.
 | Smaller text on one slide | `## Title {.smaller}` |
 | Let one slide scroll | `## Title {.scrollable}` |
 
+Interactive diagrams are D3 scripts in `intermolecular/explorables/<name>.js`, shown by a
+code cell `explorable("<name>")` (helper in the day 2 setup cell). They run in JupyterLab
+after the cell is executed and in the rendered slides; D3 is loaded from a CDN, so both
+need internet.
+
 Deck options (title, chalkboard, code hidden, …) are in the YAML raw cell at
 the top of the notebook. The slide-type dropdown in JupyterLab is ignored.
 
@@ -45,6 +50,7 @@ slide with a single plot is stretched to fill the space unless its heading has
 
 - `intermolecular/dayN_lecture.ipynb` — lecture slides (edit these)
 - `intermolecular/dayN_solutions.ipynb` — exercise solutions
+- `intermolecular/explorables/` — JavaScript for interactive diagrams
 - `tools/check_overflow.py` — slide-fit checker (Playwright + installed Chrome or Edge)
 - `pyproject.toml`, `uv.lock`, `.python-version` — pinned environment;
   `uv lock --upgrade` to update

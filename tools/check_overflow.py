@@ -1,16 +1,19 @@
 """Flag reveal.js slides whose content is taller than the slide.
 
-Opens rendered slides (Quarto or nbconvert HTML) in an installed Chrome or
-Edge via Playwright, visits every slide and compares its content height to
-the configured slide height.
+Serves rendered slides (Quarto or nbconvert HTML) locally, opens them in an
+installed Chrome or Edge via Playwright, visits every slide and compares its
+content height to the configured slide height.
 
 Usage: python tools/check_overflow.py slides.html [--all]
 Exit status is 1 if any slide overflows.
 """
 
 import argparse
+import functools
 import re
 import sys
+import threading
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 from playwright.sync_api import Error, sync_playwright
@@ -48,8 +51,17 @@ async (revealUrl) => {
 """
 
 
+class QuietHandler(SimpleHTTPRequestHandler):
+    def log_message(self, *args):
+        pass
+
+
 def measure(path: Path) -> dict:
     page_html = path.read_text()
+    # Serve over http: Observable JS cells don't run from file:// URLs.
+    handler = functools.partial(QuietHandler, directory=path.parent)
+    server = ThreadingHTTPServer(("127.0.0.1", 0), handler)
+    threading.Thread(target=server.serve_forever, daemon=True).start()
     m = re.search(r'"(https://[^"]+/reveal\.js)"', page_html)
     with sync_playwright() as p:
         browser = None
@@ -62,9 +74,13 @@ def measure(path: Path) -> dict:
         if browser is None:
             sys.exit("needs Google Chrome or Microsoft Edge installed")
         page = browser.new_page(viewport={"width": 1280, "height": 900})
-        page.goto(path.as_uri(), wait_until="load")
+        page.goto(
+            f"http://127.0.0.1:{server.server_port}/{path.name}",
+            wait_until="networkidle",
+        )
         result = page.evaluate(MEASURE, m.group(1) if m else None)
         browser.close()
+    server.shutdown()
     return result
 
 
