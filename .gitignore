@@ -1,0 +1,12 @@
+# Environment (rebuild with `uv sync`)
+.venv/
+__pycache__/
+
+# Rendered slides (rebuild from the notebooks)
+*.html
+*_files/
+.quarto/
+
+# Editor/OS
+.ipynb_checkpoints/
+.DS_Store
