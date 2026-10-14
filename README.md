@@ -41,3 +41,8 @@ Slides are 1050×700 px; if content is cut off, split the slide.
 - `intermolecular_interactions.ipynb` — the lecture (edit this)
 - `pyproject.toml`, `uv.lock`, `.python-version` — pinned environment;
   `uv lock --upgrade` to update
+
+## License
+
+[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/): reuse and adapt
+freely with attribution; share adaptations under the same license. See `LICENSE`.
