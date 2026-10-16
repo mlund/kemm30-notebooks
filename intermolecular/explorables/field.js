@@ -74,13 +74,25 @@ svg.append("text").attr("x", W - 10).attr("y", H - 10).attr("text-anchor", "end"
 svg.append("text").attr("x", 10).attr("y", H - 10).attr("font-size", 15).attr("fill", "#555")
   .text("background: potential φ (blue > 0, white = 0, red < 0)");
 
+// Pointer in viewBox units from the bounding box: getScreenCTM (behind d3.pointer) ignores
+// reveal.js's CSS scaling in Safari, which offsets the dragged item from the cursor.
+const svgPoint = (ev) => {
+  const r = svg.node().getBoundingClientRect();
+  const e = ev.sourceEvent.changedTouches ? ev.sourceEvent.changedTouches[0] : ev.sourceEvent;
+  return [(e.clientX - r.left) * W / r.width, (e.clientY - r.top) * H / r.height];
+};
 const nodes = charges.map((q) => {
   const g = svg.append("g").style("cursor", "grab");
   g.append("circle").attr("r", R).attr("stroke", "#333").attr("stroke-width", 2);
   g.append("text").attr("text-anchor", "middle").attr("dy", "0.35em").attr("fill", "white").attr("font-size", 24);
-  g.call(d3.drag().clickDistance(4).on("drag", (ev) => {
-    q.x = Math.max(R, Math.min(W - R, ev.x));
-    q.y = Math.max(R, Math.min(H - R, ev.y));
+  let grab = [0, 0]; // cursor offset from the centre, so the charge doesn't jump
+  g.call(d3.drag().clickDistance(4).on("start", (ev) => {
+    const [x, y] = svgPoint(ev);
+    grab = [q.x - x, q.y - y];
+  }).on("drag", (ev) => {
+    const [x, y] = svgPoint(ev);
+    q.x = Math.max(R, Math.min(W - R, x + grab[0]));
+    q.y = Math.max(R, Math.min(H - R, y + grab[1]));
     update();
   }));
   g.on("click", () => { q.z = -q.z; update(); });

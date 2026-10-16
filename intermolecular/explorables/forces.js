@@ -65,8 +65,20 @@ function update() {
   readout.text(`|f| = ${Math.hypot(...sum).toFixed(2)} kT/Å  (water, Bjerrum length ${lB} Å)`);
 }
 
-tg.call(d3.drag().clickDistance(4).on("drag", (ev) => {
-  let x = (ev.x - W / 2) / s, y = (H * 0.72 - ev.y) / s;
+// Pointer in viewBox units from the bounding box: getScreenCTM (behind d3.pointer) ignores
+// reveal.js's CSS scaling in Safari, which offsets the dragged item from the cursor.
+const svgPoint = (ev) => {
+  const r = svg.node().getBoundingClientRect();
+  const e = ev.sourceEvent.changedTouches ? ev.sourceEvent.changedTouches[0] : ev.sourceEvent;
+  return [(e.clientX - r.left) * W / r.width, (e.clientY - r.top) * H / r.height];
+};
+let grab = [0, 0]; // cursor offset from the centre, so the charge doesn't jump
+tg.call(d3.drag().clickDistance(4).on("start", (ev) => {
+  const [px, py] = svgPoint(ev);
+  grab = [X(test.x) - px, Y(test.y) - py];
+}).on("drag", (ev) => {
+  const [px, py] = svgPoint(ev);
+  let x = (px + grab[0] - W / 2) / s, y = (H * 0.72 - py - grab[1]) / s;
   for (const q of fixed) { // keep the test charge from sitting on a fixed one
     const dx = x - q.x, dy = y - q.y, r = Math.hypot(dx, dy);
     if (r < 1) { x = q.x + dx / r; y = q.y + dy / r; }
