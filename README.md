@@ -34,7 +34,7 @@ the notebook, `render --execute` re-runs everything.
 | Let one slide scroll | `## Title {.scrollable}` |
 
 Interactive diagrams are D3 scripts in `intermolecular/explorables/<name>.js`, shown by a
-code cell `explorable("<name>")` (helper in the day 2 setup cell). They run in JupyterLab
+code cell `explorable("<name>")` (helper in the day 2 and 3 setup cells). They run in JupyterLab
 after the cell is executed and in the rendered slides; D3 is loaded from a CDN, so both
 need internet.
 
