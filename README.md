@@ -51,8 +51,8 @@ slide with a single plot is stretched to fill the space unless its heading has
 - `intermolecular/dayN_lecture.ipynb` — lecture slides (edit these)
 - `intermolecular/dayN_solutions.ipynb` — exercise solutions
 - `intermolecular/explorables/` — JavaScript for interactive diagrams
-- `intermolecular/day4.blikfang/` — day 4 as a Blikfang deck;
-  generated, so edit `tools/day4_deck.py` and rerun `python3 -I tools/day4_deck.py`
+- `intermolecular/day4.blikfang/` — day 4 as a Blikfang deck; edit it in Blikfang
+  (`tools/day4_deck.py` built the first version and no longer overwrites it)
 - `tools/check_overflow.py` — slide-fit checker (Playwright + installed Chrome or Edge)
 - `pyproject.toml`, `uv.lock`, `.python-version` — pinned environment;
   `uv lock --upgrade` to update

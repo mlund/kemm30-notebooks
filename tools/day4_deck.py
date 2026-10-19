@@ -1,15 +1,15 @@
 """KEMM30 day 4 (ion solvation, Born energy, salt screening teaser) as a Blikfang bundle.
 
-usage: python3 -I tools/day4_deck.py [out bundle]   (default intermolecular/day4.blikfang)
+usage: python3 -I tools/day4_deck.py <new bundle>
 
-The deck is generated so it can be rebuilt; edit this file, not deck.json.
+Retired: intermolecular/day4.blikfang is now edited in Blikfang, so this script no longer
+writes over an existing bundle. It only builds the deck as it was, into a new path.
 Units in the scenes: Å and k_BT at 298 K; vacuum Bjerrum length 560.4 Å.
 """
 
 import json
 import math
 import re
-import shutil
 import sys
 from pathlib import Path
 
@@ -1939,9 +1939,11 @@ def check_fit(slides):
 
 
 def main():
-    bundle = Path(sys.argv[1] if len(sys.argv) > 1 else "intermolecular/day4.blikfang")
+    if len(sys.argv) != 2:
+        sys.exit(__doc__)
+    bundle = Path(sys.argv[1])
     if bundle.exists():
-        shutil.rmtree(bundle)
+        sys.exit(f"{bundle} exists; the deck is edited in Blikfang now, so it is not overwritten")
     (bundle / "media").mkdir(parents=True)
     slides = [
         # solvation and the Born energy

@@ -1,4 +1,6 @@
 {
+  "blikfang": "0.1.0",
+  "id": "76e01ed241d756ab",
   "format": "desktop",
   "slides": [
     {
@@ -6,30 +8,30 @@
       "elements": [
         {
           "id": "t-head",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 320,
-            "w": 1440,
-            "h": 160
+            "x": 80.0,
+            "y": 320.0,
+            "w": 1440.0,
+            "h": 160.0
           },
+          "kind": "text",
           "config": {
             "text": "# Ion solvation and the Born energy",
             "style": {
-              "align": "center",
-              "scale": 1.4
+              "scale": 1.4,
+              "align": "center"
             }
           }
         },
         {
           "id": "t-sub",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 500,
-            "w": 1440,
-            "h": 120
+            "x": 80.0,
+            "y": 500.0,
+            "w": 1440.0,
+            "h": 120.0
           },
+          "kind": "text",
           "config": {
             "text": "Why salt dissolves in water but not in oil, what that costs, and how salt itself weakens electric interactions",
             "style": {
@@ -39,19 +41,19 @@
         },
         {
           "id": "t-ref",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 700,
-            "w": 1440,
-            "h": 60
+            "x": 80.0,
+            "y": 700.0,
+            "w": 1440.0,
+            "h": 60.0
           },
+          "kind": "text",
           "config": {
             "text": "KEMM30 · day 4 · Dill & Bromberg ch. 22, pp. 444–451",
             "style": {
-              "align": "center",
+              "scale": 0.8,
               "colour": "faint",
-              "scale": 0.8
+              "align": "center"
             }
           }
         }
@@ -59,31 +61,37 @@
     },
     {
       "id": "outcomes",
+      "builds": [
+        {
+          "element": "outcomes-body",
+          "delivery": "by-paragraph"
+        }
+      ],
       "elements": [
         {
           "id": "outcomes-title",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
+            "x": 80.0,
+            "y": 30.0,
+            "w": 1440.0,
+            "h": 39.0
           },
+          "kind": "text",
           "config": {
             "text": "## After today you can…"
           }
         },
         {
           "id": "outcomes-body",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 110,
-            "w": 1440,
-            "h": 700
+            "x": 80.0,
+            "y": 109.69834087481148,
+            "w": 1440.0,
+            "h": 372.0
           },
+          "kind": "text",
           "config": {
-            "text": "1. explain why a solvent stabilizes an ion, from the polarization of its molecules, and derive the Born energy by charging a sphere;\n2. estimate solvation and transfer free energies from $z$, $a$ and $\\varepsilon_r$, and say why ions avoid oil, membranes and protein cores;\n3. explain why ion solvation is long-ranged compared with a dipole's, and why small ions avoid a water surface;\n4. predict how a charged surface shifts the $\\mathrm{p}K_a$ of nearby groups, and estimate the Debye length to judge when salt switches off an interaction.",
+            "text": "1. derive the solvation free energy of an ion in two ways: by charging a sphere in vacuum and in a medium, and by adding up the polarization of the solvent molecules;\n2. estimate solvation and transfer free energies from $z$, $a$ and $\\varepsilon_r$, and say why ions avoid oil, membranes and protein cores;\n3. explain why ion solvation is long-ranged compared with a dipole's, and why small ions avoid a water surface;\n4. estimate the Debye length and judge when salt switches off an interaction.",
             "style": {
               "scale": 0.85,
               "spacing": {
@@ -96,31 +104,36 @@
     },
     {
       "id": "opening",
+      "builds": [
+        {
+          "element": "opening-p"
+        }
+      ],
       "elements": [
         {
           "id": "opening-title",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
+            "x": 80.0,
+            "y": 30.0,
+            "w": 1440.0,
+            "h": 60.0
           },
+          "kind": "text",
           "config": {
-            "text": "## 1. Salt dissolves in water, but not in oil. Why?"
+            "text": "## Salt dissolves in water, but not in oil. Why?"
           }
         },
         {
           "id": "opening-body",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 110,
-            "w": 1440,
-            "h": 250
+            "x": 80.0,
+            "y": 98.4898190045248,
+            "w": 1440.0,
+            "h": 370.0
           },
+          "kind": "text",
           "config": {
-            "text": "On day 2 two ions in contact attracted each other by about **200 $k_BT$** in vacuum, **100 $k_BT$** in oil, but only **2.5 $k_BT$** in water. Water weakens the attraction 80-fold. Today we ask what water does for a *single* ion.\n\n**Question:** What does water do for an ion that oil cannot?",
+            "text": "On day 2 two ions in contact attracted each other by about\n\n- **200 $k_BT$** in vacuum,\n- **100 $k_BT$** in oil,\n- only **2.5 $k_BT$** in water.\n\nWater _weakens_ the attraction 80-fold. Today we put a number on this, the **Born energy**, and use it for oil → water transfer, drugs, and ions near a water surface.",
             "style": {
               "scale": 0.9
             }
@@ -128,16 +141,16 @@
         },
         {
           "id": "opening-p",
-          "kind": "puzzle",
           "frame": {
-            "x": 80,
-            "y": 400,
-            "w": 1440,
-            "h": 210
+            "x": 80.0,
+            "y": 607.3435143288084,
+            "w": 1440.0,
+            "h": 210.0
           },
+          "group": "group-1",
+          "kind": "puzzle",
           "config": {
             "mode": "choice",
-            "tries": 3,
             "options": [
               {
                 "text": "Its dipoles turn towards the ion and lower the energy of the ion's field",
@@ -160,59 +173,56 @@
             "feedback": {
               "correct": "Water's dipoles orient round the ion and partly cancel its field.",
               "reveal": "Water polarizes round the ion and screens its field ($\\varepsilon_r \\approx 78$)."
-            }
+            },
+            "tries": 3
           }
         },
         {
-          "id": "opening-next",
-          "kind": "text",
+          "id": "text-1",
           "frame": {
-            "x": 80,
-            "y": 760,
-            "w": 1440,
-            "h": 120
+            "x": 80.0,
+            "y": 534.6960784313726,
+            "w": 1073.1994720965308,
+            "h": 51.0
           },
+          "group": "group-1",
+          "kind": "text",
           "config": {
-            "text": "Today we put a number on this, the **Born energy**, and use it for oil → water transfer, drugs, and ions near a water surface.",
-            "style": {
-              "scale": 0.85
-            }
+            "text": "**Question:** What does water do for an ion that oil cannot?"
           }
-        }
-      ],
-      "builds": [
-        {
-          "element": "opening-next",
-          "trigger": "click",
-          "effect": "appear"
         }
       ]
     },
     {
       "id": "solvation-quiz",
+      "builds": [
+        {
+          "element": "sq-why-card"
+        }
+      ],
       "elements": [
         {
           "id": "solvation-quiz-title",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
+            "x": 80.0,
+            "y": 30.0,
+            "w": 1440.0,
+            "h": 75.0
           },
+          "kind": "text",
           "config": {
             "text": "## A solvation free energy starts in vacuum"
           }
         },
         {
           "id": "sq-q1",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 110,
-            "w": 1440,
-            "h": 110
+            "x": 80.0,
+            "y": 110.0,
+            "w": 1440.0,
+            "h": 110.0
           },
+          "kind": "text",
           "config": {
             "text": "**Question:** The solvation free energy of Na⁺ in water is the free energy change for…",
             "style": {
@@ -222,16 +232,15 @@
         },
         {
           "id": "sq-p1",
-          "kind": "puzzle",
           "frame": {
-            "x": 80,
-            "y": 225,
-            "w": 1440,
-            "h": 140
+            "x": 80.0,
+            "y": 225.0,
+            "w": 1440.0,
+            "h": 140.0
           },
+          "kind": "puzzle",
           "config": {
             "mode": "choice",
-            "tries": 3,
             "options": [
               {
                 "text": "moving Na⁺ from vacuum into water",
@@ -254,39 +263,43 @@
             "feedback": {
               "correct": "Vacuum → solvent: one ion, no crystal, no other solvent.",
               "reveal": "Vacuum → solvent: one ion, no crystal, no other solvent."
-            }
+            },
+            "tries": 3
           }
         },
         {
           "id": "sq-why-card",
-          "kind": "shape",
           "frame": {
-            "x": 80,
-            "y": 540,
-            "w": 1440,
-            "h": 250
+            "x": 80.0,
+            "y": 540.0,
+            "w": 1440.0,
+            "h": 250.0
           },
-          "config": {
-            "shape": "rect",
-            "radius": 16
-          },
+          "group": "group-2",
           "style": {
             "fill": "surface",
             "border": {
               "color": "line",
-              "width": 3
+              "width": 3.0,
+              "dash": "solid"
             }
+          },
+          "kind": "shape",
+          "config": {
+            "shape": "rect",
+            "radius": 16.0
           }
         },
         {
           "id": "sq-why",
-          "kind": "text",
           "frame": {
-            "x": 110,
-            "y": 564,
-            "w": 1380,
-            "h": 202
+            "x": 110.0,
+            "y": 564.0,
+            "w": 1380.0,
+            "h": 202.0
           },
+          "group": "group-2",
+          "kind": "text",
           "config": {
             "text": "**Key concept.** A **solvation** free energy takes one ion from vacuum into a solvent. It is negative and large: the solvent lowers the energy of the ion's field. A **transfer** free energy (solvent 1 → solvent 2) is the *difference* of two solvation free energies.",
             "style": {
@@ -294,82 +307,79 @@
             }
           }
         }
-      ],
-      "builds": [
-        {
-          "element": "sq-why-card",
-          "trigger": "click",
-          "effect": "appear"
-        },
-        {
-          "element": "sq-why",
-          "trigger": "with-previous",
-          "effect": "appear"
-        }
       ]
     },
     {
       "id": "interface",
       "state": {
+        "a": 2.0,
+        "eps2": 1.0,
         "ix": 270.0,
         "iy": 140.0,
-        "eps2": 1.0,
-        "a": 2.0,
         "val": 1.0
       },
+      "builds": [
+        {
+          "element": "if-ans-card"
+        },
+        {
+          "element": "if-ans",
+          "trigger": "with-previous"
+        }
+      ],
       "elements": [
         {
           "id": "interface-title",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
+            "x": 80.0,
+            "y": 30.0,
+            "w": 1440.0,
+            "h": 75.0
           },
+          "kind": "text",
           "config": {
-            "text": "## 2. Water pulls an ion in, from air and from oil"
+            "text": "## Water pulls an ion in, from air and from oil"
           }
         },
         {
           "id": "interface-scene",
-          "kind": "scene",
           "frame": {
-            "x": 80,
-            "y": 100,
-            "w": 1120,
-            "h": 560
+            "x": 80.0,
+            "y": 100.0,
+            "w": 1120.0,
+            "h": 560.0
           },
+          "kind": "scene",
           "config": {
-            "size": [
-              1200,
-              600
-            ],
             "script": "let e1 = 78.4; let lB0 = 560.4; let w = 1.0;   // interface width, Å\n// energy on x, height z on y, so the curve lines up with the picture on its left\nlet pre = val * val * lB0;\nlet born2 = pre / (2.0 * a) * (1.0 / eps2 - 1.0 / e1);   // water → upper phase\nlet p = plot(640, 30, 500, 440).x_lin(-born2 * 1.1, 0).y_lin(-10, 10).text(21);\nlet ys = (p.y(-10.0) - p.y(10.0)) / 20.0;      // units per Å\nlet z = (p.y(0.0) - iy) / ys;                  // ion centre, Å; > 0 is the upper phase\n// local Born: 1/ε blended over the interface width (Born goes as 1/ε); zero in the upper phase\nlet G = |t| -born2 * (1.0 - (t / w).tanh()) / 2.0;\nlet name = if eps2 < 1.5 { \"air\" } else if eps2 < 5.0 { \"oil\" } else { \"octanol\" };\n\nlet out = [];\nlet cl = 40.0; let cr = 500.0; let y0 = p.y(0.0); let yt = p.y(10.0); let yb = p.y(-10.0);\n// wavy surface, closed into the water region below it\nlet wave = [];\nlet x = cl;\nwhile x <= cr + 0.1 { wave.push([x, y0 + 5.0 * (x / 18.0).sin()]); x += 5.0; }\nlet water = wave; water.push([cr, yb]); water.push([cl, yb]);\nif eps2 > 1.5 {\n    let up = if eps2 < 5.0 { \"yellow\" } else { \"orange\" };\n    out.push(rect(cl, yt, cr - cl, y0 - yt).fill(up).stroke(\"none\").opacity(0.18));\n}\nout.push(polygon(water).fill(\"blue\").stroke(\"none\").opacity(0.2));\nout.push(polyline(wave).stroke(\"blue\").width(3));\nout.push(text(cl + 12, yt + 26, name + \", εᵣ = \" + fixed(eps2, 0)).anchor(\"start\").size(21));\nout.push(text(cl + 12, yb - 14, \"water, εᵣ = 78\").anchor(\"start\").size(21));\nout.push(disc(ix, iy, a * ys).fill(\"blue\").stroke(\"text\").opacity(0.85));\nlet lab = if val > 1.5 { fixed(val, 0) + \"+\" } else { \"+\" };\nout.push(text(ix, iy, lab).fill(\"background\").size(26));\n\n// free energy against height\nout.push(p.axes(\"ΔG − ΔG_\" + name + \"  (kT)\", \"ion position z (Å)\"));\nout.push(p.hline(0).stroke(\"blue\").width(1).dash(4, 4));\nlet pts = []; let t = -10.0;\nwhile t <= 10.0 { pts.push([G.call(t), t]); t += 0.1; }\nout.push(p.line(pts).stroke(\"orange\").width(3));\nlet zc = clamp(z, -10.0, 10.0);\nout.push(disc(p.x(G.call(zc)), p.y(zc), 8).fill(\"orange\").stroke(\"none\"));\nout.push(line(ix, iy, p.x(G.call(zc)), p.y(zc)).stroke(\"faint\").width(1).dash(3, 5));\nlet gz = G.call(z); if gz > -0.05 { gz = 0.0; }   // no \"−0.0\" in air\nout.push(text(cl, 515, \"ΔG = \" + fixed(gz, 1) + \" kT\").anchor(\"start\").size(22));\nout.push(text(cl, 550, \"model: εᵣ changes from one phase to the other over 1 Å\").anchor(\"start\").size(21).fill(\"faint\"));\nout",
             "handles": [
               {
                 "x": "ix",
                 "y": "iy",
-                "r": 30,
+                "r": 30.0,
                 "within": {
-                  "x": 269,
-                  "y": 30,
-                  "w": 2,
-                  "h": 440
+                  "x": 269.0,
+                  "y": 30.0,
+                  "w": 2.0,
+                  "h": 440.0
                 }
               }
+            ],
+            "size": [
+              1200.0,
+              600.0
             ]
           }
         },
         {
           "id": "if-l1",
-          "kind": "text",
           "frame": {
-            "x": 1220,
-            "y": 110,
-            "w": 300,
-            "h": 40
+            "x": 1220.0,
+            "y": 110.0,
+            "w": 300.0,
+            "h": 40.0
           },
+          "kind": "text",
           "config": {
             "text": "upper phase",
             "style": {
@@ -380,13 +390,13 @@
         },
         {
           "id": "if-air",
-          "kind": "button",
           "frame": {
-            "x": 1220,
-            "y": 150,
-            "w": 80,
-            "h": 48
+            "x": 1220.0,
+            "y": 150.0,
+            "w": 80.0,
+            "h": 48.0
           },
+          "kind": "button",
           "config": {
             "label": "air",
             "run": "eps2 = 1.0"
@@ -394,13 +404,13 @@
         },
         {
           "id": "if-oil",
-          "kind": "button",
           "frame": {
-            "x": 1306,
-            "y": 150,
-            "w": 80,
-            "h": 48
+            "x": 1306.0,
+            "y": 150.0,
+            "w": 80.0,
+            "h": 48.0
           },
+          "kind": "button",
           "config": {
             "label": "oil",
             "run": "eps2 = 2.0"
@@ -408,13 +418,13 @@
         },
         {
           "id": "if-oct",
-          "kind": "button",
           "frame": {
-            "x": 1392,
-            "y": 150,
-            "w": 128,
-            "h": 48
+            "x": 1392.0,
+            "y": 150.0,
+            "w": 128.0,
+            "h": 48.0
           },
+          "kind": "button",
           "config": {
             "label": "octanol",
             "run": "eps2 = 10.0"
@@ -422,13 +432,13 @@
         },
         {
           "id": "if-l2",
-          "kind": "text",
           "frame": {
-            "x": 1220,
-            "y": 215,
-            "w": 300,
-            "h": 40
+            "x": 1220.0,
+            "y": 215.0,
+            "w": 300.0,
+            "h": 40.0
           },
+          "kind": "text",
           "config": {
             "text": "ion charge z",
             "style": {
@@ -439,13 +449,13 @@
         },
         {
           "id": "if-z1",
-          "kind": "button",
           "frame": {
-            "x": 1220,
-            "y": 255,
-            "w": 95,
-            "h": 48
+            "x": 1220.0,
+            "y": 255.0,
+            "w": 95.0,
+            "h": 48.0
           },
+          "kind": "button",
           "config": {
             "label": "z = 1",
             "run": "val = 1.0"
@@ -453,13 +463,13 @@
         },
         {
           "id": "if-z2",
-          "kind": "button",
           "frame": {
-            "x": 1322,
-            "y": 255,
-            "w": 95,
-            "h": 48
+            "x": 1322.0,
+            "y": 255.0,
+            "w": 95.0,
+            "h": 48.0
           },
+          "kind": "button",
           "config": {
             "label": "z = 2",
             "run": "val = 2.0"
@@ -467,13 +477,13 @@
         },
         {
           "id": "if-z3",
-          "kind": "button",
           "frame": {
-            "x": 1424,
-            "y": 255,
-            "w": 95,
-            "h": 48
+            "x": 1424.0,
+            "y": 255.0,
+            "w": 95.0,
+            "h": 48.0
           },
+          "kind": "button",
           "config": {
             "label": "z = 3",
             "run": "val = 3.0"
@@ -481,13 +491,13 @@
         },
         {
           "id": "if-l3",
-          "kind": "text",
           "frame": {
-            "x": 1220,
-            "y": 320,
-            "w": 300,
-            "h": 40
+            "x": 1220.0,
+            "y": 320.0,
+            "w": 300.0,
+            "h": 40.0
           },
+          "kind": "text",
           "config": {
             "text": "radius $a$ = {{a:.1}} Å",
             "style": {
@@ -497,28 +507,28 @@
         },
         {
           "id": "if-a",
-          "kind": "slider",
           "frame": {
-            "x": 1220,
-            "y": 360,
-            "w": 300,
-            "h": 40
+            "x": 1220.0,
+            "y": 360.0,
+            "w": 300.0,
+            "h": 40.0
           },
+          "kind": "slider",
           "config": {
             "bind": "a",
-            "min": 1,
-            "max": 4
+            "min": 1.0,
+            "max": 4.0
           }
         },
         {
           "id": "if-q",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 670,
-            "w": 1440,
-            "h": 135
+            "x": 80.0,
+            "y": 670.0,
+            "w": 1440.0,
+            "h": 135.0
           },
+          "kind": "text",
           "config": {
             "text": "**Question:** Drag the ion down into the water. Air is almost vacuum ($\\varepsilon_r = 1$): what kind of free energy is the drop? Switch to oil: how much does the ion gain now, and what is that free energy called? Then try $z = 2$, and a smaller ion.",
             "style": {
@@ -528,34 +538,35 @@
         },
         {
           "id": "if-ans-card",
-          "kind": "shape",
           "frame": {
-            "x": 80,
-            "y": 810,
-            "w": 1440,
-            "h": 178
-          },
-          "config": {
-            "shape": "rect",
-            "radius": 16
+            "x": 80.0,
+            "y": 810.0,
+            "w": 1440.0,
+            "h": 178.0
           },
           "style": {
             "fill": "surface",
             "border": {
               "color": "line",
-              "width": 3
+              "width": 3.0,
+              "dash": "solid"
             }
+          },
+          "kind": "shape",
+          "config": {
+            "shape": "rect",
+            "radius": 16.0
           }
         },
         {
           "id": "if-ans",
-          "kind": "text",
           "frame": {
-            "x": 110,
-            "y": 834,
-            "w": 1380,
-            "h": 130
+            "x": 110.0,
+            "y": 834.0,
+            "w": 1380.0,
+            "h": 130.0
           },
+          "kind": "text",
           "config": {
             "text": "**Answer.** From air the ion gains about 138 $k_BT$: its **solvation** free energy. From oil it gains about 68 $k_BT$: the oil → water **transfer** free energy. Doubling $z$ gives four times as much, and halving $a$ twice as much. The next slides derive these numbers.",
             "style": {
@@ -563,186 +574,78 @@
             }
           }
         }
-      ],
-      "builds": [
-        {
-          "element": "if-ans-card",
-          "effect": "appear"
-        },
-        {
-          "element": "if-ans",
-          "trigger": "with-previous",
-          "effect": "appear"
-        }
       ]
     },
     {
       "id": "charging",
+      "builds": [
+        {
+          "element": "charging-key-card"
+        },
+        {
+          "element": "charging-key",
+          "trigger": "with-previous"
+        }
+      ],
       "elements": [
         {
           "id": "charging-title",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
+            "x": 80.0,
+            "y": 30.0,
+            "w": 1440.0,
+            "h": 75.0
           },
+          "kind": "text",
           "config": {
-            "text": "## 3. Charging a sphere costs work, because like charges repel"
+            "text": "## Charging an ion costs a large self-energy"
           }
         },
         {
           "id": "charging-body",
+          "frame": {
+            "x": 80.0,
+            "y": 105.0,
+            "w": 1440.0,
+            "h": 330.0
+          },
           "kind": "text",
-          "frame": {
-            "x": 80,
-            "y": 100,
-            "w": 1440,
-            "h": 490
-          },
           "config": {
-            "text": "Bring the charge $q$ onto a sphere of radius $a$ in small bits. Each new bit is pushed away by the charge already there, so every bit costs a little more than the last.\n\n- When the sphere holds $\\lambda q$ (with $\\lambda$ going from 0 to 1), its surface potential is $\\psi(\\lambda) = \\lambda q/(4\\pi\\varepsilon_0\\varepsilon_r a)$.\n- The next bit, $q\\,d\\lambda$, costs $\\psi(\\lambda)\\,q\\,d\\lambda$. Adding up all the bits:\n\n$$\\Delta G = \\int_0^1 \\psi(\\lambda)\\,q\\,d\\lambda = \\frac{q^2}{4\\pi\\varepsilon_0\\varepsilon_r a}\\int_0^1\\lambda\\,d\\lambda = \\frac{q^2}{8\\pi\\varepsilon_0\\varepsilon_r a}$$",
-            "style": {
-              "scale": 0.8,
-              "spacing": {
-                "between": 0.3
-              }
-            }
-          }
-        },
-        {
-          "id": "charging-key-card",
-          "kind": "shape",
-          "frame": {
-            "x": 80,
-            "y": 610,
-            "w": 1440,
-            "h": 280
-          },
-          "config": {
-            "shape": "rect",
-            "radius": 16
-          },
-          "style": {
-            "fill": "surface",
-            "border": {
-              "color": "line",
-              "width": 3
-            }
-          }
-        },
-        {
-          "id": "charging-key",
-          "kind": "text",
-          "frame": {
-            "x": 110,
-            "y": 634,
-            "w": 1380,
-            "h": 232
-          },
-          "config": {
-            "text": "**Key concept.** Charging a sphere costs $\\Delta G = \\dfrac{q^2}{8\\pi\\varepsilon_0\\varepsilon_r a} = \\dfrac{z^2\\ell_B}{2a}\\,k_BT$, with $\\ell_B$ the Bjerrum length (next slide). The ½ appears because each bit meets only the charge already there. Small, highly charged spheres are expensive; a medium with $\\varepsilon_r > 1$ makes them cheaper.",
+            "text": "Bring the charge $q = ze$ onto a sphere of radius $a$ in small bits. Each new bit is pushed away by the charge already there, so on average a bit feels half the final potential. In a medium with dielectric constant $\\varepsilon_r$ the cost is\n\n$$\\Delta G = \\frac{q^2}{8\\pi\\varepsilon_0\\varepsilon_r a} = \\frac{z^2\\ell_B}{2a}\\,k_BT,\\qquad \\ell_B = \\frac{e^2}{4\\pi\\varepsilon_0\\varepsilon_r k_BT}$$",
             "style": {
               "scale": 0.8
             }
           }
         },
         {
-          "id": "charging-ref",
-          "kind": "text",
+          "id": "chg-q",
           "frame": {
-            "x": 80,
-            "y": 895,
-            "w": 1440,
-            "h": 60
+            "x": 80.0,
+            "y": 440.0,
+            "w": 1440.0,
+            "h": 95.0
           },
+          "kind": "text",
           "config": {
-            "text": "Dill Ex. 22.10, Eqs. 22.53–22.55. At 25 °C, $k_BT$ = 2.48 kJ/mol = 0.593 kcal/mol. Full derivation on the next page.",
+            "text": "**Question:** The Bjerrum length is $\\ell_B^{\\rm vacuum} = 560$ Å in vacuum. What does it cost to charge a monovalent ion with $a = 2$ Å there, in $k_BT$?",
             "style": {
-              "scale": 0.62,
-              "colour": "faint"
-            }
-          }
-        }
-      ],
-      "builds": [
-        {
-          "element": "charging-body",
-          "delivery": "by-paragraph"
-        }
-      ]
-    },
-    {
-      "id": "notes-charging",
-      "page": {
-        "notes": {
-          "src": "media/notes-charging.md"
-        }
-      }
-    },
-    {
-      "id": "charging-number",
-      "elements": [
-        {
-          "id": "charging-number-title",
-          "kind": "text",
-          "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
-          },
-          "config": {
-            "text": "## In vacuum, an ion is expensive"
-          }
-        },
-        {
-          "id": "cn-body",
-          "kind": "text",
-          "frame": {
-            "x": 80,
-            "y": 110,
-            "w": 1440,
-            "h": 170
-          },
-          "config": {
-            "text": "In units of $k_BT$ the charging cost is $z^2\\ell_B/2a$, where the Bjerrum length $\\ell_B = e^2/(4\\pi\\varepsilon_0\\varepsilon_r k_BT)$ is $\\ell_B^{\\rm vacuum} = 560$ Å in vacuum and 7.1 Å in water at 25 °C.",
-            "style": {
-              "scale": 0.85
+              "scale": 0.8
             }
           }
         },
         {
-          "id": "cn-q",
-          "kind": "text",
+          "id": "chg-p",
           "frame": {
-            "x": 80,
-            "y": 300,
-            "w": 1440,
-            "h": 110
+            "x": 80.0,
+            "y": 545.0,
+            "w": 700.0,
+            "h": 70.0
           },
-          "config": {
-            "text": "**Question:** What does it cost to charge a monovalent ion with $a = 2$ Å in **vacuum**, in $k_BT$?",
-            "style": {
-              "scale": 0.85
-            }
-          }
-        },
-        {
-          "id": "cn-p",
           "kind": "puzzle",
-          "frame": {
-            "x": 80,
-            "y": 420,
-            "w": 700,
-            "h": 70
-          },
           "config": {
             "mode": "numeric",
-            "answer": 140,
-            "tolerance": 6,
-            "tries": 3,
+            "answer": 140.0,
+            "tolerance": 6.0,
             "hints": [
               "Use $z^2\\ell_B/(2a)$ with the vacuum value of $\\ell_B$.",
               "$z = 1$, $\\ell_B = 560$ Å, $a = 2$ Å.",
@@ -751,191 +654,212 @@
             "feedback": {
               "correct": "Right: 140 $k_BT$, about 350 kJ/mol.",
               "reveal": "$560/(2\\cdot 2) = 140\\,k_BT$, about 350 kJ/mol."
-            }
+            },
+            "tries": 3
           }
         },
         {
-          "id": "cn-why",
-          "kind": "text",
+          "id": "charging-key-card",
           "frame": {
-            "x": 80,
-            "y": 640,
-            "w": 1440,
-            "h": 250
-          },
-          "config": {
-            "text": "That is about a hundred hydrogen bonds' worth of free energy, stored in the ion's own field. It is the energy a solvent can win back. In water almost all of it comes back; in oil only half. The next slides show how.",
-            "style": {
-              "scale": 0.85
-            }
-          }
-        }
-      ],
-      "builds": [
-        {
-          "element": "cn-why",
-          "trigger": "click",
-          "effect": "appear"
-        }
-      ]
-    },
-    {
-      "id": "molecular",
-      "elements": [
-        {
-          "id": "molecular-title",
-          "kind": "text",
-          "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
-          },
-          "config": {
-            "text": "## 4. Each solvent molecule lowers the cost a little"
-          }
-        },
-        {
-          "id": "molecular-body",
-          "kind": "text",
-          "frame": {
-            "x": 80,
-            "y": 100,
-            "w": 1440,
-            "h": 520
-          },
-          "config": {
-            "text": "Around a cation, water molecules turn their oxygen towards the ion and their electron clouds shift. Each molecule becomes a small dipole along the ion's field, and each lowers the energy.\n\n- The ion's field at distance $r$ is $E = q/(4\\pi\\varepsilon_0 r^2)$.\n- One molecule gains $-\\tfrac12\\alpha_{\\rm eff}E^2$, with $\\alpha_{\\rm eff} = \\alpha + \\mu^2/3k_BT$ (induced plus oriented, day 3).\n- A shell from $r$ to $r + dr$ holds $\\rho\\,4\\pi r^2 dr$ molecules. Add all shells from the surface $a$ out:\n\n$$\\Delta G \\approx -\\frac{\\rho\\,\\alpha_{\\rm eff}}{2}\\int_a^\\infty \\left(\\frac{q}{4\\pi\\varepsilon_0 r^2}\\right)^2 4\\pi r^2\\,dr = -\\frac{q^2}{8\\pi\\varepsilon_0 a}\\,\\chi$$",
-            "style": {
-              "scale": 0.78,
-              "spacing": {
-                "between": 0.3
-              }
-            }
-          }
-        },
-        {
-          "id": "molecular-key-card",
-          "kind": "shape",
-          "frame": {
-            "x": 80,
-            "y": 650,
-            "w": 1440,
-            "h": 230
-          },
-          "config": {
-            "shape": "rect",
-            "radius": 16
+            "x": 820.0,
+            "y": 545.0,
+            "w": 700.0,
+            "h": 350.0
           },
           "style": {
             "fill": "surface",
             "border": {
               "color": "line",
-              "width": 3
+              "width": 3.0,
+              "dash": "solid"
+            }
+          },
+          "kind": "shape",
+          "config": {
+            "shape": "rect",
+            "radius": 16.0
+          }
+        },
+        {
+          "id": "charging-key",
+          "frame": {
+            "x": 850.0,
+            "y": 569.0,
+            "w": 640.0,
+            "h": 302.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**Key concept.** An ion in vacuum stores a large self-energy in its own field: 140 $k_BT$ (350 kJ/mol) for $a = 2$ Å. It grows as $z^2$ and falls as $1/a$. A medium lowers it to $1/\\varepsilon_r$ of that: this is the energy a solvent can win back.",
+            "style": {
+              "scale": 0.72
             }
           }
         },
         {
-          "id": "molecular-key",
-          "kind": "text",
+          "id": "charging-ref",
           "frame": {
-            "x": 110,
-            "y": 674,
-            "w": 1380,
-            "h": 182
+            "x": 820.0,
+            "y": 905.0,
+            "w": 700.0,
+            "h": 80.0
           },
+          "kind": "text",
           "config": {
-            "text": "**Key concept.** Solvation is the sum of many small dipole energies. A shell at $r$ adds $\\propto r^{-4}\\cdot r^2\\,dr = r^{-2}\\,dr$: each far shell gives little, but there are many. In a dilute solvent the result is set by the susceptibility $\\chi = \\rho\\,\\alpha_{\\rm eff}/\\varepsilon_0 = \\varepsilon_r - 1$.",
+            "text": "Dill Ex. 22.10, Eqs. 22.53–22.55. $k_BT$ = 2.48 kJ/mol at 25 °C. Derivation in the notes after the next slide.",
             "style": {
-              "scale": 0.8
+              "scale": 0.62,
+              "colour": "faint"
             }
           }
-        }
-      ],
-      "builds": [
-        {
-          "element": "molecular-body",
-          "delivery": "by-paragraph"
         }
       ]
     },
     {
-      "id": "born",
+      "id": "routes",
+      "builds": [
+        {
+          "element": "route2-card"
+        },
+        {
+          "element": "route2",
+          "trigger": "with-previous"
+        },
+        {
+          "element": "routes-key-card"
+        },
+        {
+          "element": "routes-key",
+          "trigger": "with-previous"
+        }
+      ],
       "elements": [
         {
-          "id": "born-title",
-          "kind": "text",
+          "id": "routes-title",
           "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
+            "x": 80.0,
+            "y": 30.0,
+            "w": 1440.0,
+            "h": 75.0
           },
+          "kind": "text",
           "config": {
-            "text": "## 5. The Born energy: moving an ion from one dielectric to another"
+            "text": "## Two routes to the same solvation free energy"
           }
         },
         {
-          "id": "born-body",
-          "kind": "text",
+          "id": "route1-card",
           "frame": {
-            "x": 80,
-            "y": 95,
-            "w": 1440,
-            "h": 485
-          },
-          "config": {
-            "text": "The dilute result fails for water: with $\\chi = 77$ it would win back 77 times the whole self-energy, which is impossible. In a dense liquid the molecules already there screen the field, so new solvent feels only $E/\\varepsilon_r$. Raising the permittivity from $\\varepsilon_1$ to $\\varepsilon_2$ in steps $d\\varepsilon_r$ gives\n\n$$d\\Delta G = -\\frac{q^2}{8\\pi\\varepsilon_0 a}\\,\\frac{d\\varepsilon_r}{\\varepsilon_r^2}\\qquad\\Rightarrow\\qquad\\Delta G_{\\rm Born} = \\frac{q^2}{8\\pi\\varepsilon_0 a}\\left(\\frac1{\\varepsilon_2}-\\frac1{\\varepsilon_1}\\right)$$\n\nFrom vacuum ($\\varepsilon_1 = 1$) into water this is the solvation free energy: $-138\\,k_BT$ (−340 kJ/mol) for $a = 2$ Å. Water wins back 99 % of the self-energy.",
-            "style": {
-              "scale": 0.8,
-              "spacing": {
-                "between": 0.3
-              }
-            }
-          }
-        },
-        {
-          "id": "born-key-card",
-          "kind": "shape",
-          "frame": {
-            "x": 80,
-            "y": 565,
-            "w": 1440,
-            "h": 410
-          },
-          "config": {
-            "shape": "rect",
-            "radius": 16
+            "x": 80.0,
+            "y": 110.0,
+            "w": 700.0,
+            "h": 485.0
           },
           "style": {
             "fill": "surface",
             "border": {
               "color": "line",
-              "width": 3
+              "width": 3.0,
+              "dash": "solid"
+            }
+          },
+          "kind": "shape",
+          "config": {
+            "shape": "rect",
+            "radius": 16.0
+          }
+        },
+        {
+          "id": "route1",
+          "frame": {
+            "x": 110.0,
+            "y": 130.0,
+            "w": 640.0,
+            "h": 460.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**Route 1: charge in vacuum, then in the medium.** Discharge the ion in vacuum, move the neutral sphere into the medium for free, and charge it again there. Charging costs $q^2/8\\pi\\varepsilon_0\\varepsilon_r a$, so the difference is\n\n$$\\Delta G = \\frac{q^2}{8\\pi\\varepsilon_0 a}\\left(\\frac1{\\varepsilon_r}-1\\right)$$\n\nThe medium makes the charge cheaper, but this route does not say how.",
+            "style": {
+              "scale": 0.7
             }
           }
         },
         {
-          "id": "born-key",
-          "kind": "text",
+          "id": "route2-card",
           "frame": {
-            "x": 110,
-            "y": 589,
-            "w": 1380,
-            "h": 362
+            "x": 820.0,
+            "y": 110.0,
+            "w": 700.0,
+            "h": 485.0
           },
+          "style": {
+            "fill": "surface",
+            "border": {
+              "color": "line",
+              "width": 3.0,
+              "dash": "solid"
+            }
+          },
+          "kind": "shape",
           "config": {
-            "text": "**Key concept: the Born energy** of moving an ion from medium 1 to medium 2 (Dill Eq. 22.61):\n\n$$\\Delta G_{\\rm Born} = \\frac{z^2\\ell_B^{\\rm vacuum}}{2a}\\left(\\frac1{\\varepsilon_2}-\\frac1{\\varepsilon_1}\\right)k_BT,\\qquad \\ell_B^{\\rm vacuum} = 560\\ \\text{Å}$$\n\nFrom vacuum ($\\varepsilon_1 = 1$) it is the solvation free energy. It grows as $z^2$ and falls as $1/a$.",
+            "shape": "rect",
+            "radius": 16.0
+          }
+        },
+        {
+          "id": "route2",
+          "frame": {
+            "x": 850.0,
+            "y": 134.0,
+            "w": 640.0,
+            "h": 452.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**Route 2: add up the solvent's response.** Each solvent molecule in the ion's field becomes a small dipole and gains $-\\tfrac12\\alpha_{\\rm eff}E^2$; a shell at $r$ adds $\\propto r^{-2}\\,dr$. Build the solvent up layer by layer: each new layer feels the field already screened by $1/\\varepsilon'$,\n\n$$\\Delta G = -\\frac{q^2}{8\\pi\\varepsilon_0 a}\\int_1^{\\varepsilon_r}\\frac{d\\varepsilon'}{\\varepsilon'^2} = \\frac{q^2}{8\\pi\\varepsilon_0 a}\\left(\\frac1{\\varepsilon_r}-1\\right)$$",
             "style": {
-              "scale": 0.8
+              "scale": 0.7
             }
           }
-        }
-      ],
-      "builds": [
+        },
         {
-          "element": "born-body",
-          "delivery": "by-paragraph"
+          "id": "routes-key-card",
+          "frame": {
+            "x": 80.0,
+            "y": 612.0,
+            "w": 1440.0,
+            "h": 376.0
+          },
+          "style": {
+            "fill": "surface",
+            "border": {
+              "color": "accent",
+              "width": 3.0,
+              "dash": "solid"
+            }
+          },
+          "kind": "shape",
+          "config": {
+            "shape": "rect",
+            "radius": 16.0
+          }
+        },
+        {
+          "id": "routes-key",
+          "frame": {
+            "x": 110.0,
+            "y": 634.0,
+            "w": 1380.0,
+            "h": 330.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**Key concept: the Born energy** of moving an ion from medium 1 to medium 2 (Dill Eq. 22.61):\n\n$$\\Delta G_{\\rm Born} = \\frac{z^2\\ell_B^{\\rm vacuum}}{2a}\\left(\\frac1{\\varepsilon_2}-\\frac1{\\varepsilon_1}\\right)k_BT,\\qquad \\ell_B^{\\rm vacuum} = 560\\ \\text{Å}$$\n\nFrom vacuum ($\\varepsilon_1 = 1$) it is the solvation free energy: $-138\\,k_BT$ in water and $-70\\,k_BT$ in oil for $a = 2$ Å. Both derivations in full: next page.",
+            "style": {
+              "scale": 0.72
+            }
+          }
         }
       ]
     },
@@ -950,64 +874,69 @@
     {
       "id": "convergence",
       "state": {
-        "hx": 315.43676402711156,
-        "hy": 250.0,
+        "cont": 0.0,
         "dip": 0.0,
-        "cont": 0.0
+        "hx": 315.43676402711156,
+        "hy": 250.0
       },
+      "builds": [
+        {
+          "element": "convergence-why"
+        }
+      ],
       "elements": [
         {
           "id": "convergence-title",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
+            "x": 80.0,
+            "y": 30.0,
+            "w": 1440.0,
+            "h": 75.0
           },
+          "kind": "text",
           "config": {
-            "text": "## 6. Ion solvation reaches far into the solvent"
+            "text": "## Ion solvation reaches far into the solvent"
           }
         },
         {
           "id": "convergence-scene",
-          "kind": "scene",
           "frame": {
-            "x": 80,
-            "y": 100,
-            "w": 1100,
-            "h": 504
+            "x": 80.0,
+            "y": 100.0,
+            "w": 1100.0,
+            "h": 504.0
           },
+          "kind": "scene",
           "config": {
-            "size": [
-              1200,
-              550
-            ],
             "script": "let cx = 250.0; let cy = 250.0; let r0 = 30.0; let span = 200.0;\nlet L = 50.0.ln();\nlet rr = hx - cx;                          // shell radius on screen\nlet Ra = ((rr - r0) / span * L).exp();     // R/a, log scale\nlet out = [];\n// solvent sphere\nout.push(disc(cx, cy, rr).fill(\"aqua\").stroke(\"aqua\").opacity(0.25));\n// solvent dipoles on rings, oxygen end (dot) towards a cation, along the field of a dipole\nlet ring = r0 + 22.0;\nif cont > 0.5 {\n    out.push(disc(cx, cy, rr).fill(\"aqua\").stroke(\"none\").opacity(0.35));\n    out.push(text(cx, cy + r0 + 30.0, \"εᵣ = 78\").size(21));\n    ring = rr;   // no molecules\n}\nwhile ring < rr - 10.0 {\n    let n = (2.0 * 3.14159 * ring / 34.0).floor();\n    let k = 0.0;\n    while k < n {\n        let t = 2.0 * 3.14159 * k / n + ring * 0.05;\n        let ux = t.cos(); let uy = t.sin();\n        let dx = 0.0; let dy = 0.0;\n        if dip > 0.5 {\n            // field of a point dipole along +x: 3 (p·u) u − p\n            let pu = ux;\n            dx = 3.0 * pu * ux - 1.0; dy = 3.0 * pu * uy;\n            let m = (dx * dx + dy * dy).sqrt(); dx /= m; dy /= m;\n        } else { dx = ux; dy = uy; }\n        // Thermal disorder: alignment falls with the field, E ∝ r⁻² (ion) or r⁻³ (dipole),\n        // so the first shell is ordered and far molecules point almost anywhere.\n        let order = (r0 + 22.0) / ring;\n        order = if dip > 0.5 { order * order * order } else { order * order };\n        let h = (k * 12.9898 + ring * 78.233).sin() * 43758.5453;\n        let u = h - h.floor();   // pseudo-random in [0, 1), fixed per molecule\n        let tilt = (1.0 - order) * (2.0 * u - 1.0) * 3.14159;\n        let c = tilt.cos(); let sn = tilt.sin();\n        let rx = dx * c - dy * sn; dy = dx * sn + dy * c; dx = rx;\n        let px = cx + ring * ux; let py = cy + ring * uy;\n        out.push(line(px - 8.0 * dx, py - 8.0 * dy, px + 8.0 * dx, py + 8.0 * dy).stroke(\"blue\").width(2));\n        out.push(disc(px - 8.0 * dx, py - 8.0 * dy, 3.5).fill(\"red\").stroke(\"none\"));\n        k += 1.0;\n    }\n    ring += 28.0;\n}\n// the solute\nif dip > 0.5 {\n    out.push(disc(cx, cy, r0).fill(\"surface\").stroke(\"text\"));\n    out.push(line(cx - 18.0, cy, cx + 18.0, cy).stroke(\"orange\").width(4).arrow());\n} else {\n    out.push(disc(cx, cy, r0).fill(\"blue\").stroke(\"none\"));\n    out.push(text(cx, cy, \"+\").fill(\"background\").size(30));\n}\nout.push(line(cx, cy, hx, cy).stroke(\"faint\").width(1).dash(4, 4));\nout.push(disc(hx, cy, 11).fill(\"accent\").stroke(\"none\"));\nout.push(text(cx, 30, \"R = \" + fixed(Ra, 1) + \" a   (log scale)\").size(21));\nout.push(text(cx, 440, \"drag the edge of the solvent\").size(21).fill(\"faint\"));\n\n// panel A: fraction of the full solvation energy inside R\nlet pa = plot(640, 20, 520, 190).x_log(1, 50.0).y_lin(0, 1).text(21);\nout.push(pa.axes(\"R / a\", \"fraction inside R\"));\nout.push(pa.vline(Ra).stroke(\"faint\").width(1).dash(4, 4));\nout.push(pa.curve(|v| 1.0 - 1.0 / v).stroke(\"blue\").width(3));\nout.push(pa.curve(|v| 1.0 - 1.0 / (v * v * v)).stroke(\"orange\").width(3));\nlet fi = 1.0 - 1.0 / Ra; let fd = 1.0 - 1.0 / (Ra * Ra * Ra);\nout.push(disc(pa.x(Ra), pa.y(fi), 6).fill(\"blue\").stroke(\"none\"));\nout.push(disc(pa.x(Ra), pa.y(fd), 6).fill(\"orange\").stroke(\"none\"));\nout.push(text(pa.x(50.0) - 4, pa.y(0.62), \"ion (Born)\").fill(\"blue\").anchor(\"end\").size(21));\nout.push(text(pa.x(50.0) - 4, pa.y(0.9) + 20, \"dipole (Onsager)\").fill(\"orange\").anchor(\"end\").size(21));\n\n// panel B: contribution per shell, d(fraction)/d(R/a)\nlet pb = plot(640, 285, 520, 150).x_log(1, 50.0).y_log(0.0001, 3).text(21);\nout.push(pb.axes(\"R / a\", \"per shell\"));\nout.push(pb.vline(Ra).stroke(\"faint\").width(1).dash(4, 4));\nout.push(pb.curve(|v| 1.0 / (v * v)).stroke(\"blue\").width(3));\nout.push(pb.curve(|v| 3.0 / (v * v * v * v)).stroke(\"orange\").width(3));\nout.push(text(pb.x(3.0), pb.y(0.3), \"∝ r⁻²\").fill(\"blue\").anchor(\"start\").size(21));\nout.push(text(pb.x(1.3), pb.y(0.0003), \"∝ r⁻⁴\").fill(\"orange\").anchor(\"start\").size(21));\n\n// readouts: a = 2 Å monovalent ion and a water-like dipole (1.85 D, a = 1.4 Å), ε = 78.4\nlet gi = 138.313; let gd = 14.862;\nout.push(text(20, 480, \"ion: \" + fixed(100.0 * fi, 1) + \" % of −\" + fixed(gi, 1) + \" kT = −\" + fixed(gi * fi, 1) + \" kT\")\n    .fill(\"blue\").anchor(\"start\").size(21));\nout.push(text(20, 520, \"dipole: \" + fixed(100.0 * fd, 1) + \" % of −\" + fixed(gd, 1) + \" kT = −\" + fixed(gd * fd, 1) + \" kT\")\n    .fill(\"orange\").anchor(\"start\").size(21));\nout",
             "handles": [
               {
                 "x": "hx",
                 "y": "hy",
-                "r": 22,
+                "r": 22.0,
                 "within": {
                   "x": 280.0,
-                  "y": 249,
+                  "y": 249.0,
                   "w": 200.0,
-                  "h": 2
+                  "h": 2.0
                 }
               }
+            ],
+            "size": [
+              1200.0,
+              550.0
             ]
           }
         },
         {
           "id": "dip",
-          "kind": "checkbox",
           "frame": {
-            "x": 1280,
-            "y": 130,
-            "w": 260,
-            "h": 50
+            "x": 1280.0,
+            "y": 130.0,
+            "w": 260.0,
+            "h": 50.0
           },
+          "kind": "checkbox",
           "config": {
             "bind": "dip",
             "label": "dipole at centre"
@@ -1015,13 +944,13 @@
         },
         {
           "id": "cont",
-          "kind": "checkbox",
           "frame": {
-            "x": 1280,
-            "y": 190,
-            "w": 260,
-            "h": 50
+            "x": 1280.0,
+            "y": 190.0,
+            "w": 260.0,
+            "h": 50.0
           },
+          "kind": "checkbox",
           "config": {
             "bind": "cont",
             "label": "continuum"
@@ -1029,13 +958,13 @@
         },
         {
           "id": "convergence-model",
-          "kind": "text",
           "frame": {
-            "x": 1280,
-            "y": 260,
-            "w": 260,
-            "h": 340
+            "x": 1280.0,
+            "y": 260.0,
+            "w": 260.0,
+            "h": 340.0
           },
+          "kind": "text",
           "config": {
             "text": "Field energy per volume:\n\nion $\\propto r^{-4}$,\n\ndipole $\\propto r^{-6}$.",
             "style": {
@@ -1045,13 +974,13 @@
         },
         {
           "id": "convergence-q",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 615,
-            "w": 1440,
-            "h": 110
+            "x": 80.0,
+            "y": 615.0,
+            "w": 1440.0,
+            "h": 110.0
           },
+          "kind": "text",
           "config": {
             "text": "**Predict, then drag:** how far out must the solvent reach before the **ion** has 90 % of its Born energy: $2a$, $10a$ or $100a$? Drag the shell to find out.",
             "style": {
@@ -1061,16 +990,15 @@
         },
         {
           "id": "convergence-p",
-          "kind": "puzzle",
           "frame": {
-            "x": 80,
-            "y": 730,
-            "w": 700,
-            "h": 70
+            "x": 80.0,
+            "y": 730.0,
+            "w": 700.0,
+            "h": 70.0
           },
+          "kind": "puzzle",
           "config": {
             "mode": "condition",
-            "tries": 2,
             "check": "hx >= 392.33 && hx <= 402.59",
             "hints": [
               "The blue dot in the top panel is the ion's fraction, $1 - a/R$. Set it to 0.9."
@@ -1078,31 +1006,25 @@
             "feedback": {
               "correct": "Yes: $R = 10a$, about 20 Å, or seven layers of water.",
               "reveal": "$1 - a/R = 0.9$ gives $R = 10a$."
-            }
+            },
+            "tries": 2
           }
         },
         {
           "id": "convergence-why",
-          "kind": "text",
           "frame": {
-            "x": 820,
-            "y": 730,
-            "w": 700,
-            "h": 250
+            "x": 820.0,
+            "y": 730.0,
+            "w": 700.0,
+            "h": 250.0
           },
+          "kind": "text",
           "config": {
             "text": "**Notice:** the dipole has 99.9 % by then. Ion solvation is long-ranged, so computer simulations of ions need large boxes of water, or a Born correction for the water left out.",
             "style": {
               "scale": 0.7
             }
           }
-        }
-      ],
-      "builds": [
-        {
-          "element": "convergence-why",
-          "trigger": "click",
-          "effect": "appear"
         }
       ]
     },
@@ -1111,47 +1033,48 @@
       "elements": [
         {
           "id": "takehome-solvation-title",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
+            "x": 80.0,
+            "y": 30.0,
+            "w": 1440.0,
+            "h": 75.0
           },
+          "kind": "text",
           "config": {
             "text": "## Take-home: solvation of an ion"
           }
         },
         {
           "id": "takehome-solvation-box-card",
-          "kind": "shape",
           "frame": {
-            "x": 80,
-            "y": 160,
-            "w": 1440,
-            "h": 700
-          },
-          "config": {
-            "shape": "rect",
-            "radius": 16
+            "x": 80.0,
+            "y": 160.0,
+            "w": 1440.0,
+            "h": 700.0
           },
           "style": {
             "fill": "surface",
             "border": {
               "color": "accent",
-              "width": 3
+              "width": 3.0,
+              "dash": "solid"
             }
+          },
+          "kind": "shape",
+          "config": {
+            "shape": "rect",
+            "radius": 16.0
           }
         },
         {
           "id": "takehome-solvation-box",
-          "kind": "text",
           "frame": {
-            "x": 110,
-            "y": 184,
-            "w": 1380,
-            "h": 652
+            "x": 110.0,
+            "y": 184.0,
+            "w": 1380.0,
+            "h": 652.0
           },
+          "kind": "text",
           "config": {
             "text": "**Take-home.**\n\n- An ion in vacuum carries a large self-energy, $z^2\\ell_B^{\\rm vacuum}/2a$: 140 $k_BT$ for $a = 2$ Å.\n- A solvent wins back the fraction $1 - 1/\\varepsilon_r$ of it, because its molecules polarize in the ion's field.\n- The Born energy, $(z^2\\ell_B^{\\rm vacuum}/2a)(1/\\varepsilon_2 - 1/\\varepsilon_1)$, is the cost of moving the ion between any two media; from vacuum it is the solvation free energy.\n- Water ($\\varepsilon_r = 78$) wins back 99 %; oil ($\\varepsilon_r = 2$) only 50 %.\n- The solvent far away still counts: 10 % of the ion's solvation comes from beyond $10a$.",
             "style": {
@@ -1162,141 +1085,53 @@
       ]
     },
     {
-      "id": "cycle",
-      "elements": [
-        {
-          "id": "cycle-title",
-          "kind": "text",
-          "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
-          },
-          "config": {
-            "text": "## 7. A transfer is the difference of two solvation energies"
-          }
-        },
-        {
-          "id": "cycle-scene",
-          "kind": "scene",
-          "frame": {
-            "x": 80,
-            "y": 100,
-            "w": 1440,
-            "h": 514
-          },
-          "config": {
-            "size": [
-              1400,
-              500
-            ],
-            "script": "// A closed loop: the transfer (top, unknown) equals discharge + move + charge.\nlet out = [];\nout.push(rect(60, 20, 520, 470).fill(\"aqua\").stroke(\"none\").opacity(0.18));\nout.push(rect(820, 20, 520, 470).fill(\"yellow\").stroke(\"none\").opacity(0.22));\nout.push(text(320, 470, \"solvent 1, ε₁ (e.g. water)\").size(20).fill(\"faint\"));\nout.push(text(1080, 470, \"solvent 2, ε₂ (e.g. oil)\").size(20).fill(\"faint\"));\nfor b in [[170.0, 70.0, true], [930.0, 70.0, true], [170.0, 300.0, false], [930.0, 300.0, false]] {\n    out.push(rect(b[0], b[1], 300, 110).fill(\"surface\").stroke(\"line\").width(2));\n    let cx = b[0] + 70.0; let cy = b[1] + 55.0;\n    if b[2] {\n        out.push(disc(cx, cy, 30).fill(\"blue\").stroke(\"none\"));\n        out.push(text(cx, cy, \"+\").fill(\"background\").size(28));\n        out.push(text(cx + 140.0, cy, \"ion\").size(22));\n    } else {\n        out.push(disc(cx, cy, 30).fill(\"line\").stroke(\"text\").width(1));\n        out.push(text(cx + 140.0, cy, \"neutral sphere\").size(20));\n    }\n}\n// transfer: what we want\nout.push(line(480, 125, 920, 125).stroke(\"text\").width(3).dash(10, 6).arrow());\nout.push(text(700, 100, \"transfer  ΔG₁→₂ = ?\").size(22));\n// the detour\nout.push(line(320, 185, 320, 295).stroke(\"blue\").width(4).arrow());\nout.push(text(335, 232, \"discharge\").anchor(\"start\").size(20).fill(\"blue\"));\nout.push(text(335, 258, \"−q²/8πε₀ε₁a\").anchor(\"start\").size(20).fill(\"blue\"));\nout.push(line(480, 355, 920, 355).stroke(\"blue\").width(4).arrow());\nout.push(text(700, 335, \"move: 0 (nothing to screen)\").size(20).fill(\"blue\"));\nout.push(line(1080, 295, 1080, 185).stroke(\"blue\").width(4).arrow());\nout.push(text(1065, 232, \"charge\").anchor(\"end\").size(20).fill(\"blue\"));\nout.push(text(1065, 258, \"+q²/8πε₀ε₂a\").anchor(\"end\").size(20).fill(\"blue\"));\nout"
-          }
-        },
-        {
-          "id": "cycle-body",
-          "kind": "text",
-          "frame": {
-            "x": 80,
-            "y": 625,
-            "w": 1440,
-            "h": 100
-          },
-          "config": {
-            "text": "Free energy depends only on the start and end states, so the direct path (dashed) costs the same as the detour: discharge in 1, move the neutral sphere for free, charge up in 2.",
-            "style": {
-              "scale": 0.8
-            }
-          }
-        },
-        {
-          "id": "cycle-key-card",
-          "kind": "shape",
-          "frame": {
-            "x": 80,
-            "y": 725,
-            "w": 1440,
-            "h": 268
-          },
-          "config": {
-            "shape": "rect",
-            "radius": 16
-          },
-          "style": {
-            "fill": "surface",
-            "border": {
-              "color": "line",
-              "width": 3
-            }
-          }
-        },
-        {
-          "id": "cycle-key",
-          "kind": "text",
-          "frame": {
-            "x": 110,
-            "y": 749,
-            "w": 1380,
-            "h": 220
-          },
-          "config": {
-            "text": "**Key concept** (Dill Eq. 22.61); only electrostatics, no cavity or van der Waals terms:\n\n$$\\Delta G_{\\rm transfer} = \\Delta G_{\\rm solv}(2) - \\Delta G_{\\rm solv}(1) = \\frac{z^2\\ell_B^{\\rm vacuum}}{2a}\\left(\\frac1{\\varepsilon_2}-\\frac1{\\varepsilon_1}\\right)k_BT$$",
-            "style": {
-              "scale": 0.75
-            }
-          }
-        }
-      ]
-    },
-    {
       "id": "explorer",
       "state": {
+        "a": 2.0,
         "epsA": 78.4,
         "epsB": 2.0,
-        "val": 1.0,
-        "a": 2.0
+        "val": 1.0
       },
       "elements": [
         {
           "id": "explorer-title",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
+            "x": 80.0,
+            "y": 30.0,
+            "w": 1440.0,
+            "h": 75.0
           },
+          "kind": "text",
           "config": {
             "text": "## Born explorer: two solvents on one curve"
           }
         },
         {
           "id": "explorer-scene",
-          "kind": "scene",
           "frame": {
-            "x": 80,
-            "y": 100,
-            "w": 1440,
-            "h": 576
+            "x": 80.0,
+            "y": 100.0,
+            "w": 1440.0,
+            "h": 576.0
           },
+          "kind": "scene",
           "config": {
+            "script": "let lB0 = 560.4;\nlet g0 = val * val * lB0 / (2.0 * a);           // full self-energy, kT\nlet gA = -g0 * (1.0 - 1.0 / epsA);\nlet gB = -g0 * (1.0 - 1.0 / epsB);\nlet lo = -g0 * 1.08;\nlet out = [];\n\n// energy levels\nlet pl = plot(110, 30, 360, 420).x_lin(0, 1).y_lin(lo, 0).text(19);\n// own y axis: the x position carries no meaning here\nlet step = 10.0 ** (g0.ln() / 2.302585).floor();\nif g0 / step < 3.0 { step /= 2.0; }\nout.push(line(pl.x(0.0), pl.y(lo), pl.x(0.0), pl.y(0.0)).stroke(\"faint\").width(1));\nlet tk = 0.0;\nwhile tk >= lo {\n    out.push(line(pl.x(0.0) - 6.0, pl.y(tk), pl.x(0.0), pl.y(tk)).stroke(\"faint\").width(1));\n    out.push(text(pl.x(0.0) - 10.0, pl.y(tk), fixed(tk, 0)).anchor(\"end\").fill(\"faint\").size(19));\n    tk -= step;\n}\nout.push(text(30, pl.y(lo / 2.0), \"ΔG_solv  (kT)\").rotate(-90.0).fill(\"faint\").size(19));\nout.push(line(pl.x(0.05), pl.y(0.0), pl.x(0.95), pl.y(0.0)).stroke(\"faint\").width(3));\nout.push(text(pl.x(0.5), pl.y(0.0) + 22, \"vacuum\").fill(\"faint\").size(19));\nout.push(line(pl.x(0.05), pl.y(gA), pl.x(0.45), pl.y(gA)).stroke(\"blue\").width(5));\nout.push(text(pl.x(0.25), pl.y(gA) + 24, \"A\").fill(\"blue\").size(20));\nout.push(line(pl.x(0.55), pl.y(gB), pl.x(0.95), pl.y(gB)).stroke(\"orange\").width(5));\nout.push(text(pl.x(0.75), pl.y(gB) + 24, \"B\").fill(\"orange\").size(20));\nif (gB - gA).abs() > 0.5 {\n    out.push(line(pl.x(0.5), pl.y(gA), pl.x(0.5), pl.y(gB)).stroke(\"text\").width(3).arrow());\n}\n\n// one curve, two solvents on it\nlet pr = plot(640, 30, 700, 420).x_log(1, 100).y_lin(lo, 0).text(19);\nout.push(pr.axes(\"dielectric constant εᵣ\", \"ΔG_solv  (kT)\"));\nout.push(pr.hline(-g0).stroke(\"faint\").width(1).dash(6, 4));\nout.push(text(pr.x(100.0) - 6, pr.y(-g0) + 22, \"εᵣ → ∞\").anchor(\"end\").fill(\"faint\").size(19));\nout.push(pr.curve(|e| -g0 * (1.0 - 1.0 / e)).stroke(\"purple\").width(3));\nout.push(pr.line([[epsA, gA], [epsB, gA]]).stroke(\"faint\").width(1).dash(4, 4));\nif (gB - gA).abs() > 0.5 {\n    out.push(line(pr.x(epsB), pr.y(gA), pr.x(epsB), pr.y(gB)).stroke(\"text\").width(2).arrow());\n}\nout.push(disc(pr.x(epsA), pr.y(gA), 9).fill(\"blue\").stroke(\"none\"));\nout.push(disc(pr.x(epsB), pr.y(gB), 9).fill(\"orange\").stroke(\"none\"));\n\nlet kj = 2.479;   // kJ/mol per kT at 298 K\nlet tr = gB - gA;\nlet sgn = if tr >= 0.0 { \"+\" } else { \"\" };\nout.push(text(20, 545, \"A: \" + fixed(gA, 1) + \" kT (\" + fixed(gA * kj, 0) + \" kJ/mol)\").anchor(\"start\").fill(\"blue\").size(19));\nout.push(text(380, 545, \"B: \" + fixed(gB, 1) + \" kT (\" + fixed(gB * kj, 0) + \" kJ/mol)\").anchor(\"start\").fill(\"orange\").size(19));\nout.push(text(1380, 545, \"transfer A → B: \" + sgn + fixed(tr, 1) + \" kT (\" + sgn + fixed(tr * kj, 0) + \" kJ/mol)\").anchor(\"end\").size(21));\nout",
             "size": [
-              1400,
-              560
-            ],
-            "script": "let lB0 = 560.4;\nlet g0 = val * val * lB0 / (2.0 * a);           // full self-energy, kT\nlet gA = -g0 * (1.0 - 1.0 / epsA);\nlet gB = -g0 * (1.0 - 1.0 / epsB);\nlet lo = -g0 * 1.08;\nlet out = [];\n\n// energy levels\nlet pl = plot(110, 30, 360, 420).x_lin(0, 1).y_lin(lo, 0).text(19);\n// own y axis: the x position carries no meaning here\nlet step = 10.0 ** (g0.ln() / 2.302585).floor();\nif g0 / step < 3.0 { step /= 2.0; }\nout.push(line(pl.x(0.0), pl.y(lo), pl.x(0.0), pl.y(0.0)).stroke(\"faint\").width(1));\nlet tk = 0.0;\nwhile tk >= lo {\n    out.push(line(pl.x(0.0) - 6.0, pl.y(tk), pl.x(0.0), pl.y(tk)).stroke(\"faint\").width(1));\n    out.push(text(pl.x(0.0) - 10.0, pl.y(tk), fixed(tk, 0)).anchor(\"end\").fill(\"faint\").size(19));\n    tk -= step;\n}\nout.push(text(30, pl.y(lo / 2.0), \"ΔG_solv  (kT)\").rotate(-90.0).fill(\"faint\").size(19));\nout.push(line(pl.x(0.05), pl.y(0.0), pl.x(0.95), pl.y(0.0)).stroke(\"faint\").width(3));\nout.push(text(pl.x(0.5), pl.y(0.0) + 22, \"vacuum\").fill(\"faint\").size(19));\nout.push(line(pl.x(0.05), pl.y(gA), pl.x(0.45), pl.y(gA)).stroke(\"blue\").width(5));\nout.push(text(pl.x(0.25), pl.y(gA) + 24, \"A\").fill(\"blue\").size(20));\nout.push(line(pl.x(0.55), pl.y(gB), pl.x(0.95), pl.y(gB)).stroke(\"orange\").width(5));\nout.push(text(pl.x(0.75), pl.y(gB) + 24, \"B\").fill(\"orange\").size(20));\nif (gB - gA).abs() > 0.5 {\n    out.push(line(pl.x(0.5), pl.y(gA), pl.x(0.5), pl.y(gB)).stroke(\"text\").width(3).arrow());\n}\n\n// one curve, two solvents on it\nlet pr = plot(640, 30, 700, 420).x_log(1, 100).y_lin(lo, 0).text(19);\nout.push(pr.axes(\"dielectric constant εᵣ\", \"ΔG_solv  (kT)\"));\nout.push(pr.hline(-g0).stroke(\"faint\").width(1).dash(6, 4));\nout.push(text(pr.x(100.0) - 6, pr.y(-g0) + 22, \"εᵣ → ∞\").anchor(\"end\").fill(\"faint\").size(19));\nout.push(pr.curve(|e| -g0 * (1.0 - 1.0 / e)).stroke(\"purple\").width(3));\nout.push(pr.line([[epsA, gA], [epsB, gA]]).stroke(\"faint\").width(1).dash(4, 4));\nif (gB - gA).abs() > 0.5 {\n    out.push(line(pr.x(epsB), pr.y(gA), pr.x(epsB), pr.y(gB)).stroke(\"text\").width(2).arrow());\n}\nout.push(disc(pr.x(epsA), pr.y(gA), 9).fill(\"blue\").stroke(\"none\"));\nout.push(disc(pr.x(epsB), pr.y(gB), 9).fill(\"orange\").stroke(\"none\"));\n\nlet kj = 2.479;   // kJ/mol per kT at 298 K\nlet tr = gB - gA;\nlet sgn = if tr >= 0.0 { \"+\" } else { \"\" };\nout.push(text(20, 545, \"A: \" + fixed(gA, 1) + \" kT (\" + fixed(gA * kj, 0) + \" kJ/mol)\").anchor(\"start\").fill(\"blue\").size(19));\nout.push(text(380, 545, \"B: \" + fixed(gB, 1) + \" kT (\" + fixed(gB * kj, 0) + \" kJ/mol)\").anchor(\"start\").fill(\"orange\").size(19));\nout.push(text(1380, 545, \"transfer A → B: \" + sgn + fixed(tr, 1) + \" kT (\" + sgn + fixed(tr * kj, 0) + \" kJ/mol)\").anchor(\"end\").size(21));\nout"
+              1400.0,
+              560.0
+            ]
           }
         },
         {
           "id": "ex-epsA-l",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 696,
-            "w": 300,
-            "h": 50
+            "x": 80.0,
+            "y": 696.0,
+            "w": 300.0,
+            "h": 50.0
           },
+          "kind": "text",
           "config": {
             "text": "solvent A: $\\varepsilon_r$ = {{epsA:.1}}",
             "style": {
@@ -1306,29 +1141,29 @@
         },
         {
           "id": "ex-epsA",
-          "kind": "slider",
           "frame": {
-            "x": 380,
-            "y": 702,
-            "w": 500,
-            "h": 40
+            "x": 380.0,
+            "y": 702.0,
+            "w": 500.0,
+            "h": 40.0
           },
+          "kind": "slider",
           "config": {
             "bind": "epsA",
-            "min": 1,
-            "max": 100,
+            "min": 1.0,
+            "max": 100.0,
             "log": true
           }
         },
         {
           "id": "ex-epsA-water",
-          "kind": "button",
           "frame": {
-            "x": 920,
-            "y": 698,
-            "w": 144,
-            "h": 48
+            "x": 920.0,
+            "y": 698.0,
+            "w": 144.0,
+            "h": 48.0
           },
+          "kind": "button",
           "config": {
             "label": "water",
             "run": "epsA = 78.4"
@@ -1336,13 +1171,13 @@
         },
         {
           "id": "ex-epsA-octanol",
-          "kind": "button",
           "frame": {
-            "x": 1072,
-            "y": 698,
-            "w": 144,
-            "h": 48
+            "x": 1072.0,
+            "y": 698.0,
+            "w": 144.0,
+            "h": 48.0
           },
+          "kind": "button",
           "config": {
             "label": "octanol",
             "run": "epsA = 10.0"
@@ -1350,13 +1185,13 @@
         },
         {
           "id": "ex-epsA-oil",
-          "kind": "button",
           "frame": {
-            "x": 1224,
-            "y": 698,
-            "w": 144,
-            "h": 48
+            "x": 1224.0,
+            "y": 698.0,
+            "w": 144.0,
+            "h": 48.0
           },
+          "kind": "button",
           "config": {
             "label": "oil",
             "run": "epsA = 2.0"
@@ -1364,13 +1199,13 @@
         },
         {
           "id": "ex-epsA-vacuum",
-          "kind": "button",
           "frame": {
-            "x": 1376,
-            "y": 698,
-            "w": 144,
-            "h": 48
+            "x": 1376.0,
+            "y": 698.0,
+            "w": 144.0,
+            "h": 48.0
           },
+          "kind": "button",
           "config": {
             "label": "vacuum",
             "run": "epsA = 1.0"
@@ -1378,13 +1213,13 @@
         },
         {
           "id": "ex-epsB-l",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 766,
-            "w": 300,
-            "h": 50
+            "x": 80.0,
+            "y": 766.0,
+            "w": 300.0,
+            "h": 50.0
           },
+          "kind": "text",
           "config": {
             "text": "solvent B: $\\varepsilon_r$ = {{epsB:.1}}",
             "style": {
@@ -1394,29 +1229,29 @@
         },
         {
           "id": "ex-epsB",
-          "kind": "slider",
           "frame": {
-            "x": 380,
-            "y": 772,
-            "w": 500,
-            "h": 40
+            "x": 380.0,
+            "y": 772.0,
+            "w": 500.0,
+            "h": 40.0
           },
+          "kind": "slider",
           "config": {
             "bind": "epsB",
-            "min": 1,
-            "max": 100,
+            "min": 1.0,
+            "max": 100.0,
             "log": true
           }
         },
         {
           "id": "ex-epsB-water",
-          "kind": "button",
           "frame": {
-            "x": 920,
-            "y": 768,
-            "w": 144,
-            "h": 48
+            "x": 920.0,
+            "y": 768.0,
+            "w": 144.0,
+            "h": 48.0
           },
+          "kind": "button",
           "config": {
             "label": "water",
             "run": "epsB = 78.4"
@@ -1424,13 +1259,13 @@
         },
         {
           "id": "ex-epsB-octanol",
-          "kind": "button",
           "frame": {
-            "x": 1072,
-            "y": 768,
-            "w": 144,
-            "h": 48
+            "x": 1072.0,
+            "y": 768.0,
+            "w": 144.0,
+            "h": 48.0
           },
+          "kind": "button",
           "config": {
             "label": "octanol",
             "run": "epsB = 10.0"
@@ -1438,13 +1273,13 @@
         },
         {
           "id": "ex-epsB-oil",
-          "kind": "button",
           "frame": {
-            "x": 1224,
-            "y": 768,
-            "w": 144,
-            "h": 48
+            "x": 1224.0,
+            "y": 768.0,
+            "w": 144.0,
+            "h": 48.0
           },
+          "kind": "button",
           "config": {
             "label": "oil",
             "run": "epsB = 2.0"
@@ -1452,13 +1287,13 @@
         },
         {
           "id": "ex-epsB-vacuum",
-          "kind": "button",
           "frame": {
-            "x": 1376,
-            "y": 768,
-            "w": 144,
-            "h": 48
+            "x": 1376.0,
+            "y": 768.0,
+            "w": 144.0,
+            "h": 48.0
           },
+          "kind": "button",
           "config": {
             "label": "vacuum",
             "run": "epsB = 1.0"
@@ -1466,13 +1301,13 @@
         },
         {
           "id": "ex-z-l",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 836,
-            "w": 300,
-            "h": 50
+            "x": 80.0,
+            "y": 836.0,
+            "w": 300.0,
+            "h": 50.0
           },
+          "kind": "text",
           "config": {
             "text": "ion charge z",
             "style": {
@@ -1482,13 +1317,13 @@
         },
         {
           "id": "ex-z0",
-          "kind": "button",
           "frame": {
-            "x": 380,
-            "y": 838,
-            "w": 115,
-            "h": 48
+            "x": 380.0,
+            "y": 838.0,
+            "w": 115.0,
+            "h": 48.0
           },
+          "kind": "button",
           "config": {
             "label": "+1",
             "run": "val = 1.0"
@@ -1496,13 +1331,13 @@
         },
         {
           "id": "ex-z1",
-          "kind": "button",
           "frame": {
-            "x": 505,
-            "y": 838,
-            "w": 115,
-            "h": 48
+            "x": 505.0,
+            "y": 838.0,
+            "w": 115.0,
+            "h": 48.0
           },
+          "kind": "button",
           "config": {
             "label": "−1",
             "run": "val = -1.0"
@@ -1510,13 +1345,13 @@
         },
         {
           "id": "ex-z2",
-          "kind": "button",
           "frame": {
-            "x": 630,
-            "y": 838,
-            "w": 115,
-            "h": 48
+            "x": 630.0,
+            "y": 838.0,
+            "w": 115.0,
+            "h": 48.0
           },
+          "kind": "button",
           "config": {
             "label": "+2",
             "run": "val = 2.0"
@@ -1524,13 +1359,13 @@
         },
         {
           "id": "ex-z3",
-          "kind": "button",
           "frame": {
-            "x": 755,
-            "y": 838,
-            "w": 115,
-            "h": 48
+            "x": 755.0,
+            "y": 838.0,
+            "w": 115.0,
+            "h": 48.0
           },
+          "kind": "button",
           "config": {
             "label": "−2",
             "run": "val = -2.0"
@@ -1538,13 +1373,13 @@
         },
         {
           "id": "ex-a-l",
-          "kind": "text",
           "frame": {
-            "x": 920,
-            "y": 836,
-            "w": 300,
-            "h": 50
+            "x": 920.0,
+            "y": 836.0,
+            "w": 300.0,
+            "h": 50.0
           },
+          "kind": "text",
           "config": {
             "text": "radius $a$ = {{a:.1}} Å",
             "style": {
@@ -1554,28 +1389,28 @@
         },
         {
           "id": "ex-a",
-          "kind": "slider",
           "frame": {
-            "x": 1220,
-            "y": 842,
-            "w": 300,
-            "h": 40
+            "x": 1220.0,
+            "y": 842.0,
+            "w": 300.0,
+            "h": 40.0
           },
+          "kind": "slider",
           "config": {
             "bind": "a",
-            "min": 1,
-            "max": 4
+            "min": 1.0,
+            "max": 4.0
           }
         },
         {
           "id": "ex-hint",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 900,
-            "w": 1440,
-            "h": 90
+            "x": 80.0,
+            "y": 900.0,
+            "w": 1440.0,
+            "h": 90.0
           },
+          "kind": "text",
           "config": {
             "text": "**Predict:** water → octanol costs less than water → oil. How much less? **Notice:** the transfer is the vertical gap between two points on one curve, and above $\\varepsilon_r \\approx 20$ the curve is almost flat.",
             "style": {
@@ -1587,29 +1422,42 @@
     },
     {
       "id": "what-if",
+      "builds": [
+        {
+          "element": "wi-q",
+          "delivery": "by-paragraph"
+        },
+        {
+          "element": "wi-ans-card"
+        },
+        {
+          "element": "wi-ans",
+          "trigger": "with-previous"
+        }
+      ],
       "elements": [
         {
           "id": "what-if-title",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
+            "x": 80.0,
+            "y": 30.0,
+            "w": 1440.0,
+            "h": 75.0
           },
+          "kind": "text",
           "config": {
             "text": "## Predict, then check with the explorer"
           }
         },
         {
           "id": "wi-q",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 110,
-            "w": 1440,
-            "h": 380
+            "x": 80.0,
+            "y": 110.0,
+            "w": 1440.0,
+            "h": 380.0
           },
+          "kind": "text",
           "config": {
             "text": "- **Question:** Which changes $\\Delta G_{\\rm solv}$ more: doubling $z$ or doubling $a$?\n- **Question:** Water → octanol costs $+8.1\\,k_BT$ for $a = 3$ Å. What does octanol → water cost?\n- **Question:** What is $\\Delta G_{\\rm solv}$ as $\\varepsilon_r \\to 1$? As $\\varepsilon_r \\to \\infty$?",
             "style": {
@@ -1622,34 +1470,35 @@
         },
         {
           "id": "wi-ans-card",
-          "kind": "shape",
           "frame": {
-            "x": 80,
-            "y": 520,
-            "w": 1440,
-            "h": 360
-          },
-          "config": {
-            "shape": "rect",
-            "radius": 16
+            "x": 80.0,
+            "y": 520.0,
+            "w": 1440.0,
+            "h": 360.0
           },
           "style": {
             "fill": "surface",
             "border": {
               "color": "line",
-              "width": 3
+              "width": 3.0,
+              "dash": "solid"
             }
+          },
+          "kind": "shape",
+          "config": {
+            "shape": "rect",
+            "radius": 16.0
           }
         },
         {
           "id": "wi-ans",
-          "kind": "text",
           "frame": {
-            "x": 110,
-            "y": 544,
-            "w": 1380,
-            "h": 312
+            "x": 110.0,
+            "y": 544.0,
+            "w": 1380.0,
+            "h": 312.0
           },
+          "kind": "text",
           "config": {
             "text": "**Answers.**\n\n- Doubling $z$ multiplies the energy by 4; doubling $a$ only halves it. Charge wins.\n- $-8.1\\,k_BT$: the same two states in the opposite direction.\n- 0 in vacuum (nothing to win back); $-z^2\\ell_B^{\\rm vacuum}/2a$, the whole self-energy, for a perfect conductor. Water ($\\varepsilon_r = 78$) already gets 99 %.",
             "style": {
@@ -1657,48 +1506,46 @@
             }
           }
         }
-      ],
-      "builds": [
-        {
-          "element": "wi-q",
-          "delivery": "by-paragraph"
-        },
-        {
-          "element": "wi-ans-card",
-          "effect": "appear"
-        },
-        {
-          "element": "wi-ans",
-          "trigger": "with-previous",
-          "effect": "appear"
-        }
       ]
     },
     {
       "id": "oil-water",
+      "builds": [
+        {
+          "element": "ow-why"
+        },
+        {
+          "element": "ow-take-card",
+          "trigger": "with-previous"
+        },
+        {
+          "element": "ow-take",
+          "trigger": "with-previous"
+        }
+      ],
       "elements": [
         {
           "id": "oil-water-title",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
+            "x": 80.0,
+            "y": 30.0,
+            "w": 1440.0,
+            "h": 75.0
           },
+          "kind": "text",
           "config": {
-            "text": "## 8. How much does an ion dislike oil? (Dill Ex. 22.13)"
+            "text": "## How much does an ion dislike oil? (Dill Ex. 22.13)"
           }
         },
         {
           "id": "ow-q",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 110,
-            "w": 1440,
-            "h": 110
+            "x": 80.0,
+            "y": 110.0,
+            "w": 1440.0,
+            "h": 110.0
           },
+          "kind": "text",
           "config": {
             "text": "**Question:** A monovalent ion with $a = 2$ Å moves from water ($\\varepsilon_r = 78$) into oil ($\\varepsilon_r = 2$). What is $\\Delta G/k_BT$?",
             "style": {
@@ -1708,18 +1555,17 @@
         },
         {
           "id": "ow-p",
-          "kind": "puzzle",
           "frame": {
-            "x": 80,
-            "y": 230,
-            "w": 700,
-            "h": 70
+            "x": 80.0,
+            "y": 230.0,
+            "w": 700.0,
+            "h": 70.0
           },
+          "kind": "puzzle",
           "config": {
             "mode": "numeric",
             "answer": 68.3,
-            "tolerance": 4,
-            "tries": 3,
+            "tolerance": 4.0,
             "hints": [
               "Use the transfer formula: the difference of two Born energies.",
               "$\\Delta G/k_BT = \\dfrac{\\ell_B^{\\rm vacuum}}{2a}\\left(\\dfrac1{\\varepsilon_{\\rm oil}}-\\dfrac1{\\varepsilon_{\\rm w}}\\right)$, with $\\ell_B^{\\rm vacuum} = 560$ Å.",
@@ -1728,78 +1574,63 @@
             "feedback": {
               "correct": "Right: about 70 $k_BT$, or 170 kJ/mol.",
               "reveal": "$140 \\times 0.49 \\approx 68\\,k_BT$, about 170 kJ/mol."
-            }
+            },
+            "tries": 3
           }
         },
         {
           "id": "ow-why",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 420,
-            "w": 1440,
-            "h": 260
+            "x": 820.0,
+            "y": 230.0,
+            "w": 700.0,
+            "h": 440.0
           },
+          "kind": "text",
           "config": {
             "text": "What does 70 $k_BT$ mean? The partition coefficient is $K = e^{-\\Delta G/k_BT} \\approx e^{-70} \\approx 10^{-30}$. Shake a litre of oil with a litre of 1 M salt water: on average, not one ion ends up in the oil.",
             "style": {
-              "scale": 0.85
+              "scale": 0.8
             }
           }
         },
         {
           "id": "ow-take-card",
-          "kind": "shape",
           "frame": {
-            "x": 80,
-            "y": 700,
-            "w": 1440,
-            "h": 200
-          },
-          "config": {
-            "shape": "rect",
-            "radius": 16
+            "x": 80.0,
+            "y": 700.0,
+            "w": 1440.0,
+            "h": 110.0
           },
           "style": {
             "fill": "surface",
             "border": {
               "color": "accent",
-              "width": 3
+              "width": 3.0,
+              "dash": "solid"
             }
+          },
+          "kind": "shape",
+          "config": {
+            "shape": "rect",
+            "radius": 16.0
           }
         },
         {
           "id": "ow-take",
-          "kind": "text",
           "frame": {
-            "x": 110,
-            "y": 724,
-            "w": 1380,
-            "h": 152
+            "x": 110.0,
+            "y": 724.0,
+            "w": 1380.0,
+            "h": 62.0
           },
+          "kind": "text",
           "config": {
-            "text": "**Take-home.** Bare ions do not enter oil. That is why ions stay out of lipid bilayers and protein cores, and why charged side chains sit at a protein's surface or pair up in salt bridges.",
+            "text": "**Take-home.** Bare ions do not enter oil.",
             "style": {
               "scale": 0.8
             }
           }
-        }
-      ],
-      "builds": [
-        {
-          "element": "ow-why",
-          "trigger": "click",
-          "effect": "appear"
-        },
-        {
-          "element": "ow-take-card",
-          "trigger": "with-previous",
-          "effect": "appear"
-        },
-        {
-          "element": "ow-take",
-          "trigger": "with-previous",
-          "effect": "appear"
         }
       ]
     },
@@ -1808,26 +1639,26 @@
       "elements": [
         {
           "id": "several-charges-title",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
+            "x": 80.0,
+            "y": 30.0,
+            "w": 1440.0,
+            "h": 75.0
           },
+          "kind": "text",
           "config": {
             "text": "## Several charges: self-energies plus pair energies, all divided by εᵣ"
           }
         },
         {
           "id": "sc-body",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 115,
-            "w": 1440,
-            "h": 440
+            "x": 80.0,
+            "y": 115.0,
+            "w": 1440.0,
+            "h": 440.0
           },
+          "kind": "text",
           "config": {
             "text": "A molecule with several charges costs the charging energy of each charge, plus the Coulomb energy of every pair (Dill Eqs. 22.47–22.50). In units of $k_BT$, in a medium $\\varepsilon_r$:\n\n$$\\frac{\\Delta G}{k_BT} = \\frac{\\ell_B^{\\rm vacuum}}{\\varepsilon_r}\\left[\\sum_i \\frac{z_i^2}{2a_i} + \\sum_{i<j} \\frac{z_iz_j}{r_{ij}}\\right]$$\n\nThe prefactor is the Bjerrum length in the medium; the bracket depends only on the geometry. So a transfer changes only the prefactor, whatever the arrangement of charges.",
             "style": {
@@ -1837,34 +1668,35 @@
         },
         {
           "id": "sc-example-card",
-          "kind": "shape",
           "frame": {
-            "x": 80,
-            "y": 570,
-            "w": 1440,
-            "h": 270
-          },
-          "config": {
-            "shape": "rect",
-            "radius": 16
+            "x": 80.0,
+            "y": 570.0,
+            "w": 1440.0,
+            "h": 270.0
           },
           "style": {
             "fill": "surface",
             "border": {
               "color": "line",
-              "width": 3
+              "width": 3.0,
+              "dash": "solid"
             }
+          },
+          "kind": "shape",
+          "config": {
+            "shape": "rect",
+            "radius": 16.0
           }
         },
         {
           "id": "sc-example",
-          "kind": "text",
           "frame": {
-            "x": 110,
-            "y": 594,
-            "w": 1380,
-            "h": 222
+            "x": 110.0,
+            "y": 594.0,
+            "w": 1380.0,
+            "h": 222.0
           },
+          "kind": "text",
           "config": {
             "text": "**Worked example.** An ion pair, $+1$ and $-1$, radii 2.5 Å, in contact at 5 Å. In vacuum the bracket is $2/(2 \\cdot 2.5) - 1/5 = 0.2$ Å⁻¹, so the energy is $560 \\times 0.2 = 112\\,k_BT$. From water to octanol the pair costs about 10 $k_BT$, from $112\\,(1/10 - 1/78)$. Two separate ions would cost twice as much, about 20 $k_BT$: the partner cancels part of the field.",
             "style": {
@@ -1874,13 +1706,13 @@
         },
         {
           "id": "sc-q",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 870,
-            "w": 1440,
-            "h": 100
+            "x": 80.0,
+            "y": 870.0,
+            "w": 1440.0,
+            "h": 100.0
           },
+          "kind": "text",
           "config": {
             "text": "**Question:** Does it help an ion to enter oil with a partner? What sets how much it helps?",
             "style": {
@@ -1891,326 +1723,93 @@
       ]
     },
     {
-      "id": "born-test",
-      "elements": [
-        {
-          "id": "born-test-title",
-          "kind": "text",
-          "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
-          },
-          "config": {
-            "text": "## 9. Born gets hydration enthalpies right, with cavity radii"
-          }
-        },
-        {
-          "id": "born-test-scene",
-          "kind": "scene",
-          "frame": {
-            "x": 80,
-            "y": 110,
-            "w": 760,
-            "h": 500
-          },
-          "config": {
-            "size": [
-              700,
-              460
-            ],
-            "script": "let p = plot(110, 30, 560, 360).x_lin(0.4, 0.75).y_lin(-560, -320).text(18);\nlet out = [p.axes(\"1 / a  (Å⁻¹)\", \"ΔH  (kJ/mol)\")];\nout.push(p.curve(|v| -696.6 * v).stroke(\"blue\").width(3));\nout.push(text(p.x(0.74), p.y(-696.6 * 0.74) + 24, \"Born, Eq. 22.66\").fill(\"blue\").anchor(\"end\").size(18));\nfor ion in [[\"Na⁺\", 1.680, -414.6], [\"Cl⁻\", 1.937, -359.8]] {\n    let x = p.x(1.0 / ion[1]); let y = p.y(ion[2]);\n    out.push(disc(x, y, 8).fill(\"orange\").stroke(\"none\"));\n    out.push(text(x + 12, y - 12, ion[0]).anchor(\"start\").size(18));\n}\nout"
-          }
-        },
-        {
-          "id": "born-test-body",
-          "kind": "text",
-          "frame": {
-            "x": 880,
-            "y": 110,
-            "w": 640,
-            "h": 560
-          },
-          "config": {
-            "text": "Experiments measure hydration **enthalpies**; Born gives $\\Delta H$ from how $\\varepsilon_r$ changes with temperature (Dill Eq. 22.65).\n\nWith **cavity** radii, slightly larger than crystal radii (Na⁺ 1.68 Å, Cl⁻ 1.94 Å), Born gives −774 kJ/mol for NaCl. Experiment: −769 (Dill Ex. 22.14).",
-            "style": {
-              "scale": 0.75
-            }
-          }
-        },
-        {
-          "id": "born-test-key-card",
-          "kind": "shape",
-          "frame": {
-            "x": 80,
-            "y": 680,
-            "w": 1440,
-            "h": 160
-          },
-          "config": {
-            "shape": "rect",
-            "radius": 16
-          },
-          "style": {
-            "fill": "surface",
-            "border": {
-              "color": "line",
-              "width": 3
-            }
-          }
-        },
-        {
-          "id": "born-test-key",
-          "kind": "text",
-          "frame": {
-            "x": 110,
-            "y": 704,
-            "w": 1380,
-            "h": 112
-          },
-          "config": {
-            "text": "**Key concept.** Born predicts $\\Delta H \\propto -1/a$, and the alkali and halide ions follow that line (Dill Fig. 22.17), once $a$ is the radius of the hole the ion makes in water.",
-            "style": {
-              "scale": 0.75
-            }
-          }
-        },
-        {
-          "id": "born-test-q",
-          "kind": "text",
-          "frame": {
-            "x": 80,
-            "y": 860,
-            "w": 1440,
-            "h": 100
-          },
-          "config": {
-            "text": "**Question:** Which ion is hydrated more strongly, Li⁺ or Cs⁺? Why?",
-            "style": {
-              "scale": 0.8
-            }
-          }
-        }
-      ]
-    },
-    {
-      "id": "caveats",
-      "elements": [
-        {
-          "id": "caveats-title",
-          "kind": "text",
-          "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
-          },
-          "config": {
-            "text": "## What the Born model leaves out"
-          }
-        },
-        {
-          "id": "caveats-body",
-          "kind": "text",
-          "frame": {
-            "x": 80,
-            "y": 110,
-            "w": 1440,
-            "h": 600
-          },
-          "config": {
-            "text": "- The solvent is a **uniform** continuum right up to the ion: no hydrogen bonds, no first-shell structure, and no saturation in the very strong field next to a small ion.\n- $a$ is an **effective** radius, in practice fitted. A 10 % error in $a$ gives a 10 % error in $\\Delta G$, about 40 kJ/mol.\n- Only electrostatics: the cost of opening a cavity, and dispersion, are left out.\n- Single ions cannot be measured alone, only neutral salts, so single-ion values rest on a convention.",
-            "style": {
-              "scale": 0.85,
-              "spacing": {
-                "between": 0.35
-              }
-            }
-          }
-        },
-        {
-          "id": "caveats-take-card",
-          "kind": "shape",
-          "frame": {
-            "x": 80,
-            "y": 740,
-            "w": 1440,
-            "h": 160
-          },
-          "config": {
-            "shape": "rect",
-            "radius": 16
-          },
-          "style": {
-            "fill": "surface",
-            "border": {
-              "color": "accent",
-              "width": 3
-            }
-          }
-        },
-        {
-          "id": "caveats-take",
-          "kind": "text",
-          "frame": {
-            "x": 110,
-            "y": 764,
-            "w": 1380,
-            "h": 112
-          },
-          "config": {
-            "text": "**Take-home.** Born is a model for *trends*: $z^2$, $1/a$ and $1/\\varepsilon_r$. Trust its ratios more than its absolute numbers.",
-            "style": {
-              "scale": 0.8
-            }
-          }
-        }
-      ],
-      "builds": [
-        {
-          "element": "caveats-body",
-          "delivery": "by-paragraph"
-        }
-      ]
-    },
-    {
-      "id": "real-interface",
-      "elements": [
-        {
-          "id": "real-interface-title",
-          "kind": "text",
-          "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
-          },
-          "config": {
-            "text": "## Small ions avoid the water surface"
-          }
-        },
-        {
-          "id": "ri-body",
-          "kind": "text",
-          "frame": {
-            "x": 80,
-            "y": 110,
-            "w": 1440,
-            "h": 560
-          },
-          "config": {
-            "text": "- The water surface is not a step: the density falls over a few ångström.\n- Near the surface an ion loses part of its solvation; in the image-charge picture it is repelled by its own mirror image in the air (Onsager–Samaras).\n- So the top layer of salt water holds fewer ions, and salt water has a slightly *higher* surface tension than pure water.\n- Large, polarizable anions (I⁻, SCN⁻) are the exception: they come up to the surface.",
-            "style": {
-              "scale": 0.85,
-              "spacing": {
-                "between": 0.35
-              }
-            }
-          }
-        },
-        {
-          "id": "ri-q",
-          "kind": "text",
-          "frame": {
-            "x": 80,
-            "y": 720,
-            "w": 1440,
-            "h": 110
-          },
-          "config": {
-            "text": "**Question:** What would make a large anion less unhappy at the surface? Think of $a$ in the Born energy, and of polarizability from day 3.",
-            "style": {
-              "scale": 0.8
-            }
-          }
-        }
-      ],
-      "builds": [
-        {
-          "element": "ri-body",
-          "delivery": "by-paragraph"
-        }
-      ]
-    },
-    {
       "id": "logp",
+      "builds": [
+        {
+          "element": "logp-ans-card"
+        },
+        {
+          "element": "logp-ans",
+          "trigger": "with-previous"
+        }
+      ],
       "elements": [
         {
           "id": "logp-title",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
+            "x": 80.0,
+            "y": 30.0,
+            "w": 1440.0,
+            "h": 39.0
           },
+          "kind": "text",
           "config": {
-            "text": "## 10. Ionizing a drug lowers its logP by 3–4 units"
+            "text": "## Ionizing a drug lowers its logP by 3–4 units"
           }
         },
         {
           "id": "logp-body",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 110,
-            "w": 1440,
-            "h": 340
+            "x": 80.0,
+            "y": 110.0,
+            "w": 1440.0,
+            "h": 293.0
           },
+          "kind": "text",
           "config": {
-            "text": "Chemists measure how well a drug enters fat and membranes by its partition between octanol and water, $\\log P = \\log_{10}([{\\rm drug}]_{\\rm octanol}/[{\\rm drug}]_{\\rm water})$. Good oral drugs have $\\log P \\approx 1$–3. Since $\\ln P = -\\Delta G_{\\rm transfer}/k_BT$, the Born transfer cost of a charge shows up directly in $\\log P$.",
+            "text": "Chemists measure how well a drug enters fat and membranes by its partition between octanol and water, $\\log P = \\log_{10}([{\\rm drug}]_{\\rm octanol}/[{\\rm drug}]_{\\rm water})$; good oral drugs have $\\log P \\approx 1$–3. Since $\\ln P = -\\Delta G_{\\rm transfer}/k_BT$, the Born cost of a charge shows up directly in $\\log P$.\n\nOnly the neutral form crosses a membrane, so pH decides where a drug is absorbed. Aspirin ($\\mathrm{p}K_a = 3.5$) is mostly neutral in the stomach (pH 1–2) and is absorbed there; in blood (pH 7.4) it is 99.99 % ionized.",
             "style": {
-              "scale": 0.85
+              "scale": 0.8
             }
           }
         },
         {
           "id": "logp-q",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 470,
-            "w": 1440,
-            "h": 110
+            "x": 80.0,
+            "y": 480.0,
+            "w": 1440.0,
+            "h": 99.0
           },
+          "kind": "text",
           "config": {
             "text": "**Question:** Estimate the drop in $\\log P$ when a drug is ionized. Wet octanol has $\\varepsilon_r \\approx 10$; take $a = 3\\ \\text{Å}$.",
             "style": {
-              "scale": 0.85
+              "scale": 0.8
             }
           }
         },
         {
           "id": "logp-ans-card",
-          "kind": "shape",
           "frame": {
-            "x": 80,
-            "y": 600,
-            "w": 1440,
-            "h": 280
-          },
-          "config": {
-            "shape": "rect",
-            "radius": 16
+            "x": 80.0,
+            "y": 600.0,
+            "w": 1440.0,
+            "h": 280.0
           },
           "style": {
             "fill": "surface",
             "border": {
               "color": "line",
-              "width": 3
+              "width": 3.0,
+              "dash": "solid"
             }
+          },
+          "kind": "shape",
+          "config": {
+            "shape": "rect",
+            "radius": 16.0
           }
         },
         {
           "id": "logp-ans",
-          "kind": "text",
           "frame": {
-            "x": 110,
-            "y": 624,
-            "w": 1380,
-            "h": 232
+            "x": 110.0,
+            "y": 624.0,
+            "w": 1380.0,
+            "h": 177.0
           },
+          "kind": "text",
           "config": {
             "text": "**Answer.** $\\Delta G/k_BT = \\dfrac{560}{2 \\cdot 3}\\left(\\dfrac1{10}-\\dfrac1{78}\\right) \\approx 8.1$, and dividing by $\\ln 10 = 2.3$ gives a drop of $3.5$ in $\\log P$, close to the 3–4 units measured. Dry oil would give about 30: octanol holds water, and the charge is spread over a group.",
             "style": {
@@ -2218,142 +1817,39 @@
             }
           }
         }
-      ],
-      "builds": [
-        {
-          "element": "logp-ans-card",
-          "effect": "appear"
-        },
-        {
-          "element": "logp-ans",
-          "trigger": "with-previous",
-          "effect": "appear"
-        }
-      ]
-    },
-    {
-      "id": "logd",
-      "elements": [
-        {
-          "id": "logd-title",
-          "kind": "text",
-          "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
-          },
-          "config": {
-            "text": "## Only the neutral form of a drug crosses a membrane"
-          }
-        },
-        {
-          "id": "logd-body",
-          "kind": "text",
-          "frame": {
-            "x": 80,
-            "y": 110,
-            "w": 1440,
-            "h": 360
-          },
-          "config": {
-            "text": "The charged form pays the Born price, so pH decides where a drug is absorbed. Aspirin, an acid with $\\mathrm{p}K_a = 3.5$, is mostly neutral in the stomach (pH 1–2) and is absorbed there; in blood (pH 7.4) it is 99.99 % ionized. Drugs are often sold as **salts** (e.g. hydrochlorides) because the charged form dissolves fast in water.",
-            "style": {
-              "scale": 0.85
-            }
-          }
-        },
-        {
-          "id": "logd-q",
-          "kind": "text",
-          "frame": {
-            "x": 80,
-            "y": 490,
-            "w": 1440,
-            "h": 110
-          },
-          "config": {
-            "text": "**Question:** Where is a weak **base** with $\\mathrm{p}K_a = 9$ best absorbed: stomach or small intestine?",
-            "style": {
-              "scale": 0.85
-            }
-          }
-        },
-        {
-          "id": "logd-ans-card",
-          "kind": "shape",
-          "frame": {
-            "x": 80,
-            "y": 620,
-            "w": 1440,
-            "h": 220
-          },
-          "config": {
-            "shape": "rect",
-            "radius": 16
-          },
-          "style": {
-            "fill": "surface",
-            "border": {
-              "color": "line",
-              "width": 3
-            }
-          }
-        },
-        {
-          "id": "logd-ans",
-          "kind": "text",
-          "frame": {
-            "x": 110,
-            "y": 644,
-            "w": 1380,
-            "h": 172
-          },
-          "config": {
-            "text": "**Answer.** In the small intestine (pH 7–8). At pH 1.5 the base is fully protonated and charged; closer to its $\\mathrm{p}K_a$ a larger fraction is neutral and can cross the membrane.",
-            "style": {
-              "scale": 0.8
-            }
-          }
-        }
-      ],
-      "builds": [
-        {
-          "element": "logd-ans-card",
-          "effect": "appear"
-        },
-        {
-          "element": "logd-ans",
-          "trigger": "with-previous",
-          "effect": "appear"
-        }
       ]
     },
     {
       "id": "everyday",
+      "builds": [
+        {
+          "element": "everyday-body",
+          "delivery": "by-paragraph"
+        }
+      ],
       "elements": [
         {
           "id": "everyday-title",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
+            "x": 80.0,
+            "y": 30.0,
+            "w": 1440.0,
+            "h": 75.0
           },
+          "kind": "text",
           "config": {
             "text": "## Born in the kitchen and in the cell"
           }
         },
         {
           "id": "everyday-body",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 120,
-            "w": 1440,
-            "h": 640
+            "x": 80.0,
+            "y": 120.0,
+            "w": 1440.0,
+            "h": 640.0
           },
+          "kind": "text",
           "config": {
             "text": "- **Vinaigrette:** salt does not dissolve in oil, so dissolve it in the vinegar first.\n- **Chili:** capsaicin is neutral and oily. Water does not help, milk fat does.\n- **Soap:** the charged head stays in water, the tail goes into the grease.\n- **Membranes** are ion-tight, so cells need channels and carriers. Valinomycin wraps K⁺ in a neutral shell: a larger $a$ lowers the Born cost (Dill 22.11).\n- **Proteins:** charged residues sit on the surface.",
             "style": {
@@ -2365,22 +1861,16 @@
         },
         {
           "id": "everyday-q",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 790,
-            "w": 1440,
-            "h": 130
+            "x": 80.0,
+            "y": 790.0,
+            "w": 1440.0,
+            "h": 130.0
           },
+          "kind": "text",
           "config": {
             "text": "**Question:** Why would burying one Asp⁻ in a protein core ($\\varepsilon_r \\approx 4$) unfold many proteins?"
           }
-        }
-      ],
-      "builds": [
-        {
-          "element": "everyday-body",
-          "delivery": "by-paragraph"
         }
       ]
     },
@@ -2389,49 +1879,50 @@
       "elements": [
         {
           "id": "takehome-transfer-title",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
+            "x": 80.0,
+            "y": 30.0,
+            "w": 1440.0,
+            "h": 75.0
           },
+          "kind": "text",
           "config": {
             "text": "## Take-home: moving ions between media"
           }
         },
         {
           "id": "takehome-transfer-box-card",
-          "kind": "shape",
           "frame": {
-            "x": 80,
-            "y": 160,
-            "w": 1440,
-            "h": 700
-          },
-          "config": {
-            "shape": "rect",
-            "radius": 16
+            "x": 80.0,
+            "y": 160.0,
+            "w": 1440.0,
+            "h": 380.0
           },
           "style": {
             "fill": "surface",
             "border": {
               "color": "accent",
-              "width": 3
+              "width": 3.0,
+              "dash": "solid"
             }
+          },
+          "kind": "shape",
+          "config": {
+            "shape": "rect",
+            "radius": 16.0
           }
         },
         {
           "id": "takehome-transfer-box",
-          "kind": "text",
           "frame": {
-            "x": 110,
-            "y": 184,
-            "w": 1380,
-            "h": 652
+            "x": 110.0,
+            "y": 184.0,
+            "w": 1380.0,
+            "h": 652.0
           },
+          "kind": "text",
           "config": {
-            "text": "**Take-home.**\n\n- A transfer free energy is the difference of two solvation energies (a thermodynamic cycle).\n- Water → oil costs about 70 $k_BT$ for a small ion: $K \\approx 10^{-30}$, so bare ions stay out of oil, membranes and protein cores.\n- Wet octanol ($\\varepsilon_r \\approx 10$) explains why ionizing a drug lowers $\\log P$ by 3–4 units.\n- Ions are pushed away from a water surface; the cost rises over a few ångström.",
+            "text": "**Take-home.**\n\n- Water → oil costs about 70 $k_BT$ for a small ion: $K \\approx 10^{-30}$, so bare ions stay out of oil, membranes and protein cores.\n- Wet octanol ($\\varepsilon_r \\approx 10$) explains why ionizing a drug lowers $\\log P$ by 3–4 units.\n- Ions are pushed away from a water surface; the cost rises over a few ångström.",
             "style": {
               "scale": 0.9
             }
@@ -2448,107 +1939,176 @@
       }
     },
     {
-      "id": "sphere",
+      "id": "caveats",
+      "builds": [
+        {
+          "element": "caveats-body",
+          "delivery": "by-paragraph"
+        }
+      ],
       "elements": [
         {
-          "id": "sphere-title",
-          "kind": "text",
+          "id": "caveats-title",
           "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
+            "x": 80.0,
+            "y": 30.0,
+            "w": 1440.0,
+            "h": 75.0
           },
+          "kind": "text",
           "config": {
-            "text": "## 11. A charged protein shifts the pKa of groups on its surface"
+            "text": "## What the Born model leaves out"
           }
         },
         {
-          "id": "sphere-body",
-          "kind": "text",
+          "id": "caveats-body",
           "frame": {
-            "x": 80,
-            "y": 100,
-            "w": 1440,
-            "h": 560
+            "x": 80.0,
+            "y": 110.0,
+            "w": 1440.0,
+            "h": 600.0
           },
+          "kind": "text",
           "config": {
-            "text": "A protein with net charge $ze$ acts, from outside, like a charged sphere. Its potential at distance $r$ from the centre is $e\\psi/k_BT = z\\ell_B/r$ (Dill Eq. 21.43), with $\\ell_B = 7.1$ Å in water.\n\nA proton near the surface feels that potential. Near a positive protein protons are pushed away: $[{\\rm H}^+]_{\\rm surface} = [{\\rm H}^+]_{\\rm bulk}\\,e^{-e\\psi/k_BT}$. A surface group therefore sees a different pH from the one in the bulk.",
+            "text": "- The solvent is a **uniform** continuum right up to the ion: no hydrogen bonds, no first-shell structure, and no saturation in the very strong field next to a small ion.\n- $a$ is an **effective** radius, in practice fitted. A 10 % error in $a$ gives a 10 % error in $\\Delta G$, about 40 kJ/mol.\n- Only electrostatics: the cost of opening a cavity, and dispersion, are left out.\n- Single ions cannot be measured alone, only neutral salts, so single-ion values rest on a convention.",
             "style": {
-              "scale": 0.8
+              "scale": 0.85,
+              "spacing": {
+                "between": 0.35
+              }
             }
           }
         },
         {
-          "id": "sphere-key-card",
-          "kind": "shape",
+          "id": "caveats-take-card",
           "frame": {
-            "x": 80,
-            "y": 660,
-            "w": 1440,
-            "h": 210
-          },
-          "config": {
-            "shape": "rect",
-            "radius": 16
+            "x": 80.0,
+            "y": 740.0,
+            "w": 1440.0,
+            "h": 160.0
           },
           "style": {
             "fill": "surface",
             "border": {
-              "color": "line",
-              "width": 3
+              "color": "accent",
+              "width": 3.0,
+              "dash": "solid"
             }
+          },
+          "kind": "shape",
+          "config": {
+            "shape": "rect",
+            "radius": 16.0
           }
         },
         {
-          "id": "sphere-key",
-          "kind": "text",
+          "id": "caveats-take",
           "frame": {
-            "x": 110,
-            "y": 684,
-            "w": 1380,
-            "h": 162
+            "x": 110.0,
+            "y": 764.0,
+            "w": 1380.0,
+            "h": 112.0
           },
+          "kind": "text",
           "config": {
-            "text": "**Key concept.** A surface potential $\\psi$ shifts the apparent $\\mathrm{p}K_a^{\\rm app} = \\mathrm{p}K_a - \\dfrac{e\\psi}{2.303\\,k_BT}$. **Question:** near a positive surface, is an acid more or less dissociated? (Dill 22.2, 22.4)",
+            "text": "**Take-home.** Born is a model for *trends*: $z^2$, $1/a$ and $1/\\varepsilon_r$. Trust its ratios more than its absolute numbers.",
             "style": {
               "scale": 0.8
             }
           }
         }
-      ],
+      ]
+    },
+    {
+      "id": "real-interface",
       "builds": [
         {
-          "element": "sphere-body",
+          "element": "ri-body",
           "delivery": "by-paragraph"
+        }
+      ],
+      "elements": [
+        {
+          "id": "real-interface-title",
+          "frame": {
+            "x": 80.0,
+            "y": 30.0,
+            "w": 1440.0,
+            "h": 75.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "## Small ions avoid the water surface"
+          }
+        },
+        {
+          "id": "ri-body",
+          "frame": {
+            "x": 80.0,
+            "y": 110.0,
+            "w": 1440.0,
+            "h": 560.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "- The water surface is not a step: the density falls over a few ångström.\n- Near the surface an ion loses part of its solvation; in the image-charge picture it is repelled by its own mirror image in the air (Onsager–Samaras).\n- So the top layer of salt water holds fewer ions, and salt water has a slightly *higher* surface tension than pure water.\n- Large, polarizable anions (I⁻, SCN⁻) are the exception: they come up to the surface.",
+            "style": {
+              "scale": 0.85,
+              "spacing": {
+                "between": 0.35
+              }
+            }
+          }
+        },
+        {
+          "id": "ri-q",
+          "frame": {
+            "x": 80.0,
+            "y": 720.0,
+            "w": 1440.0,
+            "h": 110.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**Question:** What would make a large anion less unhappy at the surface? Think of $a$ in the Born energy, and of polarizability from day 3.",
+            "style": {
+              "scale": 0.8
+            }
+          }
         }
       ]
     },
     {
       "id": "screening",
+      "builds": [
+        {
+          "element": "screening-body",
+          "delivery": "by-paragraph"
+        }
+      ],
       "elements": [
         {
           "id": "screening-title",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
+            "x": 80.0,
+            "y": 30.0,
+            "w": 1440.0,
+            "h": 39.0
           },
+          "kind": "text",
           "config": {
-            "text": "## 12. Teaser for day 5: salt screens a charge"
+            "text": "## Teaser for day 5: salt screens a charge"
           }
         },
         {
           "id": "screening-body",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 100,
-            "w": 1440,
-            "h": 520
+            "x": 80.0,
+            "y": 100.0,
+            "w": 1440.0,
+            "h": 493.0
           },
+          "kind": "text",
           "config": {
             "text": "Put an ion into salt water. Ions of the opposite sign gather round it, ions of the same sign keep away. This *ion atmosphere* carries the opposite charge and cancels the ion's field beyond a distance called the **Debye length**, $\\kappa^{-1}$.\n\n- The potential of an ion of radius $a$ becomes $\\dfrac{e\\psi(r)}{k_BT} = z\\,\\ell_B\\,\\dfrac{e^{-\\kappa(r-a)}}{(1+\\kappa a)\\,r}$: Coulomb's law times an exponential cut-off.\n- Two ions: $w(R)/k_BT = z_{1,\\rm eff}\\,z_{2,\\rm eff}\\,\\ell_B\\,e^{-\\kappa R}/R$ with $z_{\\rm eff} = z\\,e^{\\kappa a}/(1+\\kappa a)$ (problem 2 writes it with charges, $Q_{\\rm eff}$).\n- Blood (150 mM): $\\kappa^{-1} \\approx 8$ Å. Pure water ($10^{-7}$ M): about 1 µm. Without salt, $\\kappa \\to 0$ and Coulomb's law returns.",
             "style": {
@@ -2561,34 +2121,35 @@
         },
         {
           "id": "screening-key-card",
-          "kind": "shape",
           "frame": {
-            "x": 80,
-            "y": 640,
-            "w": 1440,
-            "h": 305
-          },
-          "config": {
-            "shape": "rect",
-            "radius": 16
+            "x": 80.0,
+            "y": 640.0,
+            "w": 1440.0,
+            "h": 305.0
           },
           "style": {
             "fill": "surface",
             "border": {
               "color": "line",
-              "width": 3
+              "width": 3.0,
+              "dash": "solid"
             }
+          },
+          "kind": "shape",
+          "config": {
+            "shape": "rect",
+            "radius": 16.0
           }
         },
         {
           "id": "screening-key",
-          "kind": "text",
           "frame": {
-            "x": 110,
-            "y": 664,
-            "w": 1380,
-            "h": 257
+            "x": 110.0,
+            "y": 664.0,
+            "w": 1380.0,
+            "h": 244.0
           },
+          "kind": "text",
           "config": {
             "text": "**Key concept: the Debye length.**\n\n$$\\kappa^2 = 8\\pi\\,\\ell_B\\,N_A I \\qquad \\kappa^{-1} = \\frac{3.04\\ \\text{Å}}{\\sqrt{I/\\text{M}}}\\quad\\text{(water, 25 °C)}$$",
             "style": {
@@ -2596,49 +2157,48 @@
             }
           }
         }
-      ],
-      "builds": [
-        {
-          "element": "screening-body",
-          "delivery": "by-paragraph"
-        }
       ]
     },
     {
       "id": "screen-pair",
       "state": {
-        "x1": 400.0,
-        "y1": 250.0,
+        "eps": 30.0,
         "q1": 1.0,
-        "x2": 600.0,
-        "y2": 250.0,
         "q2": -1.0,
         "salt": 0.01,
-        "eps": 30.0
+        "x1": 400.0,
+        "x2": 600.0,
+        "y1": 250.0,
+        "y2": 250.0
       },
+      "builds": [
+        {
+          "element": "sp-why"
+        }
+      ],
       "elements": [
         {
           "id": "screen-pair-title",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
+            "x": 80.0,
+            "y": 30.0,
+            "w": 1440.0,
+            "h": 75.0
           },
+          "kind": "text",
           "config": {
-            "text": "## 13. Salt switches off the interaction between two ions"
+            "text": "## Salt switches off the interaction between two ions"
           }
         },
         {
           "id": "sp-l1",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 105,
-            "w": 300,
-            "h": 50
+            "x": 80.0,
+            "y": 105.0,
+            "w": 300.0,
+            "h": 50.0
           },
+          "kind": "text",
           "config": {
             "text": "salt $I$ = {{salt * 1000.0:.0}} mM",
             "style": {
@@ -2648,13 +2208,13 @@
         },
         {
           "id": "sp-salt",
-          "kind": "slider",
           "frame": {
-            "x": 380,
-            "y": 110,
-            "w": 380,
-            "h": 40
+            "x": 380.0,
+            "y": 110.0,
+            "w": 380.0,
+            "h": 40.0
           },
+          "kind": "slider",
           "config": {
             "bind": "salt",
             "min": 0.001,
@@ -2664,13 +2224,13 @@
         },
         {
           "id": "sp-l2",
-          "kind": "text",
           "frame": {
-            "x": 820,
-            "y": 105,
-            "w": 320,
-            "h": 50
+            "x": 820.0,
+            "y": 105.0,
+            "w": 320.0,
+            "h": 50.0
           },
+          "kind": "text",
           "config": {
             "text": "$\\varepsilon_r$ = {{eps:.0}}, $\\ell_B$ = {{560.4 / eps:.1}} Å",
             "style": {
@@ -2680,88 +2240,88 @@
         },
         {
           "id": "sp-eps",
-          "kind": "slider",
           "frame": {
-            "x": 1140,
-            "y": 110,
-            "w": 380,
-            "h": 40
+            "x": 1140.0,
+            "y": 110.0,
+            "w": 380.0,
+            "h": 40.0
           },
+          "kind": "slider",
           "config": {
             "bind": "eps",
-            "min": 20,
-            "max": 80
+            "min": 20.0,
+            "max": 80.0
           }
         },
         {
           "id": "sp-map",
-          "kind": "scene",
           "frame": {
-            "x": 80,
-            "y": 170,
-            "w": 900,
-            "h": 450
+            "x": 80.0,
+            "y": 170.0,
+            "w": 900.0,
+            "h": 450.0
           },
+          "kind": "scene",
           "config": {
-            "size": [
-              1000,
-              500
-            ],
             "script": "let ang = 10.0;                                  // scene units per Å\nlet a = 2.0;\nlet lB = 560.4 / eps;\nlet kap = (8.0 * 3.14159265 * lB * salt * 0.0006022).sqrt();   // Å⁻¹\nlet qs = [charge(q1, x1, y1), charge(q2, x2, y2)];\nlet out = [];\nlet screened = true;\nlet grid = ();\ntry {\n    grid = potential_grid(qs, width, height, 6, a * ang, kap / ang);\n} catch {\n    grid = potential_grid(qs, width, height, 6, a * ang);\n    screened = false;\n}\nout.push(heatmap(grid, 0.6 * lB * ang));\nfor c in [[x1, y1, q1], [x2, y2, q2]] {\n    out.push(disc(c[0], c[1], ang / kap).fill(\"none\").stroke(\"text\").width(1.5).dash(6, 6).opacity(0.6));\n    out.push(disc(c[0], c[1], a * ang).fill(if c[2] > 0.0 { \"blue\" } else { \"red\" }).stroke(\"text\").width(1));\n    out.push(text(c[0], c[1], if c[2] > 0.0 { \"+\" } else { \"−\" }).fill(\"background\").size(24));\n}\nout.push(text(16, 486, \"drag the ions · tap one to flip its sign · dashed ring: Debye length\").anchor(\"start\").size(22).fill(\"faint\"));\nout.push(text(984, 30, \"κ⁻¹ = \" + fixed(1.0 / kap, 1) + \" Å\").anchor(\"end\").size(22));\nif !screened {\n    out.push(text(500, 250, \"unscreened: this Blikfang lacks potential_grid(…, kappa)\").size(22).fill(\"red\"));\n}\nout",
             "handles": [
               {
                 "x": "x1",
                 "y": "y1",
-                "r": 22,
+                "r": 22.0,
                 "tap": "q1 = -q1",
                 "within": {
-                  "x": 20,
-                  "y": 20,
-                  "w": 960,
-                  "h": 460
+                  "x": 20.0,
+                  "y": 20.0,
+                  "w": 960.0,
+                  "h": 460.0
                 }
               },
               {
                 "x": "x2",
                 "y": "y2",
-                "r": 22,
+                "r": 22.0,
                 "tap": "q2 = -q2",
                 "within": {
-                  "x": 20,
-                  "y": 20,
-                  "w": 960,
-                  "h": 460
+                  "x": 20.0,
+                  "y": 20.0,
+                  "w": 960.0,
+                  "h": 460.0
                 }
               }
+            ],
+            "size": [
+              1000.0,
+              500.0
             ]
           }
         },
         {
           "id": "sp-plot",
-          "kind": "scene",
           "frame": {
-            "x": 1000,
-            "y": 170,
-            "w": 520,
-            "h": 450
+            "x": 1000.0,
+            "y": 170.0,
+            "w": 520.0,
+            "h": 450.0
           },
+          "kind": "scene",
           "config": {
+            "script": "let a = 2.0;\nlet lB = 560.4 / eps;\nlet kap = (8.0 * 3.14159265 * lB * salt * 0.0006022).sqrt();\nlet zz = q1 * q2;\nlet d = ((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)).sqrt() / 10.0;\nlet R = if d < 2.0 * a { 2.0 * a } else { d };\nlet f = (1.0 + kap * a) * (1.0 + kap * a);\nlet p = plot(125, 20, 440, 360).x_lin(4, 60).y_lin(-6, 6).text(22);\nlet out = [p.axes(\"R  (Å)\", \"w / kT\")];\nout.push(p.hline(0).stroke(\"faint\").width(1));\nout.push(p.hline(1).stroke(\"faint\").width(1).dash(6, 4));\nout.push(p.hline(-1).stroke(\"faint\").width(1).dash(6, 4));\nout.push(p.curve(|r| zz * lB / r).stroke(\"line\").width(2));\nout.push(p.curve(|r| zz * lB * (-kap * (r - 2.0 * a)).exp() / (f * r)).stroke(\"purple\").width(3));\nlet wR = zz * lB * (-kap * (R - 2.0 * a)).exp() / (f * R);\nlet xR = if R > 60.0 { 60.0 } else { R };\nlet yR = if wR > 6.0 { 6.0 } else if wR < -6.0 { -6.0 } else { wR };\nout.push(disc(p.x(xR), p.y(yR), 8).fill(\"purple\").stroke(\"none\"));\nout.push(text(560, 485, \"w = \" + fixed(wR, 2) + \" kT at R = \" + fixed(R, 1) + \" Å\").anchor(\"end\").size(22));\nout.push(text(p.x(58.0), p.y(zz * lB / 58.0) - 12, \"no salt\").anchor(\"end\").size(22).fill(\"faint\"));\nout",
             "size": [
-              580,
-              500
-            ],
-            "script": "let a = 2.0;\nlet lB = 560.4 / eps;\nlet kap = (8.0 * 3.14159265 * lB * salt * 0.0006022).sqrt();\nlet zz = q1 * q2;\nlet d = ((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)).sqrt() / 10.0;\nlet R = if d < 2.0 * a { 2.0 * a } else { d };\nlet f = (1.0 + kap * a) * (1.0 + kap * a);\nlet p = plot(125, 20, 440, 360).x_lin(4, 60).y_lin(-6, 6).text(22);\nlet out = [p.axes(\"R  (Å)\", \"w / kT\")];\nout.push(p.hline(0).stroke(\"faint\").width(1));\nout.push(p.hline(1).stroke(\"faint\").width(1).dash(6, 4));\nout.push(p.hline(-1).stroke(\"faint\").width(1).dash(6, 4));\nout.push(p.curve(|r| zz * lB / r).stroke(\"line\").width(2));\nout.push(p.curve(|r| zz * lB * (-kap * (r - 2.0 * a)).exp() / (f * r)).stroke(\"purple\").width(3));\nlet wR = zz * lB * (-kap * (R - 2.0 * a)).exp() / (f * R);\nlet xR = if R > 60.0 { 60.0 } else { R };\nlet yR = if wR > 6.0 { 6.0 } else if wR < -6.0 { -6.0 } else { wR };\nout.push(disc(p.x(xR), p.y(yR), 8).fill(\"purple\").stroke(\"none\"));\nout.push(text(560, 485, \"w = \" + fixed(wR, 2) + \" kT at R = \" + fixed(R, 1) + \" Å\").anchor(\"end\").size(22));\nout.push(text(p.x(58.0), p.y(zz * lB / 58.0) - 12, \"no salt\").anchor(\"end\").size(22).fill(\"faint\"));\nout"
+              580.0,
+              500.0
+            ]
           }
         },
         {
           "id": "sp-q",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 626,
-            "w": 1440,
-            "h": 100
+            "x": 80.0,
+            "y": 626.0,
+            "w": 1440.0,
+            "h": 100.0
           },
+          "kind": "text",
           "config": {
             "text": "**Predict, then slide:** keep $\\varepsilon_r = 30$ and the ions 20 Å apart. How much salt brings their interaction below $0.1\\,k_BT$? Watch the dashed rings shrink.",
             "style": {
@@ -2771,16 +2331,15 @@
         },
         {
           "id": "sp-p",
-          "kind": "puzzle",
           "frame": {
-            "x": 80,
-            "y": 727,
-            "w": 700,
-            "h": 70
+            "x": 80.0,
+            "y": 727.0,
+            "w": 700.0,
+            "h": 70.0
           },
+          "kind": "puzzle",
           "config": {
             "mode": "condition",
-            "tries": 2,
             "check": "(eps - 30.0).abs() <= 1.0 && (560.4 / eps) * (-(8.0 * 3.14159265 * (560.4 / eps) * salt * 0.0006022).sqrt() * 16.0).exp() / ((1.0 + 2.0 * (8.0 * 3.14159265 * (560.4 / eps) * salt * 0.0006022).sqrt()) * (1.0 + 2.0 * (8.0 * 3.14159265 * (560.4 / eps) * salt * 0.0006022).sqrt()) * 20.0) < 0.1",
             "hints": [
               "Raise $I$ until $\\kappa^{-1}$ is well below 20 Å; watch the readout under the plot."
@@ -2788,31 +2347,25 @@
             "feedback": {
               "correct": "Yes: about 50 mM, a third of the salt in your blood.",
               "reveal": "$I \\gtrsim 50$ mM, where $\\kappa^{-1} \\approx 8$ Å."
-            }
+            },
+            "tries": 2
           }
         },
         {
           "id": "sp-why",
-          "kind": "text",
           "frame": {
-            "x": 820,
-            "y": 750,
-            "w": 700,
-            "h": 220
+            "x": 820.0,
+            "y": 750.0,
+            "w": 700.0,
+            "h": 220.0
           },
+          "kind": "text",
           "config": {
             "text": "**Notice:** once the Debye length is shorter than the distance between the ions, they hardly feel each other. Salt makes charged molecules behave as if they were neutral.",
             "style": {
               "scale": 0.7
             }
           }
-        }
-      ],
-      "builds": [
-        {
-          "element": "sp-why",
-          "trigger": "click",
-          "effect": "appear"
         }
       ]
     },
@@ -2829,67 +2382,52 @@
       "elements": [
         {
           "id": "summary-title",
-          "kind": "text",
           "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
+            "x": 80.0,
+            "y": 30.0,
+            "w": 1440.0,
+            "h": 75.0
           },
+          "kind": "text",
           "config": {
             "text": "## Summary"
           }
         },
         {
           "id": "summary-take-card",
-          "kind": "shape",
           "frame": {
-            "x": 80,
-            "y": 110,
-            "w": 1440,
-            "h": 600
-          },
-          "config": {
-            "shape": "rect",
-            "radius": 16
+            "x": 80.0,
+            "y": 110.0,
+            "w": 1440.0,
+            "h": 480.0
           },
           "style": {
             "fill": "surface",
             "border": {
               "color": "accent",
-              "width": 3
+              "width": 3.0,
+              "dash": "solid"
             }
+          },
+          "kind": "shape",
+          "config": {
+            "shape": "rect",
+            "radius": 16.0
           }
         },
         {
           "id": "summary-take",
-          "kind": "text",
           "frame": {
-            "x": 110,
-            "y": 134,
-            "w": 1380,
-            "h": 552
+            "x": 110.0,
+            "y": 134.0,
+            "w": 1380.0,
+            "h": 552.0
           },
+          "kind": "text",
           "config": {
-            "text": "**Take-home.**\n\n- Charging a sphere costs $z^2\\ell_B/2a$; a solvent wins back the fraction $1 - 1/\\varepsilon_r$, shell by shell.\n- Born: moving an ion from $\\varepsilon_1$ to $\\varepsilon_2$ costs $(z^2\\ell_B^{\\rm vacuum}/2a)(1/\\varepsilon_2 - 1/\\varepsilon_1)\\,k_BT$.\n- Ion solvation is long-ranged ($1 - a/R$); dipole solvation is local ($1 - (a/R)^3$).\n- Transfer = difference of solvation energies: about 70 $k_BT$ from water into oil, about 8 $k_BT$ into wet octanol.\n- Salt screens charges beyond the Debye length $\\kappa^{-1} = 3.04\\ \\text{Å}/\\sqrt{I/\\text{M}}$.",
+            "text": "**Take-home.**\n\n- Two routes give the Born energy: charge the ion in vacuum and in the medium and subtract, or add up the solvent's response shell by shell. Both give $\\Delta G = (z^2\\ell_B^{\\rm vacuum}/2a)(1/\\varepsilon_2 - 1/\\varepsilon_1)\\,k_BT$.\n- Ion solvation is long-ranged ($1 - a/R$); dipole solvation is local ($1 - (a/R)^3$).\n- A transfer is the gap between two solvation energies on one curve. The same $z^2/a$ keeps ions out of oil and lowers a drug's $\\log P$ when it ionizes.\n- Salt screens charges beyond the Debye length $\\kappa^{-1} = 3.04\\ \\text{Å}/\\sqrt{I/\\text{M}}$.",
             "style": {
               "scale": 0.85
-            }
-          }
-        },
-        {
-          "id": "summary-now",
-          "kind": "text",
-          "frame": {
-            "x": 80,
-            "y": 720,
-            "w": 1440,
-            "h": 180
-          },
-          "config": {
-            "text": "**Now:** Dill 22.1, 22.2, 22.4, 22.12, 22.13 and problems 1–3.\n\n**Next time:** the ion atmosphere and activity coefficients.",
-            "style": {
-              "scale": 0.9
             }
           }
         }
