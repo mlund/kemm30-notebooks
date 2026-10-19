@@ -19,15 +19,15 @@ $\kappa^{-1} \propto \sqrt{\varepsilon_r}$.
 **The screened potential.** Solving the linearized Poisson–Boltzmann (Debye–Hückel) equation
 around an ion of radius $a$, from which other ions are excluded, gives
 
-$$\frac{e\psi(r)}{kT} = z\,\ell_B\,\frac{e^{-\kappa(r-a)}}{(1+\kappa a)\,r}.$$
+$$\frac{e\psi(r)}{k_BT} = z\,\ell_B\,\frac{e^{-\kappa(r-a)}}{(1+\kappa a)\,r}.$$
 
 Close to the ion this is Coulomb's law; beyond a few Debye lengths it dies away exponentially.
 For two ions or two charged particles this gives the screened Coulomb interaction used in
 problem 2, with the effective valence $z_{\rm eff} = z\,e^{\kappa a}/(1+\kappa a)$:
-$w(R)/kT = z_{1,\rm eff}\,z_{2,\rm eff}\,\ell_B\,e^{-\kappa R}/R$. Problem 2 writes the same with
+$w(R)/k_BT = z_{1,\rm eff}\,z_{2,\rm eff}\,\ell_B\,e^{-\kappa R}/R$. Problem 2 writes the same with
 charges, $Q_{\rm eff} = Q\,e^{\kappa a}/(1+\kappa a)$.
 
-**Assumptions.** The linearized theory holds when $e\psi \ll kT$, so it works best for low
+**Assumptions.** The linearized theory holds when $e\psi \ll k_BT$, so it works best for low
 charge, high dielectric constant and moderate salt. That is why the explorable keeps
 $\varepsilon_r$ between 20 and 80 (water is 78): in oil-like solvents the ion clouds are strongly nonlinear and
 ions pair up instead (day 2).

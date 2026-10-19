@@ -8,7 +8,7 @@ contributions.
 **One molecule.** A molecule in a field $E$ acquires a dipole $\alpha_{\rm eff}E$ and gains the
 free energy $-\tfrac12\alpha_{\rm eff}E^2$ (the ½ for the same reason as in charging: the dipole
 builds up as the field grows). The effective polarizability has two parts from day 3:
-electronic, $\alpha$, and orientational, $\mu^2/3kT$, from the thermal average of a permanent
+electronic, $\alpha$, and orientational, $\mu^2/3k_BT$, from the thermal average of a permanent
 dipole's alignment.
 
 **All molecules.** The ion's field is $E = q/(4\pi\varepsilon_0 r^2)$. A shell of radius $r$
@@ -48,10 +48,10 @@ $q^2/(8\pi\varepsilon_0 a)$; charging it in the solvent costs $q^2/(8\pi\varepsi
 The difference is exactly the Born energy from vacuum into the solvent. Dill derives it this way, with a thermodynamic cycle
 (Fig. 22.14, Eq. 22.61).
 
-**Numbers.** In units of $kT$, $\Delta G_{\rm Born}/kT = (z^2\ell_B^{\rm vacuum}/2a)(1/\varepsilon_2 - 1/\varepsilon_1)$.
+**Numbers.** In units of $k_BT$, $\Delta G_{\rm Born}/k_BT = (z^2\ell_B^{\rm vacuum}/2a)(1/\varepsilon_2 - 1/\varepsilon_1)$.
 From vacuum this is $-(z^2\ell_B^{\rm vacuum}/2a)(1 - 1/\varepsilon_r)$.
-For a monovalent ion with $a = 2$ Å in water this is $-140 \times 0.99 = -138\,kT$, about
-−340 kJ/mol. In oil ($\varepsilon_r = 2$) it is only $-70\,kT$.
+For a monovalent ion with $a = 2$ Å in water this is $-140 \times 0.99 = -138\,k_BT$, about
+−340 kJ/mol. In oil ($\varepsilon_r = 2$) it is only $-70\,k_BT$.
 
 **Assumptions to keep in mind.** The solvent is a uniform continuum right up to the ion's
 surface; it responds linearly to the field (no saturation, although the field next to a small

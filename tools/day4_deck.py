@@ -627,13 +627,13 @@ The integral of $\lambda$ gives the factor ½. Dill reaches the same result a se
 surface. Both say the same thing: on average, each bit of charge feels half the final
 potential.
 
-**In units of $kT$.** With the Bjerrum length $\ell_B = e^2/(4\pi\varepsilon_0\varepsilon_r kT)$,
+**In units of $k_BT$.** With the Bjerrum length $\ell_B = e^2/(4\pi\varepsilon_0\varepsilon_r k_BT)$,
 
-$$\frac{\Delta G}{kT} = \frac{z^2\,\ell_B}{2a}.$$
+$$\frac{\Delta G}{k_BT} = \frac{z^2\,\ell_B}{2a}.$$
 
 In vacuum $\ell_B^{\rm vacuum} = 560$ Å at 25 °C, so a monovalent ion with $a = 2$ Å costs
-$560/4 = 140\,kT$, about 350 kJ/mol. In water $\ell_B = 7.1$ Å and the same ion costs only
-$1.8\,kT$.
+$560/4 = 140\,k_BT$, about 350 kJ/mol. In water $\ell_B = 7.1$ Å and the same ion costs only
+$1.8\,k_BT$.
 
 **What it means.** The self-energy is large for small ions ($1/a$) and grows with the square
 of the charge ($z^2$): a divalent ion costs four times as much as a monovalent one of the same
@@ -642,7 +642,7 @@ saving comes from.
 
 **Notation.** Dill writes the dielectric constant as $D$ and $1/(4\pi\varepsilon_0)$ as $C$; here
 $\varepsilon_r$ is the dielectric constant (relative permittivity), as on days 2–3;
-$\varepsilon_1$, $\varepsilon_2$, $\varepsilon_{\rm w}$ and $\varepsilon_{\rm oil}$ are its values in particular media. At 25 °C, $kT$ = 2.48 kJ/mol = 0.593 kcal/mol.
+$\varepsilon_1$, $\varepsilon_2$, $\varepsilon_{\rm w}$ and $\varepsilon_{\rm oil}$ are its values in particular media. At 25 °C, $k_BT$ = 2.48 kJ/mol = 0.593 kcal/mol.
 """
 
 
@@ -799,7 +799,7 @@ contributions.
 **One molecule.** A molecule in a field $E$ acquires a dipole $\alpha_{\rm eff}E$ and gains the
 free energy $-\tfrac12\alpha_{\rm eff}E^2$ (the ½ for the same reason as in charging: the dipole
 builds up as the field grows). The effective polarizability has two parts from day 3:
-electronic, $\alpha$, and orientational, $\mu^2/3kT$, from the thermal average of a permanent
+electronic, $\alpha$, and orientational, $\mu^2/3k_BT$, from the thermal average of a permanent
 dipole's alignment.
 
 **All molecules.** The ion's field is $E = q/(4\pi\varepsilon_0 r^2)$. A shell of radius $r$
@@ -839,10 +839,10 @@ $q^2/(8\pi\varepsilon_0 a)$; charging it in the solvent costs $q^2/(8\pi\varepsi
 The difference is exactly the Born energy from vacuum into the solvent. Dill derives it this way, with a thermodynamic cycle
 (Fig. 22.14, Eq. 22.61).
 
-**Numbers.** In units of $kT$, $\Delta G_{\rm Born}/kT = (z^2\ell_B^{\rm vacuum}/2a)(1/\varepsilon_2 - 1/\varepsilon_1)$.
+**Numbers.** In units of $k_BT$, $\Delta G_{\rm Born}/k_BT = (z^2\ell_B^{\rm vacuum}/2a)(1/\varepsilon_2 - 1/\varepsilon_1)$.
 From vacuum this is $-(z^2\ell_B^{\rm vacuum}/2a)(1 - 1/\varepsilon_r)$.
-For a monovalent ion with $a = 2$ Å in water this is $-140 \times 0.99 = -138\,kT$, about
-−340 kJ/mol. In oil ($\varepsilon_r = 2$) it is only $-70\,kT$.
+For a monovalent ion with $a = 2$ Å in water this is $-140 \times 0.99 = -138\,k_BT$, about
+−340 kJ/mol. In oil ($\varepsilon_r = 2$) it is only $-70\,k_BT$.
 
 **Assumptions to keep in mind.** The solvent is a uniform continuum right up to the ion's
 surface; it responds linearly to the field (no saturation, although the field next to a small
@@ -1377,22 +1377,22 @@ since there is no field to screen), and charge it again in oil (paying
 $q^2/8\pi\varepsilon_0\varepsilon_{\rm oil} a$). Free energy is a state function, so the direct path
 costs the same as the detour (Dill Fig. 22.14, Eq. 22.61):
 
-$$\Delta G_{w\to o} = \frac{z^2\ell_B^{\rm vacuum}}{2a}\left(\frac1{\varepsilon_{\rm oil}}-\frac1{\varepsilon_{\rm w}}\right)kT
+$$\Delta G_{w\to o} = \frac{z^2\ell_B^{\rm vacuum}}{2a}\left(\frac1{\varepsilon_{\rm oil}}-\frac1{\varepsilon_{\rm w}}\right)k_BT
 = \Delta G_{\rm solv}(o) - \Delta G_{\rm solv}(w).$$
 
 **Partition coefficient.** At equilibrium the concentrations in the two phases satisfy
-$c_o/c_w = K = e^{-\Delta G_{w\to o}/kT}$. For a monovalent ion with $a = 2$ Å, from water
-($\varepsilon_r = 78$) to oil ($\varepsilon_r = 2$), $\Delta G = 140\times(0.5 - 0.013) \approx 68\,kT$
+$c_o/c_w = K = e^{-\Delta G_{w\to o}/k_BT}$. For a monovalent ion with $a = 2$ Å, from water
+($\varepsilon_r = 78$) to oil ($\varepsilon_r = 2$), $\Delta G = 140\times(0.5 - 0.013) \approx 68\,k_BT$
 (Dill Ex. 22.13 takes $\varepsilon_r = 80$ for water and rounds to 70), so $K \approx 10^{-30}$. A litre of 1 M salt water holds
 $6\times10^{23}$ ions; next to a litre of oil, on average fewer than one of them is in the oil.
 
 **logP.** Chemists report $\log P = \log_{10}(c_{\rm octanol}/c_{\rm water})$. Natural logarithms
 turn into decimal ones by dividing by $\ln 10 = 2.303$:
-$\log P = -\Delta G_{w\to o}/(2.303\,kT)$. Ionizing a drug adds the Born transfer cost to the
+$\log P = -\Delta G_{w\to o}/(2.303\,k_BT)$. Ionizing a drug adds the Born transfer cost to the
 neutral molecule's $\Delta G$. With dry oil the estimate (about 30 log units) is far too large.
 Octanol, however, holds a lot of water and has $\varepsilon_r \approx 10$, and a drug's charge is spread
 over a group with an effective radius of about 3 Å. Then
-$\Delta G \approx (560/6)(1/10 - 1/78) \approx 8\,kT$, a drop of $8/2.3 \approx 3.5$ in $\log P$, close to
+$\Delta G \approx (560/6)(1/10 - 1/78) \approx 8\,k_BT$, a drop of $8/2.3 \approx 3.5$ in $\log P$, close to
 the 3–4 units usually measured between the neutral and ionized forms of a drug.
 
 **pH.** Only the neutral form crosses a membrane easily. An acid is neutral where the pH is
@@ -1401,8 +1401,8 @@ about 1.5 in the stomach to 7–8 in the small intestine, matters for which drug
 
 **Near the surface.** An ion close to the water–air surface loses part of its solvation
 shell. For a sharp surface this can be described with an image charge: in water the ion feels
-a repulsion from its mirror image of about $(\ell_B/4d)(\varepsilon_{\rm w} - \varepsilon_{\rm air})/(\varepsilon_{\rm w} + \varepsilon_{\rm air})\,kT$
-at distance $d$ (about $1\,kT$ at contact for a monovalent ion). The surface layer is therefore
+a repulsion from its mirror image of about $(\ell_B/4d)(\varepsilon_{\rm w} - \varepsilon_{\rm air})/(\varepsilon_{\rm w} + \varepsilon_{\rm air})\,k_BT$
+at distance $d$ (about $1\,k_BT$ at contact for a monovalent ion). The surface layer is therefore
 depleted of small ions, which raises the surface tension of salt solutions (Onsager and
 Samaras, 1934). Large polarizable anions are an exception, as simulations and surface-sensitive
 spectroscopy have shown.
@@ -1413,8 +1413,8 @@ spectroscopy have shown.
 
 1. Is the transfer of an ion from oil into water positive or negative?
    *Answer: negative; $1/\varepsilon_r$ is 0.013 in water and 0.5 in oil.*
-2. Water → octanol costs $+8.1\,kT$ for $a = 3$ Å. What does octanol → water cost?
-   *Answer: $-8.1\,kT$; the same two states, opposite direction.*
+2. Water → octanol costs $+8.1\,k_BT$ for $a = 3$ Å. What does octanol → water cost?
+   *Answer: $-8.1\,k_BT$; the same two states, opposite direction.*
 3. Where is a weak base with $\mathrm{p}K_a = 9$ absorbed best, stomach or small intestine?
    *Answer: the small intestine, where more of it is neutral.*
 4. Why are small ions depleted at the water surface?
@@ -1520,15 +1520,15 @@ $\kappa^{-1} \propto \sqrt{\varepsilon_r}$.
 **The screened potential.** Solving the linearized Poisson–Boltzmann (Debye–Hückel) equation
 around an ion of radius $a$, from which other ions are excluded, gives
 
-$$\frac{e\psi(r)}{kT} = z\,\ell_B\,\frac{e^{-\kappa(r-a)}}{(1+\kappa a)\,r}.$$
+$$\frac{e\psi(r)}{k_BT} = z\,\ell_B\,\frac{e^{-\kappa(r-a)}}{(1+\kappa a)\,r}.$$
 
 Close to the ion this is Coulomb's law; beyond a few Debye lengths it dies away exponentially.
 For two ions or two charged particles this gives the screened Coulomb interaction used in
 problem 2, with the effective valence $z_{\rm eff} = z\,e^{\kappa a}/(1+\kappa a)$:
-$w(R)/kT = z_{1,\rm eff}\,z_{2,\rm eff}\,\ell_B\,e^{-\kappa R}/R$. Problem 2 writes the same with
+$w(R)/k_BT = z_{1,\rm eff}\,z_{2,\rm eff}\,\ell_B\,e^{-\kappa R}/R$. Problem 2 writes the same with
 charges, $Q_{\rm eff} = Q\,e^{\kappa a}/(1+\kappa a)$.
 
-**Assumptions.** The linearized theory holds when $e\psi \ll kT$, so it works best for low
+**Assumptions.** The linearized theory holds when $e\psi \ll k_BT$, so it works best for low
 charge, high dielectric constant and moderate salt. That is why the explorable keeps
 $\varepsilon_r$ between 20 and 80 (water is 78): in oil-like solvents the ion clouds are strongly nonlinear and
 ions pair up instead (day 2).
