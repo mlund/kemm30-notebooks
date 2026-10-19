@@ -75,7 +75,7 @@ def reveal_after(*pairs):
     builds, last = [], None
     for el, pz in pairs:
         trigger = "with-previous" if pz == last else "click"
-        builds.append({"element": el, "trigger": trigger, "effect": "dissolve"})
+        builds.append({"element": el, "trigger": trigger, "effect": "appear"})
         last = pz
     return builds
 
@@ -163,9 +163,9 @@ out.push(text(pb.x(1.3), pb.y(0.0003), "∝ r⁻⁴").fill("orange").anchor("sta
 
 // readouts: a = 2 Å monovalent ion and a water-like dipole (1.85 D, a = 1.4 Å), ε = 78.4
 let gi = BORN_ION_; let gd = ONSAGER_;
-out.push(text(20, 480, "ion: " + fixed(100.0 * fi, 1) + " % of −" + fixed(gi, 1) + " k_BT = −" + fixed(gi * fi, 1) + " k_BT")
+out.push(text(20, 480, "ion: " + fixed(100.0 * fi, 1) + " % of −" + fixed(gi, 1) + " kT = −" + fixed(gi * fi, 1) + " kT")
     .fill("blue").anchor("start").size(21));
-out.push(text(20, 520, "dipole: " + fixed(100.0 * fd, 1) + " % of −" + fixed(gd, 1) + " k_BT = −" + fixed(gd * fd, 1) + " k_BT")
+out.push(text(20, 520, "dipole: " + fixed(100.0 * fd, 1) + " % of −" + fixed(gd, 1) + " kT = −" + fixed(gd * fd, 1) + " kT")
     .fill("orange").anchor("start").size(21));
 out
 """
@@ -208,7 +208,7 @@ out
 
 EXPLORER = r"""
 let lB0 = 560.4;
-let g0 = val * val * lB0 / (2.0 * a);           // full self-energy, k_BT
+let g0 = val * val * lB0 / (2.0 * a);           // full self-energy, kT
 let gA = -g0 * (1.0 - 1.0 / epsA);
 let gB = -g0 * (1.0 - 1.0 / epsB);
 let lo = -g0 * 1.08;
@@ -226,7 +226,7 @@ while tk >= lo {
     out.push(text(pl.x(0.0) - 10.0, pl.y(tk), fixed(tk, 0)).anchor("end").fill("faint").size(19));
     tk -= step;
 }
-out.push(text(30, pl.y(lo / 2.0), "ΔG_solv  (k_BT)").rotate(-90.0).fill("faint").size(19));
+out.push(text(30, pl.y(lo / 2.0), "ΔG_solv  (kT)").rotate(-90.0).fill("faint").size(19));
 out.push(line(pl.x(0.05), pl.y(0.0), pl.x(0.95), pl.y(0.0)).stroke("faint").width(3));
 out.push(text(pl.x(0.5), pl.y(0.0) + 22, "vacuum").fill("faint").size(19));
 out.push(line(pl.x(0.05), pl.y(gA), pl.x(0.45), pl.y(gA)).stroke("blue").width(5));
@@ -239,7 +239,7 @@ if (gB - gA).abs() > 0.5 {
 
 // one curve, two solvents on it
 let pr = plot(640, 30, 700, 420).x_log(1, 100).y_lin(lo, 0).text(19);
-out.push(pr.axes("dielectric constant εᵣ", "ΔG_solv  (k_BT)"));
+out.push(pr.axes("dielectric constant εᵣ", "ΔG_solv  (kT)"));
 out.push(pr.hline(-g0).stroke("faint").width(1).dash(6, 4));
 out.push(text(pr.x(100.0) - 6, pr.y(-g0) + 22, "εᵣ → ∞").anchor("end").fill("faint").size(19));
 out.push(pr.curve(|e| -g0 * (1.0 - 1.0 / e)).stroke("purple").width(3));
@@ -250,12 +250,12 @@ if (gB - gA).abs() > 0.5 {
 out.push(disc(pr.x(epsA), pr.y(gA), 9).fill("blue").stroke("none"));
 out.push(disc(pr.x(epsB), pr.y(gB), 9).fill("orange").stroke("none"));
 
-let kj = 2.479;   // kJ/mol per k_BT at 298 K
+let kj = 2.479;   // kJ/mol per kT at 298 K
 let tr = gB - gA;
 let sgn = if tr >= 0.0 { "+" } else { "" };
-out.push(text(20, 545, "A: " + fixed(gA, 1) + " k_BT (" + fixed(gA * kj, 0) + " kJ/mol)").anchor("start").fill("blue").size(19));
-out.push(text(380, 545, "B: " + fixed(gB, 1) + " k_BT (" + fixed(gB * kj, 0) + " kJ/mol)").anchor("start").fill("orange").size(19));
-out.push(text(1380, 545, "transfer A → B: " + sgn + fixed(tr, 1) + " k_BT (" + sgn + fixed(tr * kj, 0) + " kJ/mol)").anchor("end").size(21));
+out.push(text(20, 545, "A: " + fixed(gA, 1) + " kT (" + fixed(gA * kj, 0) + " kJ/mol)").anchor("start").fill("blue").size(19));
+out.push(text(380, 545, "B: " + fixed(gB, 1) + " kT (" + fixed(gB * kj, 0) + " kJ/mol)").anchor("start").fill("orange").size(19));
+out.push(text(1380, 545, "transfer A → B: " + sgn + fixed(tr, 1) + " kT (" + sgn + fixed(tr * kj, 0) + " kJ/mol)").anchor("end").size(21));
 out
 """
 
@@ -275,73 +275,48 @@ out
 
 
 INTERFACE = r"""
-let e1 = 78.4; let lB0 = 560.4;
-let p0 = plot(110, 300, 1040, 220).x_lin(-20, 20).text(21);
-let x0 = p0.x(-20.0); let x1 = p0.x(20.0); let xs = (x1 - x0) / 40.0;  // units per Å
-let s = -20.0 + (ix - x0) / xs;            // ion centre, Å; > 0 is the upper phase
+let e1 = 78.4; let lB0 = 560.4; let w = 1.0;   // interface width, Å
+// energy on x, height z on y, so the curve lines up with the picture on its left
 let pre = val * val * lB0;
-let born2 = pre / (2.0 * a) * (1.0 / eps2 - 1.0 / e1);
-let k = (e1 - eps2) / (e1 + eps2);
-let gw = pre * k / (4.0 * a * e1);              // sharp model at s = −a
-let gu = born2 - pre * k / (4.0 * a * eps2);     // sharp model at s = +a
-// slopes there, so the blend inside one radius joins both sides smoothly
-let mw = pre * k / (4.0 * e1 * a * a);
-let mu = pre * k / (4.0 * eps2 * a * a);
-let G = |t| {
-    if smooth > 0.5 {
-        // Born goes as 1/ε, so blend 1/ε: the rise is then centred on the surface
-        born2 * (1.0 + (t / w).tanh()) / 2.0
-    } else if t <= -a {
-        pre * k / (4.0 * (-t) * e1)
-    } else if t >= a {
-        born2 - pre * k / (4.0 * t * eps2)
-    } else {
-        // cubic Hermite blend: matches value and slope at both ends
-        let h = 2.0 * a; let u = (t + a) / h;
-        let u2 = u * u; let u3 = u2 * u;
-        (2.0 * u3 - 3.0 * u2 + 1.0) * gw + (u3 - 2.0 * u2 + u) * h * mw
-            + (3.0 * u2 - 2.0 * u3) * gu + (u3 - u2) * h * mu
-    }
-};
-let lo = 0.0; let hi = born2 * 1.1;
-if zoom > 0.5 { lo = -1.0; hi = 3.0; }
-let p = p0.y_lin(lo, hi);
+let born2 = pre / (2.0 * a) * (1.0 / eps2 - 1.0 / e1);   // water → upper phase
+let p = plot(640, 30, 500, 440).x_lin(-born2 * 1.1, 0).y_lin(-10, 10).text(21);
+let ys = (p.y(-10.0) - p.y(10.0)) / 20.0;      // units per Å
+let z = (p.y(0.0) - iy) / ys;                  // ion centre, Å; > 0 is the upper phase
+// local Born: 1/ε blended over the interface width (Born goes as 1/ε); zero in the upper phase
+let G = |t| -born2 * (1.0 - (t / w).tanh()) / 2.0;
 let name = if eps2 < 1.5 { "air" } else if eps2 < 5.0 { "oil" } else { "octanol" };
 
 let out = [];
-// picture: water on the left, upper phase on the right
-let top = 20.0; let bh = 220.0;
-if smooth > 0.5 {
-    let n = 80.0; let i = 0.0;
-    while i < n {
-        let t0 = -20.0 + 40.0 * i / n; let tm = t0 + 20.0 / n;
-        let fw = (1.0 - (tm / w).tanh()) / 2.0;
-        out.push(rect(p.x(t0), top, xs * 40.0 / n + 0.5, bh).fill("aqua").stroke("none").opacity(0.35 * fw));
-        i += 1.0;
-    }
-} else {
-    out.push(rect(x0, top, p.x(0.0) - x0, bh).fill("aqua").stroke("none").opacity(0.35));
+let cl = 40.0; let cr = 500.0; let y0 = p.y(0.0); let yt = p.y(10.0); let yb = p.y(-10.0);
+// wavy surface, closed into the water region below it
+let wave = [];
+let x = cl;
+while x <= cr + 0.1 { wave.push([x, y0 + 5.0 * (x / 18.0).sin()]); x += 5.0; }
+let water = wave; water.push([cr, yb]); water.push([cl, yb]);
+if eps2 > 1.5 {
+    let up = if eps2 < 5.0 { "yellow" } else { "orange" };
+    out.push(rect(cl, yt, cr - cl, y0 - yt).fill(up).stroke("none").opacity(0.18));
 }
-out.push(line(p.x(0.0), top, p.x(0.0), top + bh).stroke("faint").width(1).dash(4, 4));
-out.push(text(x0 + 10, top + 24, "water, εᵣ = 78").anchor("start").size(21));
-out.push(text(x1 - 10, top + 24, name + ", εᵣ = " + fixed(eps2, 0)).anchor("end").size(21));
-let cy = top + bh / 2.0;
-out.push(disc(ix, cy, a * xs).fill("blue").stroke("text").opacity(0.85));
+out.push(polygon(water).fill("blue").stroke("none").opacity(0.2));
+out.push(polyline(wave).stroke("blue").width(3));
+out.push(text(cl + 12, yt + 26, name + ", εᵣ = " + fixed(eps2, 0)).anchor("start").size(21));
+out.push(text(cl + 12, yb - 14, "water, εᵣ = 78").anchor("start").size(21));
+out.push(disc(ix, iy, a * ys).fill("blue").stroke("text").opacity(0.85));
 let lab = if val > 1.5 { fixed(val, 0) + "+" } else { "+" };
-out.push(text(ix, cy, lab).fill("background").size(26));
+out.push(text(ix, iy, lab).fill("background").size(26));
 
-// free energy
-out.push(p.axes("ion position (Å)", "ΔG − ΔG_water  (k_BT)"));
-out.push(p.vline(0).stroke("faint").width(1).dash(4, 4));
-out.push(p.hline(0).stroke("faint").width(1));
-out.push(p.curve(G, 400).stroke("orange").width(3));
-let g = G.call(s);
-let gy = if g > hi { hi } else if g < lo { lo } else { g };
-out.push(disc(p.x(s), p.y(gy), 8).fill("orange").stroke("none"));
-out.push(text(x1, 285, "ΔG = " + fixed(g, 2) + " k_BT").anchor("end").size(21));
-let note = if smooth > 0.5 { "local Born, 1/ε(z) a tanh of width " + fixed(w, 1) + " Å" }
-           else { "Born + image charge; a smooth blend within one radius of the interface" };
-out.push(text(x0, 285, note).anchor("start").size(21).fill("faint"));
+// free energy against height
+out.push(p.axes("ΔG − ΔG_" + name + "  (kT)", "ion position z (Å)"));
+out.push(p.hline(0).stroke("blue").width(1).dash(4, 4));
+let pts = []; let t = -10.0;
+while t <= 10.0 { pts.push([G.call(t), t]); t += 0.1; }
+out.push(p.line(pts).stroke("orange").width(3));
+let zc = clamp(z, -10.0, 10.0);
+out.push(disc(p.x(G.call(zc)), p.y(zc), 8).fill("orange").stroke("none"));
+out.push(line(ix, iy, p.x(G.call(zc)), p.y(zc)).stroke("faint").width(1).dash(3, 5));
+let gz = G.call(z); if gz > -0.05 { gz = 0.0; }   // no "−0.0" in air
+out.push(text(cl, 515, "ΔG = " + fixed(gz, 1) + " kT").anchor("start").size(22));
+out.push(text(cl, 550, "model: εᵣ changes from one phase to the other over 1 Å").anchor("start").size(21).fill("faint"));
 out
 """
 
@@ -417,7 +392,7 @@ let d = ((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)).sqrt() / 10.0;
 let R = if d < 2.0 * a { 2.0 * a } else { d };
 let f = (1.0 + kap * a) * (1.0 + kap * a);
 let p = plot(125, 20, 440, 360).x_lin(4, 60).y_lin(-6, 6).text(22);
-let out = [p.axes("R  (Å)", "w / k_BT")];
+let out = [p.axes("R  (Å)", "w / kT")];
 out.push(p.hline(0).stroke("faint").width(1));
 out.push(p.hline(1).stroke("faint").width(1).dash(6, 4));
 out.push(p.hline(-1).stroke("faint").width(1).dash(6, 4));
@@ -427,7 +402,7 @@ let wR = zz * lB * (-kap * (R - 2.0 * a)).exp() / (f * R);
 let xR = if R > 60.0 { 60.0 } else { R };
 let yR = if wR > 6.0 { 6.0 } else if wR < -6.0 { -6.0 } else { wR };
 out.push(disc(p.x(xR), p.y(yR), 8).fill("purple").stroke("none"));
-out.push(text(560, 485, "w = " + fixed(wR, 2) + " k_BT at R = " + fixed(R, 1) + " Å").anchor("end").size(22));
+out.push(text(560, 485, "w = " + fixed(wR, 2) + " kT at R = " + fixed(R, 1) + " Å").anchor("end").size(22));
 out.push(text(p.x(58.0), p.y(zz * lB / 58.0) - 12, "no salt").anchor("end").size(22).fill("faint"));
 out
 """
@@ -579,7 +554,7 @@ def charging():
         "elements": [
             title(
                 "charging",
-                "2. Charging a sphere costs work, because like charges repel",
+                "3. Charging a sphere costs work, because like charges repel",
             ),
             text(
                 "charging-body",
@@ -652,13 +627,13 @@ The integral of $\lambda$ gives the factor ½. Dill reaches the same result a se
 surface. Both say the same thing: on average, each bit of charge feels half the final
 potential.
 
-**In units of $k_BT$.** With the Bjerrum length $\ell_B = e^2/(4\pi\varepsilon_0\varepsilon_r k_BT)$,
+**In units of $kT$.** With the Bjerrum length $\ell_B = e^2/(4\pi\varepsilon_0\varepsilon_r kT)$,
 
-$$\frac{\Delta G}{k_BT} = \frac{z^2\,\ell_B}{2a}.$$
+$$\frac{\Delta G}{kT} = \frac{z^2\,\ell_B}{2a}.$$
 
 In vacuum $\ell_B^{\rm vacuum} = 560$ Å at 25 °C, so a monovalent ion with $a = 2$ Å costs
-$560/4 = 140\,k_BT$, about 350 kJ/mol. In water $\ell_B = 7.1$ Å and the same ion costs only
-$1.8\,k_BT$.
+$560/4 = 140\,kT$, about 350 kJ/mol. In water $\ell_B = 7.1$ Å and the same ion costs only
+$1.8\,kT$.
 
 **What it means.** The self-energy is large for small ions ($1/a$) and grows with the square
 of the charge ($z^2$): a divalent ion costs four times as much as a monovalent one of the same
@@ -667,7 +642,7 @@ saving comes from.
 
 **Notation.** Dill writes the dielectric constant as $D$ and $1/(4\pi\varepsilon_0)$ as $C$; here
 $\varepsilon_r$ is the dielectric constant (relative permittivity), as on days 2–3;
-$\varepsilon_1$, $\varepsilon_2$, $\varepsilon_{\rm w}$ and $\varepsilon_{\rm oil}$ are its values in particular media. At 25 °C, $k_BT$ = 2.48 kJ/mol = 0.593 kcal/mol.
+$\varepsilon_1$, $\varepsilon_2$, $\varepsilon_{\rm w}$ and $\varepsilon_{\rm oil}$ are its values in particular media. At 25 °C, $kT$ = 2.48 kJ/mol = 0.593 kcal/mol.
 """
 
 
@@ -735,7 +710,7 @@ def molecular():
     return {
         "id": "molecular",
         "elements": [
-            title("molecular", "3. Each solvent molecule lowers the cost a little"),
+            title("molecular", "4. Each solvent molecule lowers the cost a little"),
             text(
                 "molecular-body",
                 80,
@@ -775,7 +750,7 @@ def born():
         "elements": [
             title(
                 "born",
-                "4. The Born energy: moving an ion from one dielectric to another",
+                "5. The Born energy: moving an ion from one dielectric to another",
             ),
             text(
                 "born-body",
@@ -824,7 +799,7 @@ contributions.
 **One molecule.** A molecule in a field $E$ acquires a dipole $\alpha_{\rm eff}E$ and gains the
 free energy $-\tfrac12\alpha_{\rm eff}E^2$ (the ½ for the same reason as in charging: the dipole
 builds up as the field grows). The effective polarizability has two parts from day 3:
-electronic, $\alpha$, and orientational, $\mu^2/3k_BT$, from the thermal average of a permanent
+electronic, $\alpha$, and orientational, $\mu^2/3kT$, from the thermal average of a permanent
 dipole's alignment.
 
 **All molecules.** The ion's field is $E = q/(4\pi\varepsilon_0 r^2)$. A shell of radius $r$
@@ -864,10 +839,10 @@ $q^2/(8\pi\varepsilon_0 a)$; charging it in the solvent costs $q^2/(8\pi\varepsi
 The difference is exactly the Born energy from vacuum into the solvent. Dill derives it this way, with a thermodynamic cycle
 (Fig. 22.14, Eq. 22.61).
 
-**Numbers.** In units of $k_BT$, $\Delta G_{\rm Born}/k_BT = (z^2\ell_B^{\rm vacuum}/2a)(1/\varepsilon_2 - 1/\varepsilon_1)$.
+**Numbers.** In units of $kT$, $\Delta G_{\rm Born}/kT = (z^2\ell_B^{\rm vacuum}/2a)(1/\varepsilon_2 - 1/\varepsilon_1)$.
 From vacuum this is $-(z^2\ell_B^{\rm vacuum}/2a)(1 - 1/\varepsilon_r)$.
-For a monovalent ion with $a = 2$ Å in water this is $-140 \times 0.99 = -138\,k_BT$, about
-−340 kJ/mol. In oil ($\varepsilon_r = 2$) it is only $-70\,k_BT$.
+For a monovalent ion with $a = 2$ Å in water this is $-140 \times 0.99 = -138\,kT$, about
+−340 kJ/mol. In oil ($\varepsilon_r = 2$) it is only $-70\,kT$.
 
 **Assumptions to keep in mind.** The solvent is a uniform continuum right up to the ion's
 surface; it responds linearly to the field (no saturation, although the field next to a small
@@ -902,7 +877,7 @@ def convergence():
         "id": "convergence",
         "state": {"hx": hx_of(2.0), "hy": 250.0, "dip": 0.0, "cont": 0.0},
         "elements": [
-            title("convergence", "5. Ion solvation reaches far into the solvent"),
+            title("convergence", "6. Ion solvation reaches far into the solvent"),
             scene(
                 "convergence-scene",
                 80,
@@ -1000,7 +975,7 @@ def cycle():
     return {
         "id": "cycle",
         "elements": [
-            title("cycle", "6. A transfer is the difference of two solvation energies"),
+            title("cycle", "7. A transfer is the difference of two solvation energies"),
             scene("cycle-scene", 80, 100, 1440, 514, [1400, 500], CYCLE),
             text(
                 "cycle-body",
@@ -1088,7 +1063,7 @@ def oil_water():
     return {
         "id": "oil-water",
         "elements": [
-            title("oil-water", "7. How much does an ion dislike oil? (Dill Ex. 22.13)"),
+            title("oil-water", "8. How much does an ion dislike oil? (Dill Ex. 22.13)"),
             text(
                 "ow-q",
                 80,
@@ -1210,7 +1185,7 @@ def born_test():
         "elements": [
             title(
                 "born-test",
-                "8. Born gets hydration enthalpies right, with cavity radii",
+                "9. Born gets hydration enthalpies right, with cavity radii",
             ),
             scene("born-test-scene", 80, 110, 760, 500, [700, 460], TEST),
             text(
@@ -1284,25 +1259,15 @@ def caveats():
 
 
 def interface():
-    st = {
-        "ix": 0.0,
-        "iy": 130.0,
-        "eps2": 1.0,
-        "a": 2.0,
-        "val": 1.0,
-        "smooth": 0.0,
-        "w": 3.0,
-        "zoom": 0.0,
-    }
-    # Plot spans x 110..1150 for −20..20 Å; start the ion 10 Å into the water.
-    x0, xs = 110.0, 1040.0 / 40
-    st["ix"] = x0 + xs * 10.0
+    # Plot spans y 30..470 for z = 10..−10 Å; the ion starts 5 Å up, in the reference phase.
+    ys = 440.0 / 20
+    st = {"ix": 270.0, "iy": 250.0 - 5 * ys, "eps2": 1.0, "a": 2.0, "val": 1.0}
     cx, w = 1220, 300
     return {
         "id": "interface",
         "state": st,
         "elements": [
-            title("interface", "9. Pulling an ion out of water costs the Born energy"),
+            title("interface", "2. Water pulls an ion in, from air and from oil"),
             scene(
                 "interface-scene",
                 80,
@@ -1311,9 +1276,7 @@ def interface():
                 560,
                 [1200, 600],
                 INTERFACE,
-                handles=[
-                    {"x": "ix", "y": "iy", "r": 30, "within": frame(x0, 129, 1040, 2)}
-                ],
+                handles=[{"x": "ix", "y": "iy", "r": 30, "within": frame(269, 30, 2, 440)}],
             ),
             text("if-l1", cx, 110, w, 40, "upper phase", scale=0.6, colour="faint"),
             button("if-air", cx, 150, 80, "air", "eps2 = 1.0"),
@@ -1326,25 +1289,15 @@ def interface():
             ],
             text("if-l3", cx, 320, w, 40, "radius $a$ = {{a:.1}} Å", scale=0.6),
             slider("if-a", cx, 360, w, "a", 1, 4),
-            {
-                "id": "if-smooth",
-                "kind": "checkbox",
-                "frame": frame(cx, 420, w, 46),
-                "config": {"bind": "smooth", "label": "smooth interface"},
-            },
-            text("if-l4", cx, 470, w, 40, "width = {{w:.1}} Å", scale=0.6),
-            slider("if-w", cx, 510, w, "w", 1, 10),
-            button("if-full", cx, 580, 145, "full scale", "zoom = 0.0"),
-            button("if-zoom", cx + 155, 580, 145, "zoom in", "zoom = 1.0"),
             text(
                 "if-q",
                 80,
                 670,
                 1440,
                 135,
-                "**Question:** Drag the ion out. Where along the path does the cost rise most? Zoom in on the water "
-                "side: why is the ion pushed *away* from the surface? With oil and $a = 2$ Å, how many "
-                "times more does $z = 2$ cost than $z = 1$?",
+                "**Question:** Drag the ion down into the water. Air is almost vacuum ($\\varepsilon_r = 1$): what kind "
+                "of free energy is the drop? Switch to oil: how much does the ion gain now, and what is that "
+                "free energy called? Then try $z = 2$, and a smaller ion.",
                 scale=0.75,
             ),
             *box(
@@ -1353,15 +1306,15 @@ def interface():
                 810,
                 1440,
                 178,
-                "**Answer.** The cost rises over about one ion radius around the surface. In water the ion is "
-                "repelled by its image in the air, whatever its sign: the energy goes as $z^2$. So $z = 2$ costs "
-                "four times as much as $z = 1$.",
+                "**Answer.** From air the ion gains about 138 $k_BT$: its **solvation** free energy. From oil it "
+                "gains about 68 $k_BT$: the oil → water **transfer** free energy. Doubling $z$ gives four times "
+                "as much, and halving $a$ twice as much. The next slides derive these numbers.",
                 scale=0.72,
             ),
         ],
         "builds": [
-            {"element": "if-ans-card", "effect": "dissolve"},
-            {"element": "if-ans", "trigger": "with-previous", "effect": "dissolve"},
+            {"element": "if-ans-card", "effect": "appear"},
+            {"element": "if-ans", "trigger": "with-previous", "effect": "appear"},
         ],
     }
 
@@ -1377,7 +1330,7 @@ def real_interface():
                 110,
                 1440,
                 560,
-                "- The water surface is not a step: the density falls over a few ångström (the smooth curve).\n"
+                "- The water surface is not a step: the density falls over a few ångström.\n"
                 "- Near the surface an ion loses part of its solvation; in the image-charge picture it is "
                 "repelled by its own mirror image in the air (Onsager–Samaras).\n"
                 "- So the top layer of salt water holds fewer ions, and salt water has a slightly *higher* "
@@ -1424,22 +1377,22 @@ since there is no field to screen), and charge it again in oil (paying
 $q^2/8\pi\varepsilon_0\varepsilon_{\rm oil} a$). Free energy is a state function, so the direct path
 costs the same as the detour (Dill Fig. 22.14, Eq. 22.61):
 
-$$\Delta G_{w\to o} = \frac{z^2\ell_B^{\rm vacuum}}{2a}\left(\frac1{\varepsilon_{\rm oil}}-\frac1{\varepsilon_{\rm w}}\right)k_BT
+$$\Delta G_{w\to o} = \frac{z^2\ell_B^{\rm vacuum}}{2a}\left(\frac1{\varepsilon_{\rm oil}}-\frac1{\varepsilon_{\rm w}}\right)kT
 = \Delta G_{\rm solv}(o) - \Delta G_{\rm solv}(w).$$
 
 **Partition coefficient.** At equilibrium the concentrations in the two phases satisfy
-$c_o/c_w = K = e^{-\Delta G_{w\to o}/k_BT}$. For a monovalent ion with $a = 2$ Å, from water
-($\varepsilon_r = 78$) to oil ($\varepsilon_r = 2$), $\Delta G = 140\times(0.5 - 0.013) \approx 68\,k_BT$
+$c_o/c_w = K = e^{-\Delta G_{w\to o}/kT}$. For a monovalent ion with $a = 2$ Å, from water
+($\varepsilon_r = 78$) to oil ($\varepsilon_r = 2$), $\Delta G = 140\times(0.5 - 0.013) \approx 68\,kT$
 (Dill Ex. 22.13 takes $\varepsilon_r = 80$ for water and rounds to 70), so $K \approx 10^{-30}$. A litre of 1 M salt water holds
 $6\times10^{23}$ ions; next to a litre of oil, on average fewer than one of them is in the oil.
 
 **logP.** Chemists report $\log P = \log_{10}(c_{\rm octanol}/c_{\rm water})$. Natural logarithms
 turn into decimal ones by dividing by $\ln 10 = 2.303$:
-$\log P = -\Delta G_{w\to o}/(2.303\,k_BT)$. Ionizing a drug adds the Born transfer cost to the
+$\log P = -\Delta G_{w\to o}/(2.303\,kT)$. Ionizing a drug adds the Born transfer cost to the
 neutral molecule's $\Delta G$. With dry oil the estimate (about 30 log units) is far too large.
 Octanol, however, holds a lot of water and has $\varepsilon_r \approx 10$, and a drug's charge is spread
 over a group with an effective radius of about 3 Å. Then
-$\Delta G \approx (560/6)(1/10 - 1/78) \approx 8\,k_BT$, a drop of $8/2.3 \approx 3.5$ in $\log P$, close to
+$\Delta G \approx (560/6)(1/10 - 1/78) \approx 8\,kT$, a drop of $8/2.3 \approx 3.5$ in $\log P$, close to
 the 3–4 units usually measured between the neutral and ionized forms of a drug.
 
 **pH.** Only the neutral form crosses a membrane easily. An acid is neutral where the pH is
@@ -1448,8 +1401,8 @@ about 1.5 in the stomach to 7–8 in the small intestine, matters for which drug
 
 **Near the surface.** An ion close to the water–air surface loses part of its solvation
 shell. For a sharp surface this can be described with an image charge: in water the ion feels
-a repulsion from its mirror image of about $(\ell_B/4d)(\varepsilon_{\rm w} - \varepsilon_{\rm air})/(\varepsilon_{\rm w} + \varepsilon_{\rm air})\,k_BT$
-at distance $d$ (about $1\,k_BT$ at contact for a monovalent ion). The surface layer is therefore
+a repulsion from its mirror image of about $(\ell_B/4d)(\varepsilon_{\rm w} - \varepsilon_{\rm air})/(\varepsilon_{\rm w} + \varepsilon_{\rm air})\,kT$
+at distance $d$ (about $1\,kT$ at contact for a monovalent ion). The surface layer is therefore
 depleted of small ions, which raises the surface tension of salt solutions (Onsager and
 Samaras, 1934). Large polarizable anions are an exception, as simulations and surface-sensitive
 spectroscopy have shown.
@@ -1460,8 +1413,8 @@ spectroscopy have shown.
 
 1. Is the transfer of an ion from oil into water positive or negative?
    *Answer: negative; $1/\varepsilon_r$ is 0.013 in water and 0.5 in oil.*
-2. Water → octanol costs $+8.1\,k_BT$ for $a = 3$ Å. What does octanol → water cost?
-   *Answer: $-8.1\,k_BT$; the same two states, opposite direction.*
+2. Water → octanol costs $+8.1\,kT$ for $a = 3$ Å. What does octanol → water cost?
+   *Answer: $-8.1\,kT$; the same two states, opposite direction.*
 3. Where is a weak base with $\mathrm{p}K_a = 9$ absorbed best, stomach or small intestine?
    *Answer: the small intestine, where more of it is neutral.*
 4. Why are small ions depleted at the water surface?
@@ -1567,15 +1520,15 @@ $\kappa^{-1} \propto \sqrt{\varepsilon_r}$.
 **The screened potential.** Solving the linearized Poisson–Boltzmann (Debye–Hückel) equation
 around an ion of radius $a$, from which other ions are excluded, gives
 
-$$\frac{e\psi(r)}{k_BT} = z\,\ell_B\,\frac{e^{-\kappa(r-a)}}{(1+\kappa a)\,r}.$$
+$$\frac{e\psi(r)}{kT} = z\,\ell_B\,\frac{e^{-\kappa(r-a)}}{(1+\kappa a)\,r}.$$
 
 Close to the ion this is Coulomb's law; beyond a few Debye lengths it dies away exponentially.
 For two ions or two charged particles this gives the screened Coulomb interaction used in
 problem 2, with the effective valence $z_{\rm eff} = z\,e^{\kappa a}/(1+\kappa a)$:
-$w(R)/k_BT = z_{1,\rm eff}\,z_{2,\rm eff}\,\ell_B\,e^{-\kappa R}/R$. Problem 2 writes the same with
+$w(R)/kT = z_{1,\rm eff}\,z_{2,\rm eff}\,\ell_B\,e^{-\kappa R}/R$. Problem 2 writes the same with
 charges, $Q_{\rm eff} = Q\,e^{\kappa a}/(1+\kappa a)$.
 
-**Assumptions.** The linearized theory holds when $e\psi \ll k_BT$, so it works best for low
+**Assumptions.** The linearized theory holds when $e\psi \ll kT$, so it works best for low
 charge, high dielectric constant and moderate salt. That is why the explorable keeps
 $\varepsilon_r$ between 20 and 80 (water is 78): in oil-like solvents the ion clouds are strongly nonlinear and
 ions pair up instead (day 2).
@@ -1848,8 +1801,8 @@ def what_if():
         ],
         "builds": [
             {"element": "wi-q", "delivery": "by-paragraph"},
-            {"element": "wi-ans-card", "effect": "dissolve"},
-            {"element": "wi-ans", "trigger": "with-previous", "effect": "dissolve"},
+            {"element": "wi-ans-card", "effect": "appear"},
+            {"element": "wi-ans", "trigger": "with-previous", "effect": "appear"},
         ],
     }
 
@@ -1896,8 +1849,8 @@ def logp():
             ),
         ],
         "builds": [
-            {"element": "logp-ans-card", "effect": "dissolve"},
-            {"element": "logp-ans", "trigger": "with-previous", "effect": "dissolve"},
+            {"element": "logp-ans-card", "effect": "appear"},
+            {"element": "logp-ans", "trigger": "with-previous", "effect": "appear"},
         ],
     }
 
@@ -1941,8 +1894,8 @@ def logd():
             ),
         ],
         "builds": [
-            {"element": "logd-ans-card", "effect": "dissolve"},
-            {"element": "logd-ans", "trigger": "with-previous", "effect": "dissolve"},
+            {"element": "logd-ans-card", "effect": "appear"},
+            {"element": "logd-ans", "trigger": "with-previous", "effect": "appear"},
         ],
     }
 
@@ -1996,6 +1949,7 @@ def main():
         outcomes(),
         opening(),
         solvation_quiz(),
+        interface(),
         charging(),
         notes_slide("notes-charging", NOTES_CHARGING),
         charging_number(),
@@ -2012,7 +1966,6 @@ def main():
         several_charges(),
         born_test(),
         caveats(),
-        interface(),
         real_interface(),
         logp(),
         logd(),

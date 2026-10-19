@@ -184,7 +184,7 @@
         {
           "element": "opening-next",
           "trigger": "click",
-          "effect": "dissolve"
+          "effect": "appear"
         }
       ]
     },
@@ -299,12 +299,280 @@
         {
           "element": "sq-why-card",
           "trigger": "click",
-          "effect": "dissolve"
+          "effect": "appear"
         },
         {
           "element": "sq-why",
           "trigger": "with-previous",
-          "effect": "dissolve"
+          "effect": "appear"
+        }
+      ]
+    },
+    {
+      "id": "interface",
+      "state": {
+        "ix": 270.0,
+        "iy": 140.0,
+        "eps2": 1.0,
+        "a": 2.0,
+        "val": 1.0
+      },
+      "elements": [
+        {
+          "id": "interface-title",
+          "kind": "text",
+          "frame": {
+            "x": 80,
+            "y": 30,
+            "w": 1440,
+            "h": 75
+          },
+          "config": {
+            "text": "## 2. Water pulls an ion in, from air and from oil"
+          }
+        },
+        {
+          "id": "interface-scene",
+          "kind": "scene",
+          "frame": {
+            "x": 80,
+            "y": 100,
+            "w": 1120,
+            "h": 560
+          },
+          "config": {
+            "size": [
+              1200,
+              600
+            ],
+            "script": "let e1 = 78.4; let lB0 = 560.4; let w = 1.0;   // interface width, Å\n// energy on x, height z on y, so the curve lines up with the picture on its left\nlet pre = val * val * lB0;\nlet born2 = pre / (2.0 * a) * (1.0 / eps2 - 1.0 / e1);   // water → upper phase\nlet p = plot(640, 30, 500, 440).x_lin(-born2 * 1.1, 0).y_lin(-10, 10).text(21);\nlet ys = (p.y(-10.0) - p.y(10.0)) / 20.0;      // units per Å\nlet z = (p.y(0.0) - iy) / ys;                  // ion centre, Å; > 0 is the upper phase\n// local Born: 1/ε blended over the interface width (Born goes as 1/ε); zero in the upper phase\nlet G = |t| -born2 * (1.0 - (t / w).tanh()) / 2.0;\nlet name = if eps2 < 1.5 { \"air\" } else if eps2 < 5.0 { \"oil\" } else { \"octanol\" };\n\nlet out = [];\nlet cl = 40.0; let cr = 500.0; let y0 = p.y(0.0); let yt = p.y(10.0); let yb = p.y(-10.0);\n// wavy surface, closed into the water region below it\nlet wave = [];\nlet x = cl;\nwhile x <= cr + 0.1 { wave.push([x, y0 + 5.0 * (x / 18.0).sin()]); x += 5.0; }\nlet water = wave; water.push([cr, yb]); water.push([cl, yb]);\nif eps2 > 1.5 {\n    let up = if eps2 < 5.0 { \"yellow\" } else { \"orange\" };\n    out.push(rect(cl, yt, cr - cl, y0 - yt).fill(up).stroke(\"none\").opacity(0.18));\n}\nout.push(polygon(water).fill(\"blue\").stroke(\"none\").opacity(0.2));\nout.push(polyline(wave).stroke(\"blue\").width(3));\nout.push(text(cl + 12, yt + 26, name + \", εᵣ = \" + fixed(eps2, 0)).anchor(\"start\").size(21));\nout.push(text(cl + 12, yb - 14, \"water, εᵣ = 78\").anchor(\"start\").size(21));\nout.push(disc(ix, iy, a * ys).fill(\"blue\").stroke(\"text\").opacity(0.85));\nlet lab = if val > 1.5 { fixed(val, 0) + \"+\" } else { \"+\" };\nout.push(text(ix, iy, lab).fill(\"background\").size(26));\n\n// free energy against height\nout.push(p.axes(\"ΔG − ΔG_\" + name + \"  (kT)\", \"ion position z (Å)\"));\nout.push(p.hline(0).stroke(\"blue\").width(1).dash(4, 4));\nlet pts = []; let t = -10.0;\nwhile t <= 10.0 { pts.push([G.call(t), t]); t += 0.1; }\nout.push(p.line(pts).stroke(\"orange\").width(3));\nlet zc = clamp(z, -10.0, 10.0);\nout.push(disc(p.x(G.call(zc)), p.y(zc), 8).fill(\"orange\").stroke(\"none\"));\nout.push(line(ix, iy, p.x(G.call(zc)), p.y(zc)).stroke(\"faint\").width(1).dash(3, 5));\nlet gz = G.call(z); if gz > -0.05 { gz = 0.0; }   // no \"−0.0\" in air\nout.push(text(cl, 515, \"ΔG = \" + fixed(gz, 1) + \" kT\").anchor(\"start\").size(22));\nout.push(text(cl, 550, \"model: εᵣ changes from one phase to the other over 1 Å\").anchor(\"start\").size(21).fill(\"faint\"));\nout",
+            "handles": [
+              {
+                "x": "ix",
+                "y": "iy",
+                "r": 30,
+                "within": {
+                  "x": 269,
+                  "y": 30,
+                  "w": 2,
+                  "h": 440
+                }
+              }
+            ]
+          }
+        },
+        {
+          "id": "if-l1",
+          "kind": "text",
+          "frame": {
+            "x": 1220,
+            "y": 110,
+            "w": 300,
+            "h": 40
+          },
+          "config": {
+            "text": "upper phase",
+            "style": {
+              "scale": 0.6,
+              "colour": "faint"
+            }
+          }
+        },
+        {
+          "id": "if-air",
+          "kind": "button",
+          "frame": {
+            "x": 1220,
+            "y": 150,
+            "w": 80,
+            "h": 48
+          },
+          "config": {
+            "label": "air",
+            "run": "eps2 = 1.0"
+          }
+        },
+        {
+          "id": "if-oil",
+          "kind": "button",
+          "frame": {
+            "x": 1306,
+            "y": 150,
+            "w": 80,
+            "h": 48
+          },
+          "config": {
+            "label": "oil",
+            "run": "eps2 = 2.0"
+          }
+        },
+        {
+          "id": "if-oct",
+          "kind": "button",
+          "frame": {
+            "x": 1392,
+            "y": 150,
+            "w": 128,
+            "h": 48
+          },
+          "config": {
+            "label": "octanol",
+            "run": "eps2 = 10.0"
+          }
+        },
+        {
+          "id": "if-l2",
+          "kind": "text",
+          "frame": {
+            "x": 1220,
+            "y": 215,
+            "w": 300,
+            "h": 40
+          },
+          "config": {
+            "text": "ion charge z",
+            "style": {
+              "scale": 0.6,
+              "colour": "faint"
+            }
+          }
+        },
+        {
+          "id": "if-z1",
+          "kind": "button",
+          "frame": {
+            "x": 1220,
+            "y": 255,
+            "w": 95,
+            "h": 48
+          },
+          "config": {
+            "label": "z = 1",
+            "run": "val = 1.0"
+          }
+        },
+        {
+          "id": "if-z2",
+          "kind": "button",
+          "frame": {
+            "x": 1322,
+            "y": 255,
+            "w": 95,
+            "h": 48
+          },
+          "config": {
+            "label": "z = 2",
+            "run": "val = 2.0"
+          }
+        },
+        {
+          "id": "if-z3",
+          "kind": "button",
+          "frame": {
+            "x": 1424,
+            "y": 255,
+            "w": 95,
+            "h": 48
+          },
+          "config": {
+            "label": "z = 3",
+            "run": "val = 3.0"
+          }
+        },
+        {
+          "id": "if-l3",
+          "kind": "text",
+          "frame": {
+            "x": 1220,
+            "y": 320,
+            "w": 300,
+            "h": 40
+          },
+          "config": {
+            "text": "radius $a$ = {{a:.1}} Å",
+            "style": {
+              "scale": 0.6
+            }
+          }
+        },
+        {
+          "id": "if-a",
+          "kind": "slider",
+          "frame": {
+            "x": 1220,
+            "y": 360,
+            "w": 300,
+            "h": 40
+          },
+          "config": {
+            "bind": "a",
+            "min": 1,
+            "max": 4
+          }
+        },
+        {
+          "id": "if-q",
+          "kind": "text",
+          "frame": {
+            "x": 80,
+            "y": 670,
+            "w": 1440,
+            "h": 135
+          },
+          "config": {
+            "text": "**Question:** Drag the ion down into the water. Air is almost vacuum ($\\varepsilon_r = 1$): what kind of free energy is the drop? Switch to oil: how much does the ion gain now, and what is that free energy called? Then try $z = 2$, and a smaller ion.",
+            "style": {
+              "scale": 0.75
+            }
+          }
+        },
+        {
+          "id": "if-ans-card",
+          "kind": "shape",
+          "frame": {
+            "x": 80,
+            "y": 810,
+            "w": 1440,
+            "h": 178
+          },
+          "config": {
+            "shape": "rect",
+            "radius": 16
+          },
+          "style": {
+            "fill": "surface",
+            "border": {
+              "color": "line",
+              "width": 3
+            }
+          }
+        },
+        {
+          "id": "if-ans",
+          "kind": "text",
+          "frame": {
+            "x": 110,
+            "y": 834,
+            "w": 1380,
+            "h": 130
+          },
+          "config": {
+            "text": "**Answer.** From air the ion gains about 138 $k_BT$: its **solvation** free energy. From oil it gains about 68 $k_BT$: the oil → water **transfer** free energy. Doubling $z$ gives four times as much, and halving $a$ twice as much. The next slides derive these numbers.",
+            "style": {
+              "scale": 0.72
+            }
+          }
+        }
+      ],
+      "builds": [
+        {
+          "element": "if-ans-card",
+          "effect": "appear"
+        },
+        {
+          "element": "if-ans",
+          "trigger": "with-previous",
+          "effect": "appear"
         }
       ]
     },
@@ -321,7 +589,7 @@
             "h": 75
           },
           "config": {
-            "text": "## 2. Charging a sphere costs work, because like charges repel"
+            "text": "## 3. Charging a sphere costs work, because like charges repel"
           }
         },
         {
@@ -507,7 +775,7 @@
         {
           "element": "cn-why",
           "trigger": "click",
-          "effect": "dissolve"
+          "effect": "appear"
         }
       ]
     },
@@ -524,7 +792,7 @@
             "h": 75
           },
           "config": {
-            "text": "## 3. Each solvent molecule lowers the cost a little"
+            "text": "## 4. Each solvent molecule lowers the cost a little"
           }
         },
         {
@@ -604,7 +872,7 @@
             "h": 75
           },
           "config": {
-            "text": "## 4. The Born energy: moving an ion from one dielectric to another"
+            "text": "## 5. The Born energy: moving an ion from one dielectric to another"
           }
         },
         {
@@ -698,7 +966,7 @@
             "h": 75
           },
           "config": {
-            "text": "## 5. Ion solvation reaches far into the solvent"
+            "text": "## 6. Ion solvation reaches far into the solvent"
           }
         },
         {
@@ -715,7 +983,7 @@
               1200,
               550
             ],
-            "script": "let cx = 250.0; let cy = 250.0; let r0 = 30.0; let span = 200.0;\nlet L = 50.0.ln();\nlet rr = hx - cx;                          // shell radius on screen\nlet Ra = ((rr - r0) / span * L).exp();     // R/a, log scale\nlet out = [];\n// solvent sphere\nout.push(disc(cx, cy, rr).fill(\"aqua\").stroke(\"aqua\").opacity(0.25));\n// solvent dipoles on rings, oxygen end (dot) towards a cation, along the field of a dipole\nlet ring = r0 + 22.0;\nif cont > 0.5 {\n    out.push(disc(cx, cy, rr).fill(\"aqua\").stroke(\"none\").opacity(0.35));\n    out.push(text(cx, cy + r0 + 30.0, \"εᵣ = 78\").size(21));\n    ring = rr;   // no molecules\n}\nwhile ring < rr - 10.0 {\n    let n = (2.0 * 3.14159 * ring / 34.0).floor();\n    let k = 0.0;\n    while k < n {\n        let t = 2.0 * 3.14159 * k / n + ring * 0.05;\n        let ux = t.cos(); let uy = t.sin();\n        let dx = 0.0; let dy = 0.0;\n        if dip > 0.5 {\n            // field of a point dipole along +x: 3 (p·u) u − p\n            let pu = ux;\n            dx = 3.0 * pu * ux - 1.0; dy = 3.0 * pu * uy;\n            let m = (dx * dx + dy * dy).sqrt(); dx /= m; dy /= m;\n        } else { dx = ux; dy = uy; }\n        // Thermal disorder: alignment falls with the field, E ∝ r⁻² (ion) or r⁻³ (dipole),\n        // so the first shell is ordered and far molecules point almost anywhere.\n        let order = (r0 + 22.0) / ring;\n        order = if dip > 0.5 { order * order * order } else { order * order };\n        let h = (k * 12.9898 + ring * 78.233).sin() * 43758.5453;\n        let u = h - h.floor();   // pseudo-random in [0, 1), fixed per molecule\n        let tilt = (1.0 - order) * (2.0 * u - 1.0) * 3.14159;\n        let c = tilt.cos(); let sn = tilt.sin();\n        let rx = dx * c - dy * sn; dy = dx * sn + dy * c; dx = rx;\n        let px = cx + ring * ux; let py = cy + ring * uy;\n        out.push(line(px - 8.0 * dx, py - 8.0 * dy, px + 8.0 * dx, py + 8.0 * dy).stroke(\"blue\").width(2));\n        out.push(disc(px - 8.0 * dx, py - 8.0 * dy, 3.5).fill(\"red\").stroke(\"none\"));\n        k += 1.0;\n    }\n    ring += 28.0;\n}\n// the solute\nif dip > 0.5 {\n    out.push(disc(cx, cy, r0).fill(\"surface\").stroke(\"text\"));\n    out.push(line(cx - 18.0, cy, cx + 18.0, cy).stroke(\"orange\").width(4).arrow());\n} else {\n    out.push(disc(cx, cy, r0).fill(\"blue\").stroke(\"none\"));\n    out.push(text(cx, cy, \"+\").fill(\"background\").size(30));\n}\nout.push(line(cx, cy, hx, cy).stroke(\"faint\").width(1).dash(4, 4));\nout.push(disc(hx, cy, 11).fill(\"accent\").stroke(\"none\"));\nout.push(text(cx, 30, \"R = \" + fixed(Ra, 1) + \" a   (log scale)\").size(21));\nout.push(text(cx, 440, \"drag the edge of the solvent\").size(21).fill(\"faint\"));\n\n// panel A: fraction of the full solvation energy inside R\nlet pa = plot(640, 20, 520, 190).x_log(1, 50.0).y_lin(0, 1).text(21);\nout.push(pa.axes(\"R / a\", \"fraction inside R\"));\nout.push(pa.vline(Ra).stroke(\"faint\").width(1).dash(4, 4));\nout.push(pa.curve(|v| 1.0 - 1.0 / v).stroke(\"blue\").width(3));\nout.push(pa.curve(|v| 1.0 - 1.0 / (v * v * v)).stroke(\"orange\").width(3));\nlet fi = 1.0 - 1.0 / Ra; let fd = 1.0 - 1.0 / (Ra * Ra * Ra);\nout.push(disc(pa.x(Ra), pa.y(fi), 6).fill(\"blue\").stroke(\"none\"));\nout.push(disc(pa.x(Ra), pa.y(fd), 6).fill(\"orange\").stroke(\"none\"));\nout.push(text(pa.x(50.0) - 4, pa.y(0.62), \"ion (Born)\").fill(\"blue\").anchor(\"end\").size(21));\nout.push(text(pa.x(50.0) - 4, pa.y(0.9) + 20, \"dipole (Onsager)\").fill(\"orange\").anchor(\"end\").size(21));\n\n// panel B: contribution per shell, d(fraction)/d(R/a)\nlet pb = plot(640, 285, 520, 150).x_log(1, 50.0).y_log(0.0001, 3).text(21);\nout.push(pb.axes(\"R / a\", \"per shell\"));\nout.push(pb.vline(Ra).stroke(\"faint\").width(1).dash(4, 4));\nout.push(pb.curve(|v| 1.0 / (v * v)).stroke(\"blue\").width(3));\nout.push(pb.curve(|v| 3.0 / (v * v * v * v)).stroke(\"orange\").width(3));\nout.push(text(pb.x(3.0), pb.y(0.3), \"∝ r⁻²\").fill(\"blue\").anchor(\"start\").size(21));\nout.push(text(pb.x(1.3), pb.y(0.0003), \"∝ r⁻⁴\").fill(\"orange\").anchor(\"start\").size(21));\n\n// readouts: a = 2 Å monovalent ion and a water-like dipole (1.85 D, a = 1.4 Å), ε = 78.4\nlet gi = 138.313; let gd = 14.862;\nout.push(text(20, 480, \"ion: \" + fixed(100.0 * fi, 1) + \" % of −\" + fixed(gi, 1) + \" k_BT = −\" + fixed(gi * fi, 1) + \" k_BT\")\n    .fill(\"blue\").anchor(\"start\").size(21));\nout.push(text(20, 520, \"dipole: \" + fixed(100.0 * fd, 1) + \" % of −\" + fixed(gd, 1) + \" k_BT = −\" + fixed(gd * fd, 1) + \" k_BT\")\n    .fill(\"orange\").anchor(\"start\").size(21));\nout",
+            "script": "let cx = 250.0; let cy = 250.0; let r0 = 30.0; let span = 200.0;\nlet L = 50.0.ln();\nlet rr = hx - cx;                          // shell radius on screen\nlet Ra = ((rr - r0) / span * L).exp();     // R/a, log scale\nlet out = [];\n// solvent sphere\nout.push(disc(cx, cy, rr).fill(\"aqua\").stroke(\"aqua\").opacity(0.25));\n// solvent dipoles on rings, oxygen end (dot) towards a cation, along the field of a dipole\nlet ring = r0 + 22.0;\nif cont > 0.5 {\n    out.push(disc(cx, cy, rr).fill(\"aqua\").stroke(\"none\").opacity(0.35));\n    out.push(text(cx, cy + r0 + 30.0, \"εᵣ = 78\").size(21));\n    ring = rr;   // no molecules\n}\nwhile ring < rr - 10.0 {\n    let n = (2.0 * 3.14159 * ring / 34.0).floor();\n    let k = 0.0;\n    while k < n {\n        let t = 2.0 * 3.14159 * k / n + ring * 0.05;\n        let ux = t.cos(); let uy = t.sin();\n        let dx = 0.0; let dy = 0.0;\n        if dip > 0.5 {\n            // field of a point dipole along +x: 3 (p·u) u − p\n            let pu = ux;\n            dx = 3.0 * pu * ux - 1.0; dy = 3.0 * pu * uy;\n            let m = (dx * dx + dy * dy).sqrt(); dx /= m; dy /= m;\n        } else { dx = ux; dy = uy; }\n        // Thermal disorder: alignment falls with the field, E ∝ r⁻² (ion) or r⁻³ (dipole),\n        // so the first shell is ordered and far molecules point almost anywhere.\n        let order = (r0 + 22.0) / ring;\n        order = if dip > 0.5 { order * order * order } else { order * order };\n        let h = (k * 12.9898 + ring * 78.233).sin() * 43758.5453;\n        let u = h - h.floor();   // pseudo-random in [0, 1), fixed per molecule\n        let tilt = (1.0 - order) * (2.0 * u - 1.0) * 3.14159;\n        let c = tilt.cos(); let sn = tilt.sin();\n        let rx = dx * c - dy * sn; dy = dx * sn + dy * c; dx = rx;\n        let px = cx + ring * ux; let py = cy + ring * uy;\n        out.push(line(px - 8.0 * dx, py - 8.0 * dy, px + 8.0 * dx, py + 8.0 * dy).stroke(\"blue\").width(2));\n        out.push(disc(px - 8.0 * dx, py - 8.0 * dy, 3.5).fill(\"red\").stroke(\"none\"));\n        k += 1.0;\n    }\n    ring += 28.0;\n}\n// the solute\nif dip > 0.5 {\n    out.push(disc(cx, cy, r0).fill(\"surface\").stroke(\"text\"));\n    out.push(line(cx - 18.0, cy, cx + 18.0, cy).stroke(\"orange\").width(4).arrow());\n} else {\n    out.push(disc(cx, cy, r0).fill(\"blue\").stroke(\"none\"));\n    out.push(text(cx, cy, \"+\").fill(\"background\").size(30));\n}\nout.push(line(cx, cy, hx, cy).stroke(\"faint\").width(1).dash(4, 4));\nout.push(disc(hx, cy, 11).fill(\"accent\").stroke(\"none\"));\nout.push(text(cx, 30, \"R = \" + fixed(Ra, 1) + \" a   (log scale)\").size(21));\nout.push(text(cx, 440, \"drag the edge of the solvent\").size(21).fill(\"faint\"));\n\n// panel A: fraction of the full solvation energy inside R\nlet pa = plot(640, 20, 520, 190).x_log(1, 50.0).y_lin(0, 1).text(21);\nout.push(pa.axes(\"R / a\", \"fraction inside R\"));\nout.push(pa.vline(Ra).stroke(\"faint\").width(1).dash(4, 4));\nout.push(pa.curve(|v| 1.0 - 1.0 / v).stroke(\"blue\").width(3));\nout.push(pa.curve(|v| 1.0 - 1.0 / (v * v * v)).stroke(\"orange\").width(3));\nlet fi = 1.0 - 1.0 / Ra; let fd = 1.0 - 1.0 / (Ra * Ra * Ra);\nout.push(disc(pa.x(Ra), pa.y(fi), 6).fill(\"blue\").stroke(\"none\"));\nout.push(disc(pa.x(Ra), pa.y(fd), 6).fill(\"orange\").stroke(\"none\"));\nout.push(text(pa.x(50.0) - 4, pa.y(0.62), \"ion (Born)\").fill(\"blue\").anchor(\"end\").size(21));\nout.push(text(pa.x(50.0) - 4, pa.y(0.9) + 20, \"dipole (Onsager)\").fill(\"orange\").anchor(\"end\").size(21));\n\n// panel B: contribution per shell, d(fraction)/d(R/a)\nlet pb = plot(640, 285, 520, 150).x_log(1, 50.0).y_log(0.0001, 3).text(21);\nout.push(pb.axes(\"R / a\", \"per shell\"));\nout.push(pb.vline(Ra).stroke(\"faint\").width(1).dash(4, 4));\nout.push(pb.curve(|v| 1.0 / (v * v)).stroke(\"blue\").width(3));\nout.push(pb.curve(|v| 3.0 / (v * v * v * v)).stroke(\"orange\").width(3));\nout.push(text(pb.x(3.0), pb.y(0.3), \"∝ r⁻²\").fill(\"blue\").anchor(\"start\").size(21));\nout.push(text(pb.x(1.3), pb.y(0.0003), \"∝ r⁻⁴\").fill(\"orange\").anchor(\"start\").size(21));\n\n// readouts: a = 2 Å monovalent ion and a water-like dipole (1.85 D, a = 1.4 Å), ε = 78.4\nlet gi = 138.313; let gd = 14.862;\nout.push(text(20, 480, \"ion: \" + fixed(100.0 * fi, 1) + \" % of −\" + fixed(gi, 1) + \" kT = −\" + fixed(gi * fi, 1) + \" kT\")\n    .fill(\"blue\").anchor(\"start\").size(21));\nout.push(text(20, 520, \"dipole: \" + fixed(100.0 * fd, 1) + \" % of −\" + fixed(gd, 1) + \" kT = −\" + fixed(gd * fd, 1) + \" kT\")\n    .fill(\"orange\").anchor(\"start\").size(21));\nout",
             "handles": [
               {
                 "x": "hx",
@@ -834,7 +1102,7 @@
         {
           "element": "convergence-why",
           "trigger": "click",
-          "effect": "dissolve"
+          "effect": "appear"
         }
       ]
     },
@@ -906,7 +1174,7 @@
             "h": 75
           },
           "config": {
-            "text": "## 6. A transfer is the difference of two solvation energies"
+            "text": "## 7. A transfer is the difference of two solvation energies"
           }
         },
         {
@@ -1017,7 +1285,7 @@
               1400,
               560
             ],
-            "script": "let lB0 = 560.4;\nlet g0 = val * val * lB0 / (2.0 * a);           // full self-energy, k_BT\nlet gA = -g0 * (1.0 - 1.0 / epsA);\nlet gB = -g0 * (1.0 - 1.0 / epsB);\nlet lo = -g0 * 1.08;\nlet out = [];\n\n// energy levels\nlet pl = plot(110, 30, 360, 420).x_lin(0, 1).y_lin(lo, 0).text(19);\n// own y axis: the x position carries no meaning here\nlet step = 10.0 ** (g0.ln() / 2.302585).floor();\nif g0 / step < 3.0 { step /= 2.0; }\nout.push(line(pl.x(0.0), pl.y(lo), pl.x(0.0), pl.y(0.0)).stroke(\"faint\").width(1));\nlet tk = 0.0;\nwhile tk >= lo {\n    out.push(line(pl.x(0.0) - 6.0, pl.y(tk), pl.x(0.0), pl.y(tk)).stroke(\"faint\").width(1));\n    out.push(text(pl.x(0.0) - 10.0, pl.y(tk), fixed(tk, 0)).anchor(\"end\").fill(\"faint\").size(19));\n    tk -= step;\n}\nout.push(text(30, pl.y(lo / 2.0), \"ΔG_solv  (k_BT)\").rotate(-90.0).fill(\"faint\").size(19));\nout.push(line(pl.x(0.05), pl.y(0.0), pl.x(0.95), pl.y(0.0)).stroke(\"faint\").width(3));\nout.push(text(pl.x(0.5), pl.y(0.0) + 22, \"vacuum\").fill(\"faint\").size(19));\nout.push(line(pl.x(0.05), pl.y(gA), pl.x(0.45), pl.y(gA)).stroke(\"blue\").width(5));\nout.push(text(pl.x(0.25), pl.y(gA) + 24, \"A\").fill(\"blue\").size(20));\nout.push(line(pl.x(0.55), pl.y(gB), pl.x(0.95), pl.y(gB)).stroke(\"orange\").width(5));\nout.push(text(pl.x(0.75), pl.y(gB) + 24, \"B\").fill(\"orange\").size(20));\nif (gB - gA).abs() > 0.5 {\n    out.push(line(pl.x(0.5), pl.y(gA), pl.x(0.5), pl.y(gB)).stroke(\"text\").width(3).arrow());\n}\n\n// one curve, two solvents on it\nlet pr = plot(640, 30, 700, 420).x_log(1, 100).y_lin(lo, 0).text(19);\nout.push(pr.axes(\"dielectric constant εᵣ\", \"ΔG_solv  (k_BT)\"));\nout.push(pr.hline(-g0).stroke(\"faint\").width(1).dash(6, 4));\nout.push(text(pr.x(100.0) - 6, pr.y(-g0) + 22, \"εᵣ → ∞\").anchor(\"end\").fill(\"faint\").size(19));\nout.push(pr.curve(|e| -g0 * (1.0 - 1.0 / e)).stroke(\"purple\").width(3));\nout.push(pr.line([[epsA, gA], [epsB, gA]]).stroke(\"faint\").width(1).dash(4, 4));\nif (gB - gA).abs() > 0.5 {\n    out.push(line(pr.x(epsB), pr.y(gA), pr.x(epsB), pr.y(gB)).stroke(\"text\").width(2).arrow());\n}\nout.push(disc(pr.x(epsA), pr.y(gA), 9).fill(\"blue\").stroke(\"none\"));\nout.push(disc(pr.x(epsB), pr.y(gB), 9).fill(\"orange\").stroke(\"none\"));\n\nlet kj = 2.479;   // kJ/mol per k_BT at 298 K\nlet tr = gB - gA;\nlet sgn = if tr >= 0.0 { \"+\" } else { \"\" };\nout.push(text(20, 545, \"A: \" + fixed(gA, 1) + \" k_BT (\" + fixed(gA * kj, 0) + \" kJ/mol)\").anchor(\"start\").fill(\"blue\").size(19));\nout.push(text(380, 545, \"B: \" + fixed(gB, 1) + \" k_BT (\" + fixed(gB * kj, 0) + \" kJ/mol)\").anchor(\"start\").fill(\"orange\").size(19));\nout.push(text(1380, 545, \"transfer A → B: \" + sgn + fixed(tr, 1) + \" k_BT (\" + sgn + fixed(tr * kj, 0) + \" kJ/mol)\").anchor(\"end\").size(21));\nout"
+            "script": "let lB0 = 560.4;\nlet g0 = val * val * lB0 / (2.0 * a);           // full self-energy, kT\nlet gA = -g0 * (1.0 - 1.0 / epsA);\nlet gB = -g0 * (1.0 - 1.0 / epsB);\nlet lo = -g0 * 1.08;\nlet out = [];\n\n// energy levels\nlet pl = plot(110, 30, 360, 420).x_lin(0, 1).y_lin(lo, 0).text(19);\n// own y axis: the x position carries no meaning here\nlet step = 10.0 ** (g0.ln() / 2.302585).floor();\nif g0 / step < 3.0 { step /= 2.0; }\nout.push(line(pl.x(0.0), pl.y(lo), pl.x(0.0), pl.y(0.0)).stroke(\"faint\").width(1));\nlet tk = 0.0;\nwhile tk >= lo {\n    out.push(line(pl.x(0.0) - 6.0, pl.y(tk), pl.x(0.0), pl.y(tk)).stroke(\"faint\").width(1));\n    out.push(text(pl.x(0.0) - 10.0, pl.y(tk), fixed(tk, 0)).anchor(\"end\").fill(\"faint\").size(19));\n    tk -= step;\n}\nout.push(text(30, pl.y(lo / 2.0), \"ΔG_solv  (kT)\").rotate(-90.0).fill(\"faint\").size(19));\nout.push(line(pl.x(0.05), pl.y(0.0), pl.x(0.95), pl.y(0.0)).stroke(\"faint\").width(3));\nout.push(text(pl.x(0.5), pl.y(0.0) + 22, \"vacuum\").fill(\"faint\").size(19));\nout.push(line(pl.x(0.05), pl.y(gA), pl.x(0.45), pl.y(gA)).stroke(\"blue\").width(5));\nout.push(text(pl.x(0.25), pl.y(gA) + 24, \"A\").fill(\"blue\").size(20));\nout.push(line(pl.x(0.55), pl.y(gB), pl.x(0.95), pl.y(gB)).stroke(\"orange\").width(5));\nout.push(text(pl.x(0.75), pl.y(gB) + 24, \"B\").fill(\"orange\").size(20));\nif (gB - gA).abs() > 0.5 {\n    out.push(line(pl.x(0.5), pl.y(gA), pl.x(0.5), pl.y(gB)).stroke(\"text\").width(3).arrow());\n}\n\n// one curve, two solvents on it\nlet pr = plot(640, 30, 700, 420).x_log(1, 100).y_lin(lo, 0).text(19);\nout.push(pr.axes(\"dielectric constant εᵣ\", \"ΔG_solv  (kT)\"));\nout.push(pr.hline(-g0).stroke(\"faint\").width(1).dash(6, 4));\nout.push(text(pr.x(100.0) - 6, pr.y(-g0) + 22, \"εᵣ → ∞\").anchor(\"end\").fill(\"faint\").size(19));\nout.push(pr.curve(|e| -g0 * (1.0 - 1.0 / e)).stroke(\"purple\").width(3));\nout.push(pr.line([[epsA, gA], [epsB, gA]]).stroke(\"faint\").width(1).dash(4, 4));\nif (gB - gA).abs() > 0.5 {\n    out.push(line(pr.x(epsB), pr.y(gA), pr.x(epsB), pr.y(gB)).stroke(\"text\").width(2).arrow());\n}\nout.push(disc(pr.x(epsA), pr.y(gA), 9).fill(\"blue\").stroke(\"none\"));\nout.push(disc(pr.x(epsB), pr.y(gB), 9).fill(\"orange\").stroke(\"none\"));\n\nlet kj = 2.479;   // kJ/mol per kT at 298 K\nlet tr = gB - gA;\nlet sgn = if tr >= 0.0 { \"+\" } else { \"\" };\nout.push(text(20, 545, \"A: \" + fixed(gA, 1) + \" kT (\" + fixed(gA * kj, 0) + \" kJ/mol)\").anchor(\"start\").fill(\"blue\").size(19));\nout.push(text(380, 545, \"B: \" + fixed(gB, 1) + \" kT (\" + fixed(gB * kj, 0) + \" kJ/mol)\").anchor(\"start\").fill(\"orange\").size(19));\nout.push(text(1380, 545, \"transfer A → B: \" + sgn + fixed(tr, 1) + \" kT (\" + sgn + fixed(tr * kj, 0) + \" kJ/mol)\").anchor(\"end\").size(21));\nout"
           }
         },
         {
@@ -1397,12 +1665,12 @@
         },
         {
           "element": "wi-ans-card",
-          "effect": "dissolve"
+          "effect": "appear"
         },
         {
           "element": "wi-ans",
           "trigger": "with-previous",
-          "effect": "dissolve"
+          "effect": "appear"
         }
       ]
     },
@@ -1419,7 +1687,7 @@
             "h": 75
           },
           "config": {
-            "text": "## 7. How much does an ion dislike oil? (Dill Ex. 22.13)"
+            "text": "## 8. How much does an ion dislike oil? (Dill Ex. 22.13)"
           }
         },
         {
@@ -1521,17 +1789,17 @@
         {
           "element": "ow-why",
           "trigger": "click",
-          "effect": "dissolve"
+          "effect": "appear"
         },
         {
           "element": "ow-take-card",
           "trigger": "with-previous",
-          "effect": "dissolve"
+          "effect": "appear"
         },
         {
           "element": "ow-take",
           "trigger": "with-previous",
-          "effect": "dissolve"
+          "effect": "appear"
         }
       ]
     },
@@ -1635,7 +1903,7 @@
             "h": 75
           },
           "config": {
-            "text": "## 8. Born gets hydration enthalpies right, with cavity radii"
+            "text": "## 9. Born gets hydration enthalpies right, with cavity radii"
           }
         },
         {
@@ -1807,350 +2075,6 @@
       ]
     },
     {
-      "id": "interface",
-      "state": {
-        "ix": 370.0,
-        "iy": 130.0,
-        "eps2": 1.0,
-        "a": 2.0,
-        "val": 1.0,
-        "smooth": 0.0,
-        "w": 3.0,
-        "zoom": 0.0
-      },
-      "elements": [
-        {
-          "id": "interface-title",
-          "kind": "text",
-          "frame": {
-            "x": 80,
-            "y": 30,
-            "w": 1440,
-            "h": 75
-          },
-          "config": {
-            "text": "## 9. Pulling an ion out of water costs the Born energy"
-          }
-        },
-        {
-          "id": "interface-scene",
-          "kind": "scene",
-          "frame": {
-            "x": 80,
-            "y": 100,
-            "w": 1120,
-            "h": 560
-          },
-          "config": {
-            "size": [
-              1200,
-              600
-            ],
-            "script": "let e1 = 78.4; let lB0 = 560.4;\nlet p0 = plot(110, 300, 1040, 220).x_lin(-20, 20).text(21);\nlet x0 = p0.x(-20.0); let x1 = p0.x(20.0); let xs = (x1 - x0) / 40.0;  // units per Å\nlet s = -20.0 + (ix - x0) / xs;            // ion centre, Å; > 0 is the upper phase\nlet pre = val * val * lB0;\nlet born2 = pre / (2.0 * a) * (1.0 / eps2 - 1.0 / e1);\nlet k = (e1 - eps2) / (e1 + eps2);\nlet gw = pre * k / (4.0 * a * e1);              // sharp model at s = −a\nlet gu = born2 - pre * k / (4.0 * a * eps2);     // sharp model at s = +a\n// slopes there, so the blend inside one radius joins both sides smoothly\nlet mw = pre * k / (4.0 * e1 * a * a);\nlet mu = pre * k / (4.0 * eps2 * a * a);\nlet G = |t| {\n    if smooth > 0.5 {\n        // Born goes as 1/ε, so blend 1/ε: the rise is then centred on the surface\n        born2 * (1.0 + (t / w).tanh()) / 2.0\n    } else if t <= -a {\n        pre * k / (4.0 * (-t) * e1)\n    } else if t >= a {\n        born2 - pre * k / (4.0 * t * eps2)\n    } else {\n        // cubic Hermite blend: matches value and slope at both ends\n        let h = 2.0 * a; let u = (t + a) / h;\n        let u2 = u * u; let u3 = u2 * u;\n        (2.0 * u3 - 3.0 * u2 + 1.0) * gw + (u3 - 2.0 * u2 + u) * h * mw\n            + (3.0 * u2 - 2.0 * u3) * gu + (u3 - u2) * h * mu\n    }\n};\nlet lo = 0.0; let hi = born2 * 1.1;\nif zoom > 0.5 { lo = -1.0; hi = 3.0; }\nlet p = p0.y_lin(lo, hi);\nlet name = if eps2 < 1.5 { \"air\" } else if eps2 < 5.0 { \"oil\" } else { \"octanol\" };\n\nlet out = [];\n// picture: water on the left, upper phase on the right\nlet top = 20.0; let bh = 220.0;\nif smooth > 0.5 {\n    let n = 80.0; let i = 0.0;\n    while i < n {\n        let t0 = -20.0 + 40.0 * i / n; let tm = t0 + 20.0 / n;\n        let fw = (1.0 - (tm / w).tanh()) / 2.0;\n        out.push(rect(p.x(t0), top, xs * 40.0 / n + 0.5, bh).fill(\"aqua\").stroke(\"none\").opacity(0.35 * fw));\n        i += 1.0;\n    }\n} else {\n    out.push(rect(x0, top, p.x(0.0) - x0, bh).fill(\"aqua\").stroke(\"none\").opacity(0.35));\n}\nout.push(line(p.x(0.0), top, p.x(0.0), top + bh).stroke(\"faint\").width(1).dash(4, 4));\nout.push(text(x0 + 10, top + 24, \"water, εᵣ = 78\").anchor(\"start\").size(21));\nout.push(text(x1 - 10, top + 24, name + \", εᵣ = \" + fixed(eps2, 0)).anchor(\"end\").size(21));\nlet cy = top + bh / 2.0;\nout.push(disc(ix, cy, a * xs).fill(\"blue\").stroke(\"text\").opacity(0.85));\nlet lab = if val > 1.5 { fixed(val, 0) + \"+\" } else { \"+\" };\nout.push(text(ix, cy, lab).fill(\"background\").size(26));\n\n// free energy\nout.push(p.axes(\"ion position (Å)\", \"ΔG − ΔG_water  (k_BT)\"));\nout.push(p.vline(0).stroke(\"faint\").width(1).dash(4, 4));\nout.push(p.hline(0).stroke(\"faint\").width(1));\nout.push(p.curve(G, 400).stroke(\"orange\").width(3));\nlet g = G.call(s);\nlet gy = if g > hi { hi } else if g < lo { lo } else { g };\nout.push(disc(p.x(s), p.y(gy), 8).fill(\"orange\").stroke(\"none\"));\nout.push(text(x1, 285, \"ΔG = \" + fixed(g, 2) + \" k_BT\").anchor(\"end\").size(21));\nlet note = if smooth > 0.5 { \"local Born, 1/ε(z) a tanh of width \" + fixed(w, 1) + \" Å\" }\n           else { \"Born + image charge; a smooth blend within one radius of the interface\" };\nout.push(text(x0, 285, note).anchor(\"start\").size(21).fill(\"faint\"));\nout",
-            "handles": [
-              {
-                "x": "ix",
-                "y": "iy",
-                "r": 30,
-                "within": {
-                  "x": 110.0,
-                  "y": 129,
-                  "w": 1040,
-                  "h": 2
-                }
-              }
-            ]
-          }
-        },
-        {
-          "id": "if-l1",
-          "kind": "text",
-          "frame": {
-            "x": 1220,
-            "y": 110,
-            "w": 300,
-            "h": 40
-          },
-          "config": {
-            "text": "upper phase",
-            "style": {
-              "scale": 0.6,
-              "colour": "faint"
-            }
-          }
-        },
-        {
-          "id": "if-air",
-          "kind": "button",
-          "frame": {
-            "x": 1220,
-            "y": 150,
-            "w": 80,
-            "h": 48
-          },
-          "config": {
-            "label": "air",
-            "run": "eps2 = 1.0"
-          }
-        },
-        {
-          "id": "if-oil",
-          "kind": "button",
-          "frame": {
-            "x": 1306,
-            "y": 150,
-            "w": 80,
-            "h": 48
-          },
-          "config": {
-            "label": "oil",
-            "run": "eps2 = 2.0"
-          }
-        },
-        {
-          "id": "if-oct",
-          "kind": "button",
-          "frame": {
-            "x": 1392,
-            "y": 150,
-            "w": 128,
-            "h": 48
-          },
-          "config": {
-            "label": "octanol",
-            "run": "eps2 = 10.0"
-          }
-        },
-        {
-          "id": "if-l2",
-          "kind": "text",
-          "frame": {
-            "x": 1220,
-            "y": 215,
-            "w": 300,
-            "h": 40
-          },
-          "config": {
-            "text": "ion charge z",
-            "style": {
-              "scale": 0.6,
-              "colour": "faint"
-            }
-          }
-        },
-        {
-          "id": "if-z1",
-          "kind": "button",
-          "frame": {
-            "x": 1220,
-            "y": 255,
-            "w": 95,
-            "h": 48
-          },
-          "config": {
-            "label": "z = 1",
-            "run": "val = 1.0"
-          }
-        },
-        {
-          "id": "if-z2",
-          "kind": "button",
-          "frame": {
-            "x": 1322,
-            "y": 255,
-            "w": 95,
-            "h": 48
-          },
-          "config": {
-            "label": "z = 2",
-            "run": "val = 2.0"
-          }
-        },
-        {
-          "id": "if-z3",
-          "kind": "button",
-          "frame": {
-            "x": 1424,
-            "y": 255,
-            "w": 95,
-            "h": 48
-          },
-          "config": {
-            "label": "z = 3",
-            "run": "val = 3.0"
-          }
-        },
-        {
-          "id": "if-l3",
-          "kind": "text",
-          "frame": {
-            "x": 1220,
-            "y": 320,
-            "w": 300,
-            "h": 40
-          },
-          "config": {
-            "text": "radius $a$ = {{a:.1}} Å",
-            "style": {
-              "scale": 0.6
-            }
-          }
-        },
-        {
-          "id": "if-a",
-          "kind": "slider",
-          "frame": {
-            "x": 1220,
-            "y": 360,
-            "w": 300,
-            "h": 40
-          },
-          "config": {
-            "bind": "a",
-            "min": 1,
-            "max": 4
-          }
-        },
-        {
-          "id": "if-smooth",
-          "kind": "checkbox",
-          "frame": {
-            "x": 1220,
-            "y": 420,
-            "w": 300,
-            "h": 46
-          },
-          "config": {
-            "bind": "smooth",
-            "label": "smooth interface"
-          }
-        },
-        {
-          "id": "if-l4",
-          "kind": "text",
-          "frame": {
-            "x": 1220,
-            "y": 470,
-            "w": 300,
-            "h": 40
-          },
-          "config": {
-            "text": "width = {{w:.1}} Å",
-            "style": {
-              "scale": 0.6
-            }
-          }
-        },
-        {
-          "id": "if-w",
-          "kind": "slider",
-          "frame": {
-            "x": 1220,
-            "y": 510,
-            "w": 300,
-            "h": 40
-          },
-          "config": {
-            "bind": "w",
-            "min": 1,
-            "max": 10
-          }
-        },
-        {
-          "id": "if-full",
-          "kind": "button",
-          "frame": {
-            "x": 1220,
-            "y": 580,
-            "w": 145,
-            "h": 48
-          },
-          "config": {
-            "label": "full scale",
-            "run": "zoom = 0.0"
-          }
-        },
-        {
-          "id": "if-zoom",
-          "kind": "button",
-          "frame": {
-            "x": 1375,
-            "y": 580,
-            "w": 145,
-            "h": 48
-          },
-          "config": {
-            "label": "zoom in",
-            "run": "zoom = 1.0"
-          }
-        },
-        {
-          "id": "if-q",
-          "kind": "text",
-          "frame": {
-            "x": 80,
-            "y": 670,
-            "w": 1440,
-            "h": 135
-          },
-          "config": {
-            "text": "**Question:** Drag the ion out. Where along the path does the cost rise most? Zoom in on the water side: why is the ion pushed *away* from the surface? With oil and $a = 2$ Å, how many times more does $z = 2$ cost than $z = 1$?",
-            "style": {
-              "scale": 0.75
-            }
-          }
-        },
-        {
-          "id": "if-ans-card",
-          "kind": "shape",
-          "frame": {
-            "x": 80,
-            "y": 810,
-            "w": 1440,
-            "h": 178
-          },
-          "config": {
-            "shape": "rect",
-            "radius": 16
-          },
-          "style": {
-            "fill": "surface",
-            "border": {
-              "color": "line",
-              "width": 3
-            }
-          }
-        },
-        {
-          "id": "if-ans",
-          "kind": "text",
-          "frame": {
-            "x": 110,
-            "y": 834,
-            "w": 1380,
-            "h": 130
-          },
-          "config": {
-            "text": "**Answer.** The cost rises over about one ion radius around the surface. In water the ion is repelled by its image in the air, whatever its sign: the energy goes as $z^2$. So $z = 2$ costs four times as much as $z = 1$.",
-            "style": {
-              "scale": 0.72
-            }
-          }
-        }
-      ],
-      "builds": [
-        {
-          "element": "if-ans-card",
-          "effect": "dissolve"
-        },
-        {
-          "element": "if-ans",
-          "trigger": "with-previous",
-          "effect": "dissolve"
-        }
-      ]
-    },
-    {
       "id": "real-interface",
       "elements": [
         {
@@ -2176,7 +2100,7 @@
             "h": 560
           },
           "config": {
-            "text": "- The water surface is not a step: the density falls over a few ångström (the smooth curve).\n- Near the surface an ion loses part of its solvation; in the image-charge picture it is repelled by its own mirror image in the air (Onsager–Samaras).\n- So the top layer of salt water holds fewer ions, and salt water has a slightly *higher* surface tension than pure water.\n- Large, polarizable anions (I⁻, SCN⁻) are the exception: they come up to the surface.",
+            "text": "- The water surface is not a step: the density falls over a few ångström.\n- Near the surface an ion loses part of its solvation; in the image-charge picture it is repelled by its own mirror image in the air (Onsager–Samaras).\n- So the top layer of salt water holds fewer ions, and salt water has a slightly *higher* surface tension than pure water.\n- Large, polarizable anions (I⁻, SCN⁻) are the exception: they come up to the surface.",
             "style": {
               "scale": 0.85,
               "spacing": {
@@ -2298,12 +2222,12 @@
       "builds": [
         {
           "element": "logp-ans-card",
-          "effect": "dissolve"
+          "effect": "appear"
         },
         {
           "element": "logp-ans",
           "trigger": "with-previous",
-          "effect": "dissolve"
+          "effect": "appear"
         }
       ]
     },
@@ -2396,12 +2320,12 @@
       "builds": [
         {
           "element": "logd-ans-card",
-          "effect": "dissolve"
+          "effect": "appear"
         },
         {
           "element": "logd-ans",
           "trigger": "with-previous",
-          "effect": "dissolve"
+          "effect": "appear"
         }
       ]
     },
@@ -2826,7 +2750,7 @@
               580,
               500
             ],
-            "script": "let a = 2.0;\nlet lB = 560.4 / eps;\nlet kap = (8.0 * 3.14159265 * lB * salt * 0.0006022).sqrt();\nlet zz = q1 * q2;\nlet d = ((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)).sqrt() / 10.0;\nlet R = if d < 2.0 * a { 2.0 * a } else { d };\nlet f = (1.0 + kap * a) * (1.0 + kap * a);\nlet p = plot(125, 20, 440, 360).x_lin(4, 60).y_lin(-6, 6).text(22);\nlet out = [p.axes(\"R  (Å)\", \"w / k_BT\")];\nout.push(p.hline(0).stroke(\"faint\").width(1));\nout.push(p.hline(1).stroke(\"faint\").width(1).dash(6, 4));\nout.push(p.hline(-1).stroke(\"faint\").width(1).dash(6, 4));\nout.push(p.curve(|r| zz * lB / r).stroke(\"line\").width(2));\nout.push(p.curve(|r| zz * lB * (-kap * (r - 2.0 * a)).exp() / (f * r)).stroke(\"purple\").width(3));\nlet wR = zz * lB * (-kap * (R - 2.0 * a)).exp() / (f * R);\nlet xR = if R > 60.0 { 60.0 } else { R };\nlet yR = if wR > 6.0 { 6.0 } else if wR < -6.0 { -6.0 } else { wR };\nout.push(disc(p.x(xR), p.y(yR), 8).fill(\"purple\").stroke(\"none\"));\nout.push(text(560, 485, \"w = \" + fixed(wR, 2) + \" k_BT at R = \" + fixed(R, 1) + \" Å\").anchor(\"end\").size(22));\nout.push(text(p.x(58.0), p.y(zz * lB / 58.0) - 12, \"no salt\").anchor(\"end\").size(22).fill(\"faint\"));\nout"
+            "script": "let a = 2.0;\nlet lB = 560.4 / eps;\nlet kap = (8.0 * 3.14159265 * lB * salt * 0.0006022).sqrt();\nlet zz = q1 * q2;\nlet d = ((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)).sqrt() / 10.0;\nlet R = if d < 2.0 * a { 2.0 * a } else { d };\nlet f = (1.0 + kap * a) * (1.0 + kap * a);\nlet p = plot(125, 20, 440, 360).x_lin(4, 60).y_lin(-6, 6).text(22);\nlet out = [p.axes(\"R  (Å)\", \"w / kT\")];\nout.push(p.hline(0).stroke(\"faint\").width(1));\nout.push(p.hline(1).stroke(\"faint\").width(1).dash(6, 4));\nout.push(p.hline(-1).stroke(\"faint\").width(1).dash(6, 4));\nout.push(p.curve(|r| zz * lB / r).stroke(\"line\").width(2));\nout.push(p.curve(|r| zz * lB * (-kap * (r - 2.0 * a)).exp() / (f * r)).stroke(\"purple\").width(3));\nlet wR = zz * lB * (-kap * (R - 2.0 * a)).exp() / (f * R);\nlet xR = if R > 60.0 { 60.0 } else { R };\nlet yR = if wR > 6.0 { 6.0 } else if wR < -6.0 { -6.0 } else { wR };\nout.push(disc(p.x(xR), p.y(yR), 8).fill(\"purple\").stroke(\"none\"));\nout.push(text(560, 485, \"w = \" + fixed(wR, 2) + \" kT at R = \" + fixed(R, 1) + \" Å\").anchor(\"end\").size(22));\nout.push(text(p.x(58.0), p.y(zz * lB / 58.0) - 12, \"no salt\").anchor(\"end\").size(22).fill(\"faint\"));\nout"
           }
         },
         {
@@ -2888,7 +2812,7 @@
         {
           "element": "sp-why",
           "trigger": "click",
-          "effect": "dissolve"
+          "effect": "appear"
         }
       ]
     },

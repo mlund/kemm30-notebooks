@@ -26,13 +26,13 @@ The integral of $\lambda$ gives the factor ½. Dill reaches the same result a se
 surface. Both say the same thing: on average, each bit of charge feels half the final
 potential.
 
-**In units of $k_BT$.** With the Bjerrum length $\ell_B = e^2/(4\pi\varepsilon_0\varepsilon_r k_BT)$,
+**In units of $kT$.** With the Bjerrum length $\ell_B = e^2/(4\pi\varepsilon_0\varepsilon_r kT)$,
 
-$$\frac{\Delta G}{k_BT} = \frac{z^2\,\ell_B}{2a}.$$
+$$\frac{\Delta G}{kT} = \frac{z^2\,\ell_B}{2a}.$$
 
 In vacuum $\ell_B^{\rm vacuum} = 560$ Å at 25 °C, so a monovalent ion with $a = 2$ Å costs
-$560/4 = 140\,k_BT$, about 350 kJ/mol. In water $\ell_B = 7.1$ Å and the same ion costs only
-$1.8\,k_BT$.
+$560/4 = 140\,kT$, about 350 kJ/mol. In water $\ell_B = 7.1$ Å and the same ion costs only
+$1.8\,kT$.
 
 **What it means.** The self-energy is large for small ions ($1/a$) and grows with the square
 of the charge ($z^2$): a divalent ion costs four times as much as a monovalent one of the same
@@ -41,4 +41,4 @@ saving comes from.
 
 **Notation.** Dill writes the dielectric constant as $D$ and $1/(4\pi\varepsilon_0)$ as $C$; here
 $\varepsilon_r$ is the dielectric constant (relative permittivity), as on days 2–3;
-$\varepsilon_1$, $\varepsilon_2$, $\varepsilon_{\rm w}$ and $\varepsilon_{\rm oil}$ are its values in particular media. At 25 °C, $k_BT$ = 2.48 kJ/mol = 0.593 kcal/mol.
+$\varepsilon_1$, $\varepsilon_2$, $\varepsilon_{\rm w}$ and $\varepsilon_{\rm oil}$ are its values in particular media. At 25 °C, $kT$ = 2.48 kJ/mol = 0.593 kcal/mol.
