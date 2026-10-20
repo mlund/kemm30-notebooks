@@ -48,11 +48,23 @@ slide with a single plot is stretched to fill the space unless its heading has
 
 ## Files
 
+Open the exported lectures in the online Blikfang player:
+
+- [Day 4](https://mlund.github.io/blikfang-player/?lecture=https%3A%2F%2Fraw.githubusercontent.com%2Fmlund%2Fkemm30-notebooks%2Fd701088%2Fintermolecular%2Fday4.blikfangz)
+- [Day 5](https://mlund.github.io/blikfang-player/?lecture=https%3A%2F%2Fraw.githubusercontent.com%2Fmlund%2Fkemm30-notebooks%2Fmain%2Fintermolecular%2Fday5.blikfangz)
+
 - `intermolecular/dayN_lecture.ipynb` — lecture slides (edit these)
 - `intermolecular/dayN_solutions.ipynb` — exercise solutions
 - `intermolecular/explorables/` — JavaScript for interactive diagrams
 - `intermolecular/day4.blikfang/` — day 4 as a Blikfang deck; edit it in Blikfang
   (`tools/day4_deck.py` built the first version and no longer overwrites it)
+- `intermolecular/day5.blikfang/` — 45-minute salt-screening lecture, with interactive
+  figures, clickable asides and optional derivation notes; edit it in Blikfang.
+  This manually maintained deck is the source of truth. The Python generator and its
+  layout/definition transforms have been deleted. Read the latest editor state before
+  applying targeted changes; preserve the author's manual edits.
+- `intermolecular/day5.blikfangz` — portable copy of the day 5 lecture for the player;
+  refresh it using Blikfang's Export after manual edits.
 - `tools/check_overflow.py` — slide-fit checker (Playwright + installed Chrome or Edge)
 - `pyproject.toml`, `uv.lock`, `.python-version` — pinned environment;
   `uv lock --upgrade` to update

@@ -1,0 +1,3272 @@
+{
+  "blikfang": "0.1.0",
+  "id": "kemm30-salt-screening-day5",
+  "title": "Salt screening in aqueous solutions",
+  "license": "CC-BY-SA-4.0",
+  "format": "desktop",
+  "trusted": true,
+  "slides": [
+    {
+      "id": "hook",
+      "builds": [
+        {
+          "element": "hook-conclusion"
+        }
+      ],
+      "elements": [
+        {
+          "id": "hook-title",
+          "frame": {
+            "x": 80.0,
+            "y": 40.0,
+            "w": 1320.0,
+            "h": 80.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Salt changes colloids, proteins and gels",
+            "style": {
+              "scale": 0.95
+            }
+          }
+        },
+        {
+          "id": "hook-footer",
+          "frame": {
+            "x": 80.0,
+            "y": 950.0,
+            "w": 1440.0,
+            "h": 30.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "KEMM30 · Salt screening · 01",
+            "style": {
+              "scale": 0.5
+            }
+          }
+        },
+        {
+          "id": "hook-prompt",
+          "frame": {
+            "x": 80.0,
+            "y": 150.0,
+            "w": 1440.0,
+            "h": 65.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "If the object charges stay fixed, what changes when salt is added?",
+            "style": {
+              "scale": 0.85
+            }
+          }
+        },
+        {
+          "id": "hook-figure",
+          "frame": {
+            "x": 80.0,
+            "y": 240.0,
+            "w": 1440.0,
+            "h": 390.0
+          },
+          "kind": "image",
+          "config": {
+            "src": "media/02_applications.svg",
+            "alt": "Food emulsion, protein and charged-polymer schematics"
+          }
+        },
+        {
+          "id": "hook-food",
+          "frame": {
+            "x": 80.0,
+            "y": 680.0,
+            "w": 420.0,
+            "h": 100.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Measure size and turbidity.",
+            "style": {
+              "scale": 0.75
+            }
+          }
+        },
+        {
+          "id": "hook-protein",
+          "frame": {
+            "x": 590.0,
+            "y": 680.0,
+            "w": 420.0,
+            "h": 100.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Measure association and solubility.",
+            "style": {
+              "scale": 0.75
+            }
+          }
+        },
+        {
+          "id": "hook-gel",
+          "frame": {
+            "x": 1100.0,
+            "y": 680.0,
+            "w": 420.0,
+            "h": 100.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Measure swelling and mechanics.",
+            "style": {
+              "scale": 0.75
+            }
+          }
+        },
+        {
+          "id": "hook-conclusion",
+          "frame": {
+            "x": 80.0,
+            "y": 850.0,
+            "w": 1440.0,
+            "h": 80.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Mobile ions change electrostatic range; the outcome also depends on other forces.",
+            "style": {
+              "scale": 0.85
+            }
+          }
+        },
+        {
+          "id": "hook-aside",
+          "frame": {
+            "x": 1460.0,
+            "y": 42.0,
+            "w": 48.0,
+            "h": 48.0
+          },
+          "aside": "## Screening is not charge neutralization\n\nMobile ions redistribute around a charged object. Screening reduces its potential at a distance without requiring its bare charge to disappear. Specific binding can change charge too, but that is a separate mechanism.\n\n## What to hold constant\n\nCompare samples at the same pH, temperature and object concentration. Keep salt identity fixed when testing a screening trend. Buffers and counterions also contribute to ionic strength. These figures are teaching schematics, not experimental data.",
+          "kind": "image",
+          "config": {
+            "src": "media/aside-info.svg",
+            "alt": "Definitions, assumptions and sources"
+          }
+        }
+      ]
+    },
+    {
+      "id": "atmosphere",
+      "state": {
+        "salt": 0.001
+      },
+      "builds": [
+        {
+          "element": "atmosphere-notice"
+        }
+      ],
+      "elements": [
+        {
+          "id": "atmosphere-title",
+          "frame": {
+            "x": 80.0,
+            "y": 40.0,
+            "w": 1320.0,
+            "h": 52.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Mobile ions form a diffuse atmosphere"
+          }
+        },
+        {
+          "id": "atmosphere-footer",
+          "frame": {
+            "x": 80.0,
+            "y": 950.0,
+            "w": 1440.0,
+            "h": 25.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "KEMM30 · Salt screening · 02",
+            "style": {
+              "scale": 0.5
+            }
+          }
+        },
+        {
+          "id": "atmosphere-scene",
+          "frame": {
+            "x": 80.0,
+            "y": 180.0,
+            "w": 1000.0,
+            "h": 620.0
+          },
+          "kind": "scene",
+          "config": {
+            "script": "let ld = 3.04 / sqrt(salt);\nlet out = [];\nfor j in 0..20 {\n    let rr = 220.0 - j * 10.0;\n    out.push(disc(230, 270, rr).fill(\"blue\").stroke(\"none\").opacity(0.008 + 0.06 * exp(-rr / (ld * 4.0))));\n}\nout.push(disc(230, 270, 32).fill(\"orange\").stroke(\"text\"));\nout.push(text(230, 270, \"+\").size(36));\nout.push(text(230, 555, \"Diffuse counterion excess\").size(27));\nlet p = plot(570, 75, 370, 330).x_lin(0, 150).y_lin(0, 1).text(26).axis_colour(\"text\");\nout.push(p.axes(\"distance x (Å)\", \"ψ(x) / ψ(0)\"));\nout.push(p.curve(|x| exp(-x / ld)).stroke(\"blue\").width(4));\nif ld <= 150.0 { out.push(p.vline(ld).stroke(\"accent\").dash(6, 5)); }\nout.push(p.hline(exp(-1.0)).stroke(\"line\").dash(6, 5));\nout.push(text(755, 555, \"Weak planar potential: exp(−x / ℓD)\").size(26));\nout",
+            "size": [
+              1000.0,
+              620.0
+            ]
+          }
+        },
+        {
+          "id": "atmosphere-salt-label",
+          "frame": {
+            "x": 1130.0,
+            "y": 245.0,
+            "w": 380.0,
+            "h": 105.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Ionic strength $I=$ {{salt * 1000.0:.1}} mM",
+            "style": {
+              "scale": 0.8
+            }
+          }
+        },
+        {
+          "id": "atmosphere-salt",
+          "frame": {
+            "x": 1130.0,
+            "y": 365.0,
+            "w": 370.0,
+            "h": 45.0
+          },
+          "kind": "slider",
+          "config": {
+            "bind": "salt",
+            "min": 0.0001,
+            "max": 0.1,
+            "log": true
+          }
+        },
+        {
+          "id": "atmosphere-task",
+          "frame": {
+            "x": 1130.0,
+            "y": 450.0,
+            "w": 380.0,
+            "h": 98.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Raise ionic strength from 1 to 100 mM.",
+            "style": {
+              "scale": 0.9
+            }
+          }
+        },
+        {
+          "id": "atmosphere-range",
+          "frame": {
+            "x": 1130.0,
+            "y": 650.0,
+            "w": 380.0,
+            "h": 66.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$\\ell_D$ = {{3.04 / sqrt(salt):.1}} Å",
+            "style": {
+              "scale": 1.15
+            }
+          }
+        },
+        {
+          "id": "atmosphere-notice",
+          "frame": {
+            "x": 80.0,
+            "y": 845.0,
+            "w": 1440.0,
+            "h": 49.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "The atmosphere contracts smoothly; it has no sharp edge.",
+            "style": {
+              "scale": 0.95,
+              "colour": "accent"
+            }
+          }
+        },
+        {
+          "id": "atmosphere-range-name",
+          "frame": {
+            "x": 1130.0,
+            "y": 580.0,
+            "w": 380.0,
+            "h": 41.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Debye screening length",
+            "style": {
+              "scale": 0.8
+            }
+          }
+        },
+        {
+          "id": "atmosphere-factor-definition",
+          "frame": {
+            "x": 222.29113520408168,
+            "y": 783.5,
+            "w": 1155.4177295918366,
+            "h": 33.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Screening factor = fraction of surface potential remaining. At one Debye length, 37% remains.",
+            "style": {
+              "scale": 0.65
+            }
+          }
+        },
+        {
+          "id": "atmosphere-aside",
+          "frame": {
+            "x": 1460.0,
+            "y": 42.0,
+            "w": 48.0,
+            "h": 48.0
+          },
+          "aside": "## A diffuse atmosphere\n\nThe screening factor shown is $\\psi(x)/\\psi(0)=e^{-x/\\ell_D}$ for a weakly charged plane in linearized Poisson–Boltzmann theory. It is the fraction of the surface potential remaining at distance $x$: 1 at the surface, $e^{-1}\\approx0.37$ at one Debye length, and tending to zero far away. It is not the ion concentration or the fraction of ions present. The spherical blue cloud is a qualitative illustration, while the plotted profile is planar.\n\nThe symbols here are $I$ (ionic strength, in mol/L) and $\\ell_D$ (Debye length, in Å). The Debye length is the characteristic distance of exponential screening. Ionic strength counts ion concentrations weighted by squared valence; its formula follows on the electrolyte slide.\n\nCounterions have the opposite sign to the fixed charge; co-ions have the same sign. Ions continually diffuse. The blue cloud is an illustrative excess counterion density, not a frozen shell or a solved concentration field. The dashed distance on the plot marks one Debye length.",
+          "kind": "image",
+          "config": {
+            "src": "media/aside-info.svg",
+            "alt": "Open a short explanation"
+          }
+        }
+      ]
+    },
+    {
+      "id": "boltzmann",
+      "state": {
+        "salt": 10.0
+      },
+      "builds": [
+        {
+          "element": "boltzmann-notice"
+        }
+      ],
+      "elements": [
+        {
+          "id": "boltzmann-title",
+          "frame": {
+            "x": 80.0,
+            "y": 40.0,
+            "w": 1320.0,
+            "h": 80.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "A positive plane enriches anions and depletes cations",
+            "style": {
+              "scale": 0.95
+            }
+          }
+        },
+        {
+          "id": "boltzmann-footer",
+          "frame": {
+            "x": 80.0,
+            "y": 950.0,
+            "w": 1440.0,
+            "h": 30.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "KEMM30 · Salt screening · 03",
+            "style": {
+              "scale": 0.5
+            }
+          }
+        },
+        {
+          "id": "boltzmann-definition",
+          "frame": {
+            "x": 80.0,
+            "y": 145.0,
+            "w": 1440.0,
+            "h": 65.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "1:1 salt in water at 25 °C · fixed surface potential $\\psi_0=25.7$ mV.",
+            "style": {
+              "scale": 0.75
+            }
+          }
+        },
+        {
+          "id": "boltzmann-scene",
+          "frame": {
+            "x": 80.0,
+            "y": 245.0,
+            "w": 970.0,
+            "h": 590.0
+          },
+          "kind": "scene",
+          "config": {
+            "script": "let ld = 3.04 / sqrt(salt / 1000.0);\nlet g = (exp(0.5)-1.0)/(exp(0.5)+1.0);\nlet ph = |x| 2.0 * ln((1.0 + g * exp(-x/ld))/(1.0 - g * exp(-x/ld)));\nlet p = plot(160,65,760,405).x_lin(0,200).y_lin(0,3).text(27).axis_colour(\"text\");\nlet out = [p.axes(\"distance from positive plane x (Å)\",\"c(x) / c∞\")];\nout.push(p.hline(1).stroke(\"line\").width(2).dash(6,5));\nout.push(p.curve(|x| exp(ph.call(x))).stroke(\"blue\").width(4));\nout.push(p.curve(|x| exp(-ph.call(x))).stroke(\"orange\").width(4));\nout.push(text(710,125,\"− anions\").fill(\"blue\").size(30));\nout.push(text(710,420,\"+ cations\").fill(\"orange\").size(30));\nout.push(text(730,300,\"bulk level = 1\").size(26));\nout.push(line(150,55,150,480).stroke(\"orange\").width(5));\nfor y in [100,170,240,310,380,450] {out.push(text(130,y,\"+\").fill(\"orange\").size(30));}\nout\n",
+            "size": [
+              1000.0,
+              620.0
+            ]
+          }
+        },
+        {
+          "id": "boltzmann-bulk",
+          "frame": {
+            "x": 1090.0,
+            "y": 230.0,
+            "w": 430.0,
+            "h": 110.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Bulk concentration $c_\\infty=I=$ {{salt:.1}} mM",
+            "style": {
+              "scale": 0.8
+            }
+          }
+        },
+        {
+          "id": "boltzmann-salt",
+          "frame": {
+            "x": 1090.0,
+            "y": 360.0,
+            "w": 420.0,
+            "h": 40.0
+          },
+          "kind": "slider",
+          "config": {
+            "bind": "salt",
+            "min": 1.0,
+            "max": 100.0,
+            "log": true
+          }
+        },
+        {
+          "id": "boltzmann-rule",
+          "frame": {
+            "x": 1090.0,
+            "y": 450.0,
+            "w": 430.0,
+            "h": 170.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$c_\\pm(x)=c_\\infty e^{\\mp\\Phi(x)}$\n\n$\\Phi=e\\psi/(k_BT)$.",
+            "style": {
+              "scale": 0.8
+            }
+          }
+        },
+        {
+          "id": "boltzmann-surface",
+          "frame": {
+            "x": 1090.0,
+            "y": 660.0,
+            "w": 430.0,
+            "h": 130.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "At the surface: $c_+=$ {{salt * exp(-1.0):.1}} mM; $c_-=$ {{salt * exp(1.0):.1}} mM.",
+            "style": {
+              "scale": 0.75
+            }
+          }
+        },
+        {
+          "id": "boltzmann-notice",
+          "frame": {
+            "x": 80.0,
+            "y": 855.0,
+            "w": 1440.0,
+            "h": 75.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Raise salt: absolute concentrations rise, while the excess counterions extend less far.",
+            "style": {
+              "scale": 0.8
+            }
+          }
+        },
+        {
+          "id": "boltzmann-aside",
+          "frame": {
+            "x": 1460.0,
+            "y": 42.0,
+            "w": 48.0,
+            "h": 48.0
+          },
+          "aside": "## Ion concentrations outside a positive plane\n\nThe slider changes analytical concentration $c_\\infty$ of a fully dissociated 1:1 salt, so its ionic strength is $I=c_\\infty$. Both bulk ion species have concentration $c_\\infty$. The plot shows concentrations divided by this bulk value; the numerical surface values remain in mM. The blue curve is the negative counterion concentration and the orange curve the positive co-ion concentration.\n\nFor an ion species of signed valence $z_i$, $c_i(x)=c_i^\\infty e^{-z_i e\\psi(x)/(k_BT)}$. The positive elementary charge is $e$, $k_B$ is Boltzmann's constant and $T$ is absolute temperature. We write $\\Phi=e\\psi/(k_BT)$. At 25 °C, $k_BT/e=25.7$ mV; hence the fixed wall has $\\Phi_0=1$, giving $c_+(0)=c_\\infty/e$ and $c_-(0)=e c_\\infty$. Here the exponential base $e$ is distinguished from elementary charge by context.\n\nThe potential is the exact nonlinear planar PB solution for one wall and an infinite reservoir of ideal 1:1 salt:\n\n$$\\Phi(x)=4\\operatorname{artanh}[\\tanh(\\Phi_0/4)e^{-x/\\ell_D}].$$\n\nWe use $\\ell_D=3.04/\\sqrt{I/(1\\,\\mathrm M)}$ Å. This slide introduces the observed profiles; the next two slides show self-consistency and its equation. No linear approximation is made here: a surface potential of 25.7 mV is not much smaller than the thermal potential. The finite plot window is not the reservoir boundary; the curves approach one only as $x\\to\\infty$.\n\nPredict whether adding salt increases the distance over which counterions are enriched. Move the slider, then distinguish the normalized profile from the increasing absolute concentrations. Source: Dill & Bromberg, Chapter 23, Eqs. 23.1–23.8; nonlinear planar solution discussed in the PB notes.\n",
+          "kind": "image",
+          "config": {
+            "src": "media/aside-info.svg",
+            "alt": "Definitions, assumptions and sources"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pb",
+      "elements": [
+        {
+          "id": "pb-title",
+          "frame": {
+            "x": 80.0,
+            "y": 40.0,
+            "w": 1320.0,
+            "h": 49.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Poisson–Boltzmann finds ions and potential that agree",
+            "style": {
+              "scale": 0.95
+            }
+          }
+        },
+        {
+          "id": "pb-footer",
+          "frame": {
+            "x": 80.0,
+            "y": 950.0,
+            "w": 1440.0,
+            "h": 25.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "KEMM30 · Salt screening · 04",
+            "style": {
+              "scale": 0.5
+            }
+          }
+        },
+        {
+          "id": "pb-intro",
+          "frame": {
+            "x": 80.0,
+            "y": 135.0,
+            "w": 1440.0,
+            "h": 66.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Guess potential → calculate ions → revise potential → repeat until both agree.  \n10 mM 1:1 salt; wall at 25.7 mV; reservoir at 120 Å held at zero.",
+            "style": {
+              "scale": 0.65
+            }
+          }
+        },
+        {
+          "id": "pb-animation",
+          "frame": {
+            "x": 60.0,
+            "y": 235.0,
+            "w": 1480.0,
+            "h": 680.0
+          },
+          "kind": "explorable",
+          "config": {
+            "src": "media/pb-self-consistency-1.js"
+          }
+        },
+        {
+          "id": "pb-model-note",
+          "frame": {
+            "x": 80.0,
+            "y": 915.0,
+            "w": 1440.0,
+            "h": 31.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Numerical iteration towards equilibrium—not a movie of ion motion.",
+            "style": {
+              "scale": 0.6
+            }
+          }
+        },
+        {
+          "id": "pb-aside",
+          "frame": {
+            "x": 1460.0,
+            "y": 42.0,
+            "w": 48.0,
+            "h": 48.0
+          },
+          "aside": "## Self-consistency, not physical time\n\nPoisson–Boltzmann (PB) requires the potential and ion concentrations to satisfy two relations simultaneously. The animation shows one numerical method of finding this equilibrium. Its alternating steps are not a claim that ions and electrostatics take turns in real time.\n\n**Boltzmann:** given a potential guess, compute $c_+=c_\\infty e^{-\\Phi}$ and $c_-=c_\\infty e^{\\Phi}$, with $\\Phi=e\\psi/(k_BT)$. Here $c_\\infty$ is the reservoir concentration of each species, $e$ is positive elementary charge, $k_B$ is Boltzmann's constant and $T$ is absolute temperature. The density of blue negative ions increases near the positive wall; orange positive ions are depleted. The symbols are an illustration of the concentrations; the calculation uses smooth densities.\n\n**Poisson:** those ions give charge density $\\rho=e(n_+-n_-)$, with $n_\\pm$ the number densities. Solve\n\n$$\\frac{d^2\\psi}{dx^2}=-\\frac{\\rho}{\\varepsilon_0\\varepsilon_r}.$$\n\nCharge sets local potential curvature: how the slope changes between neighbouring positions. Thus this is a differential equation. The wall and reservoir potentials provide the boundary conditions needed to obtain the whole profile. Here $\\varepsilon_0$ is vacuum permittivity and $\\varepsilon_r$ is relative permittivity.\n\nThe revised potential changes the Boltzmann concentrations again. Keep repeating until the revision is negligible: the concentrations then generate the same potential that determines them. Combining the two relations gives planar PB:\n\n$$\\frac{d^2\\Phi}{dx^2}=\\kappa^2\\sinh\\Phi,\\qquad\\kappa=1/\\ell_D.$$\n\nHere $\\ell_D$ is Debye screening length and $\\sinh u=(e^u-e^{-u})/2$.\n\nThe example uses ideal 1:1 salt at 10 mM in water at 25 °C, $\\ell_D=30.4$ Å and $k_BT/e=25.7$ mV. The left boundary is held at 25.7 mV and the reservoir boundary at 120 Å is held at zero. This is a finite planar interval, not a sphere or an infinite half-space.\n\nThe initial potential is a linear guess; ions initially have uniform reservoir concentrations. Each round computes Boltzmann concentrations, solves a finite-difference Poisson equation on 41 grid points, then mixes 30% of the computed potential with 70% of the previous guess to keep iteration stable. The solid purple curve is the current potential; the dashed curve is the preceding guess. The animation stops when the largest update is below $10^{-4}$ in $\\Phi$. Mixing is a numerical device, not another physical assumption.\n\nUse **Single step** to separate the two calculations. After a Poisson update, the displayed ions still reflect the previous potential; the next Boltzmann step updates them. **Play** repeats the cycle; **Pause** lets you inspect it; **Restart** returns to the initial guesses.\n",
+          "kind": "image",
+          "config": {
+            "src": "media/aside-info.svg",
+            "alt": "Open a short explanation"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pb-equation",
+      "elements": [
+        {
+          "id": "pb-equation-title",
+          "frame": {
+            "x": 80.0,
+            "y": 40.0,
+            "w": 1320.0,
+            "h": 49.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Poisson + Boltzmann determine one self-consistent potential",
+            "style": {
+              "scale": 0.95
+            }
+          }
+        },
+        {
+          "id": "pb-equation-poisson",
+          "frame": {
+            "x": 80.0,
+            "y": 160.0,
+            "w": 680.0,
+            "h": 44.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**Poisson: charge sets curvature**",
+            "style": {
+              "scale": 0.85
+            }
+          }
+        },
+        {
+          "id": "pb-equation-poisson-eq",
+          "frame": {
+            "x": 80.0,
+            "y": 240.0,
+            "w": 680.0,
+            "h": 184.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$$\\frac{d^2\\psi}{dx^2}=-\\frac{\\rho}{\\varepsilon_0\\varepsilon_r}$$",
+            "style": {
+              "scale": 0.95
+            }
+          }
+        },
+        {
+          "id": "pb-equation-poisson-terms",
+          "frame": {
+            "x": 80.0,
+            "y": 455.0,
+            "w": 680.0,
+            "h": 79.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$\\rho$: ionic charge density.  \n$\\varepsilon_0\\varepsilon_r$: solvent permittivity.",
+            "style": {
+              "scale": 0.65
+            }
+          }
+        },
+        {
+          "id": "pb-equation-boltzmann",
+          "frame": {
+            "x": 840.0,
+            "y": 160.0,
+            "w": 680.0,
+            "h": 44.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**Boltzmann: potential sets ions**",
+            "style": {
+              "scale": 0.85
+            }
+          }
+        },
+        {
+          "id": "pb-equation-boltzmann-eq",
+          "frame": {
+            "x": 840.0,
+            "y": 270.0,
+            "w": 680.0,
+            "h": 121.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$$n_+=n_\\infty e^{-\\Phi},\\qquad n_-=n_\\infty e^{\\Phi}$$",
+            "style": {
+              "scale": 0.85
+            }
+          }
+        },
+        {
+          "id": "pb-equation-charge-eq",
+          "frame": {
+            "x": 840.0,
+            "y": 440.0,
+            "w": 680.0,
+            "h": 44.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$\\rho=e(n_+-n_-)=-2en_\\infty\\sinh\\Phi$",
+            "style": {
+              "scale": 0.75
+            }
+          }
+        },
+        {
+          "id": "pb-equation-arrows",
+          "frame": {
+            "x": 80.0,
+            "y": 550.0,
+            "w": 1440.0,
+            "h": 65.0
+          },
+          "kind": "scene",
+          "config": {
+            "script": "[line(340,5,680,55).stroke(\"text\").width(3).arrow(), line(1100,5,760,55).stroke(\"text\").width(3).arrow()]",
+            "size": [
+              1440.0,
+              65.0
+            ]
+          }
+        },
+        {
+          "id": "pb-equation-full",
+          "frame": {
+            "x": 230.0,
+            "y": 620.0,
+            "w": 1140.0,
+            "h": 158.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$$\\frac{d^2\\Phi}{dx^2}=\\kappa^2\\sinh\\Phi\\quad\\text{(Poisson–Boltzmann)}$$",
+            "style": {
+              "scale": 0.85
+            }
+          }
+        },
+        {
+          "id": "pb-equation-definitions",
+          "frame": {
+            "x": 80.0,
+            "y": 795.0,
+            "w": 1440.0,
+            "h": 42.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$\\Phi=e\\psi/(k_BT)$; $\\kappa=1/\\ell_D$; hyperbolic sine: $\\sinh\\Phi=(e^\\Phi-e^{-\\Phi})/2$.",
+            "style": {
+              "scale": 0.7
+            }
+          }
+        },
+        {
+          "id": "pb-equation-claim",
+          "frame": {
+            "x": 80.0,
+            "y": 880.0,
+            "w": 1440.0,
+            "h": 42.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Find a potential whose ions generate that same potential.",
+            "style": {
+              "scale": 0.8
+            }
+          }
+        },
+        {
+          "id": "pb-equation-footer",
+          "frame": {
+            "x": 80.0,
+            "y": 950.0,
+            "w": 1440.0,
+            "h": 25.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "KEMM30 · Salt screening · 05",
+            "style": {
+              "scale": 0.5
+            }
+          }
+        },
+        {
+          "id": "pb-equation-bulk-definition",
+          "frame": {
+            "x": 840.0,
+            "y": 392.0,
+            "w": 680.0,
+            "h": 40.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$n_\\infty$: bulk number density of each ion species.",
+            "style": {
+              "scale": 0.55
+            }
+          }
+        },
+        {
+          "id": "pb-equation-aside",
+          "frame": {
+            "x": 1460.0,
+            "y": 42.0,
+            "w": 48.0,
+            "h": 48.0
+          },
+          "aside": "## Combining the two equilibrium relations\n\nFor a planar geometry, all quantities vary only with distance $x$ from the wall. Poisson's equation relates the potential curvature to the mobile ionic charge density $\\rho$. Boltzmann distributions give the local number densities $n_+$ and $n_-$ of monovalent positive and negative ions. $n_\\infty$ is the reservoir number density of each species. The positive elementary charge is $e$, $k_B$ is Boltzmann's constant, and $T$ is absolute temperature.\n\nWith $\\Phi=e\\psi/(k_BT)$, the signed charge density is $\\rho=e(n_+-n_-)=-2en_\\infty\\sinh\\Phi$. Substitute it into Poisson and multiply by $e/(k_BT)$:\n\n$$\\frac{d^2\\Phi}{dx^2}=\\frac{2e^2n_\\infty}{\\varepsilon_0\\varepsilon_r k_BT}\\sinh\\Phi=\\kappa^2\\sinh\\Phi.$$\n\nHere $\\kappa=1/\\ell_D$, the inverse Debye screening length. $\\varepsilon_0$ is vacuum permittivity and $\\varepsilon_r$ is relative permittivity. Hyperbolic sine is $\\sinh\\Phi=(e^\\Phi-e^{-\\Phi})/2$, the combination of the two opposite Boltzmann responses.\n\nThis is the full nonlinear planar PB equation; the next approximation, $\\sinh\\Phi\\approx\\Phi$, applies only near zero potential. The assumptions are ideal 1:1 mobile ions, uniform solvent permittivity and a smooth mean field. The fixed wall charge enters through boundary conditions. In general geometry replace $d^2/dx^2$ with $\\nabla^2$.\n\nIt is a differential equation because the local potential controls the local ion charge, which in turn controls how the potential's slope changes with position. Boundary conditions select the whole profile. Numerical iteration, illustrated on the next slide, finds a profile satisfying both relations; it is not an additional physical law.\n",
+          "kind": "image",
+          "config": {
+            "src": "media/aside-info.svg",
+            "alt": "Definitions and assumptions"
+          }
+        },
+        {
+          "id": "pb-equation-scope",
+          "frame": {
+            "x": 80.0,
+            "y": 115.0,
+            "w": 1440.0,
+            "h": 40.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Full nonlinear PB · ideal 1:1 salt · uniform permittivity · mean-field ions",
+            "style": {
+              "scale": 0.6
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "linear",
+      "state": {
+        "phi": 0.2
+      },
+      "builds": [
+        {
+          "element": "linear-condition"
+        },
+        {
+          "element": "linear-result"
+        }
+      ],
+      "elements": [
+        {
+          "id": "linear-title",
+          "frame": {
+            "x": 80.0,
+            "y": 40.0,
+            "w": 1320.0,
+            "h": 52.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Linear response works near zero potential"
+          }
+        },
+        {
+          "id": "linear-footer",
+          "frame": {
+            "x": 80.0,
+            "y": 950.0,
+            "w": 1440.0,
+            "h": 25.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "KEMM30 · Salt screening · 06",
+            "style": {
+              "scale": 0.5
+            }
+          }
+        },
+        {
+          "id": "linear-sinh-definition",
+          "frame": {
+            "x": 80.0,
+            "y": 135.0,
+            "w": 1440.0,
+            "h": 45.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**Hyperbolic sine:** $\\sinh\\Phi=(e^\\Phi-e^{-\\Phi})/2$, from the two opposite ion responses.",
+            "style": {
+              "scale": 0.75
+            }
+          }
+        },
+        {
+          "id": "linear-scene",
+          "frame": {
+            "x": 80.0,
+            "y": 230.0,
+            "w": 1000.0,
+            "h": 570.0
+          },
+          "kind": "scene",
+          "config": {
+            "script": "let p = plot(120, 45, 740, 390).x_lin(-3, 3).y_lin(-10, 10).text(27).axis_colour(\"text\");\nlet out = [p.axes(\"dimensionless potential Φ\", \"ionic response\")];\nout.push(p.curve(|v| (exp(v) - exp(-v)) / 2.0).stroke(\"blue\").width(4));\nout.push(p.curve(|v| v).stroke(\"orange\").width(3).dash(7, 5));\nlet sh = (exp(phi) - exp(-phi)) / 2.0;\nout.push(disc(p.x(phi), p.y(sh), 8).fill(\"blue\"));\nout.push(disc(p.x(phi), p.y(phi), 7).fill(\"orange\"));\nout.push(text(p.x(2.65), p.y(8.0), \"sinh Φ\").anchor(\"end\").fill(\"blue\").size(29));\nout.push(text(p.x(2.7), p.y(1.8), \"Φ\").fill(\"orange\").size(30));\nout",
+            "size": [
+              1000.0,
+              620.0
+            ]
+          }
+        },
+        {
+          "id": "linear-label",
+          "frame": {
+            "x": 1130.0,
+            "y": 220.0,
+            "w": 380.0,
+            "h": 158.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$\\Phi$ = {{phi:.2}}\n\n$\\psi$ = {{25.7 * phi:.1}} mV"
+          }
+        },
+        {
+          "id": "linear-potential",
+          "frame": {
+            "x": 1130.0,
+            "y": 440.0,
+            "w": 370.0,
+            "h": 45.0
+          },
+          "kind": "slider",
+          "config": {
+            "bind": "phi",
+            "min": -3.0,
+            "max": 3.0
+          }
+        },
+        {
+          "id": "linear-task",
+          "frame": {
+            "x": 1130.0,
+            "y": 535.0,
+            "w": 380.0,
+            "h": 143.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Move towards zero. Where do the curves agree?",
+            "style": {
+              "scale": 0.9
+            }
+          }
+        },
+        {
+          "id": "linear-condition",
+          "frame": {
+            "x": 1130.0,
+            "y": 720.0,
+            "w": 380.0,
+            "h": 68.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$|z_i\\Phi|\\ll1$"
+          }
+        },
+        {
+          "id": "linear-result",
+          "frame": {
+            "x": 80.0,
+            "y": 845.0,
+            "w": 1440.0,
+            "h": 68.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "For weak potentials: $\\nabla^2\\psi=\\kappa^2\\psi$."
+          }
+        },
+        {
+          "id": "linear-aside",
+          "frame": {
+            "x": 1460.0,
+            "y": 42.0,
+            "w": 48.0,
+            "h": 48.0
+          },
+          "aside": "## Check the result after calculating\n\nHyperbolic sine is defined by $\\sinh\\Phi=(e^\\Phi-e^{-\\Phi})/2$. It appears because negative and positive ions have opposite Boltzmann responses: $n_-=n_\\infty e^\\Phi$ and $n_+=n_\\infty e^{-\\Phi}$. Their charge-density difference is $\\rho=e(n_+-n_-)=-2en_\\infty\\sinh\\Phi$. Thus the blue curve represents this nonlinear response, with the sign and scale separated out. Near zero, $e^{\\pm\\Phi}\\approx1\\pm\\Phi$, so $\\sinh\\Phi\\approx\\Phi$; the orange line is that approximation. It is a hyperbolic function, not the ordinary trigonometric sine.\n\nFor monovalent ions at 25 °C, $k_BT/e=25.7$ mV. At 5 mV, $|\\Phi|\\approx0.19$; at 50 mV, $|\\Phi|\\approx1.95$. For multivalent ions use $|z_i\\Phi|$. A linear-PB result with a large inferred surface potential needs a validity qualification. Full PB still omits ion correlations, finite sizes and specific binding.",
+          "kind": "image",
+          "config": {
+            "src": "media/aside-info.svg",
+            "alt": "Open a short explanation"
+          }
+        }
+      ]
+    },
+    {
+      "id": "geometries",
+      "elements": [
+        {
+          "id": "geometries-title",
+          "frame": {
+            "x": 80.0,
+            "y": 40.0,
+            "w": 1320.0,
+            "h": 49.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Salt makes the potential decay approximately exponentially",
+            "style": {
+              "scale": 0.95
+            }
+          }
+        },
+        {
+          "id": "geometries-footer",
+          "frame": {
+            "x": 80.0,
+            "y": 950.0,
+            "w": 1440.0,
+            "h": 25.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "KEMM30 · Salt screening · 07",
+            "style": {
+              "scale": 0.5
+            }
+          }
+        },
+        {
+          "id": "geometries-scope",
+          "frame": {
+            "x": 80.0,
+            "y": 140.0,
+            "w": 1440.0,
+            "h": 44.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**Linearized PB**, outside the object; $\\psi_s$ is surface potential and $x$ is distance from its surface.",
+            "style": {
+              "scale": 0.75
+            }
+          }
+        },
+        {
+          "id": "geometries-plane-box",
+          "frame": {
+            "x": 80.0,
+            "y": 245.0,
+            "w": 420.0,
+            "h": 470.0
+          },
+          "style": {
+            "fill": "surface",
+            "border": {
+              "color": "line",
+              "width": 2.0,
+              "dash": "solid"
+            }
+          },
+          "kind": "shape",
+          "config": {
+            "shape": "rect",
+            "radius": 12.0
+          }
+        },
+        {
+          "id": "geometries-plane-label",
+          "frame": {
+            "x": 105.0,
+            "y": 260.0,
+            "w": 370.0,
+            "h": 44.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**Plane**",
+            "style": {
+              "scale": 0.85
+            }
+          }
+        },
+        {
+          "id": "geometries-plane-diagram",
+          "frame": {
+            "x": 105.0,
+            "y": 330.0,
+            "w": 370.0,
+            "h": 240.0
+          },
+          "kind": "scene",
+          "config": {
+            "script": "let out=[rect(55,35,45,180).fill(\"surface\").stroke(\"orange\").width(3)];\nfor y in [60,100,140,180] {out.push(text(77,y,\"+\").fill(\"orange\").size(28));}\nout.push(line(100,220,290,220).stroke(\"text\").width(3).arrow());\nout.push(text(205,250,\"x from plane\").size(27));\nout.push(disc(270,125,6).fill(\"accent\"));out.push(line(100,125,265,125).stroke(\"accent\").width(3).arrow());\nout.push(text(205,98,\"x\").size(28));out\n",
+            "size": [
+              370.0,
+              310.0
+            ]
+          }
+        },
+        {
+          "id": "geometries-sphere-box",
+          "frame": {
+            "x": 590.0,
+            "y": 245.0,
+            "w": 420.0,
+            "h": 470.0
+          },
+          "style": {
+            "fill": "surface",
+            "border": {
+              "color": "line",
+              "width": 2.0,
+              "dash": "solid"
+            }
+          },
+          "kind": "shape",
+          "config": {
+            "shape": "rect",
+            "radius": 12.0
+          }
+        },
+        {
+          "id": "geometries-sphere-label",
+          "frame": {
+            "x": 615.0,
+            "y": 260.0,
+            "w": 370.0,
+            "h": 44.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**Sphere**",
+            "style": {
+              "scale": 0.85
+            }
+          }
+        },
+        {
+          "id": "geometries-sphere-diagram",
+          "frame": {
+            "x": 615.0,
+            "y": 330.0,
+            "w": 370.0,
+            "h": 240.0
+          },
+          "kind": "scene",
+          "config": {
+            "script": "let out=[disc(145,135,78).fill(\"surface\").stroke(\"orange\").width(3),disc(145,135,5).fill(\"text\")];\nout.push(line(145,135,223,135).stroke(\"text\").width(3).arrow());out.push(text(182,115,\"a\").size(27));\nout.push(line(145,185,300,185).stroke(\"accent\").width(3).arrow());out.push(text(270,165,\"r = a + x\").size(26));\nout.push(text(145,45,\"+\").fill(\"orange\").size(28));out.push(text(100,100,\"+\").fill(\"orange\").size(28));\nout.push(text(175,210,\"+\").fill(\"orange\").size(28));out\n",
+            "size": [
+              370.0,
+              310.0
+            ]
+          }
+        },
+        {
+          "id": "geometries-cylinder-box",
+          "frame": {
+            "x": 1100.0,
+            "y": 245.0,
+            "w": 420.0,
+            "h": 470.0
+          },
+          "style": {
+            "fill": "surface",
+            "border": {
+              "color": "line",
+              "width": 2.0,
+              "dash": "solid"
+            }
+          },
+          "kind": "shape",
+          "config": {
+            "shape": "rect",
+            "radius": 12.0
+          }
+        },
+        {
+          "id": "geometries-cylinder-label",
+          "frame": {
+            "x": 1125.0,
+            "y": 260.0,
+            "w": 370.0,
+            "h": 44.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**Cylinder**",
+            "style": {
+              "scale": 0.85
+            }
+          }
+        },
+        {
+          "id": "geometries-cylinder-diagram",
+          "frame": {
+            "x": 1125.0,
+            "y": 330.0,
+            "w": 370.0,
+            "h": 240.0
+          },
+          "kind": "scene",
+          "config": {
+            "script": "let out=[rect(95,65,140,145).fill(\"surface\").stroke(\"orange\").width(3)];\nlet a=[];let b=[];for i in 0..41 {let t=6.2831853*i/40.0;a.push([165.0+70.0*cos(t),65.0+22.0*sin(t)]);b.push([165.0+70.0*cos(t),210.0+22.0*sin(t)]);}\nout.push(polygon(b).fill(\"surface\").stroke(\"orange\").width(3));out.push(polygon(a).fill(\"surface\").stroke(\"orange\").width(3));\nout.push(line(165,25,165,250).stroke(\"line\").width(2).dash(5,4));\nout.push(line(165,135,235,135).stroke(\"text\").width(3).arrow());out.push(text(200,115,\"a\").size(27));\nout.push(line(165,260,315,260).stroke(\"accent\").width(3).arrow());out.push(text(260,290,\"r from axis\").size(26));\nfor y in [95,155,190] {out.push(text(110,y,\"+\").fill(\"orange\").size(28));}out\n",
+            "size": [
+              370.0,
+              310.0
+            ]
+          }
+        },
+        {
+          "id": "geometries-plane-solution",
+          "frame": {
+            "x": 105.0,
+            "y": 595.0,
+            "w": 370.0,
+            "h": 90.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$\\dfrac{\\psi(x)}{\\psi_s}=e^{-x/\\ell_D}$",
+            "style": {
+              "scale": 0.8
+            }
+          }
+        },
+        {
+          "id": "geometries-sphere-solution",
+          "frame": {
+            "x": 615.0,
+            "y": 595.0,
+            "w": 370.0,
+            "h": 79.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$\\dfrac{\\psi(r)}{\\psi_s}=\\dfrac{a}{r}e^{-(r-a)/\\ell_D}$",
+            "style": {
+              "scale": 0.7
+            }
+          }
+        },
+        {
+          "id": "geometries-cylinder-solution",
+          "frame": {
+            "x": 1125.0,
+            "y": 585.0,
+            "w": 370.0,
+            "h": 97.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$\\psi(r)\\propto\\dfrac{e^{-r/\\ell_D}}{\\sqrt r}$",
+            "style": {
+              "scale": 0.8
+            }
+          }
+        },
+        {
+          "id": "geometries-coordinates",
+          "frame": {
+            "x": 80.0,
+            "y": 770.0,
+            "w": 1440.0,
+            "h": 42.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$a$: radius; $r=a+x$ from centre/axis; $x$: distance from the surface.",
+            "style": {
+              "scale": 0.7
+            }
+          }
+        },
+        {
+          "id": "geometries-common",
+          "frame": {
+            "x": 80.0,
+            "y": 830.0,
+            "w": 1440.0,
+            "h": 62.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**Remember: exponential screening**, $e^{-\\mathrm{distance}/\\ell_D}$.",
+            "style": {
+              "colour": "accent"
+            }
+          }
+        },
+        {
+          "id": "geometries-aside",
+          "frame": {
+            "x": 1460.0,
+            "y": 42.0,
+            "w": 48.0,
+            "h": 48.0
+          },
+          "aside": "## Three geometries, one linear screening length\n\nThese solutions apply to the linearized equation $\\nabla^2\\psi=\\kappa^2\\psi$, outside uniformly charged ideal objects, with fixed surface potential $\\psi_s$ and vanishing potential at infinity. Here $\\kappa=1/\\ell_D$, $a$ is the radius and $r=a+x$ is measured from the sphere's centre or cylinder's axis. The plane uses $x$ directly from its surface.\n\nPlane: $\\psi(x)/\\psi_s=e^{-\\kappa x}$. Sphere: $\\psi(r)/\\psi_s=(a/r)e^{-\\kappa(r-a)}$. Cylinder: $\\psi(r)/\\psi_s=K_0(\\kappa r)/K_0(\\kappa a)$, with $K_0$ the order-zero modified Bessel function of the second kind. The cylinder is infinitely long; end effects are absent. No evaluation of Bessel functions is required in the assigned exercises.\n\nFor large $r/\\ell_D$, $K_0(r/\\ell_D)\\sim\\sqrt{\\pi\\ell_D/(2r)}e^{-r/\\ell_D}$. Thus the far-field forms are an exponential times an algebraic factor: 1 for a plane, $1/r$ for a sphere, and $1/\\sqrt r$ for a cylinder. Replacing $r$ by $a+x$ changes only a constant exponential amplitude. The cylinder's exact profile is NOT a pure exponential, nor is the $1/\\sqrt r$ far-field expression exact near its surface. All three share the same exponential decay length in the same electrolyte.\n\nFor a sphere at fixed total charge, the surface amplitude also depends on salt: $\\psi_s=Q/[4\\pi\\varepsilon_0\\varepsilon_r a(1+\\kappa a)]$. The later sphere slide gives that charge-based form. At fixed surface potential, the expressions here normalize every profile at its own surface.\n\nThese are solutions of linearized PB, not general exact nonlinear solutions. Full nonlinear planar PB was used on the concentration slide. Nonlinear PB also has a linear far field when the potential becomes weak. Sources: Dill & Bromberg, Chapter 23, Examples 23.3–23.4 for plane and sphere; https://doi.org/10.1016/S0021-9797(02)00142-X for cylindrical linear PB; NIST DLMF §10.40.2, https://dlmf.nist.gov/10.40.E2 for the Bessel asymptotic.\n",
+          "kind": "image",
+          "config": {
+            "src": "media/aside-info.svg",
+            "alt": "Definitions, assumptions and sources"
+          }
+        },
+        {
+          "id": "geometries-cylinder-far",
+          "frame": {
+            "x": 1125.0,
+            "y": 720.0,
+            "w": 370.0,
+            "h": 33.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Far field: $r\\gg\\ell_D$",
+            "style": {
+              "scale": 0.55
+            }
+          }
+        },
+        {
+          "id": "geometries-qualification",
+          "frame": {
+            "x": 80.0,
+            "y": 915.0,
+            "w": 1440.0,
+            "h": 29.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Geometry adds a prefactor; the exponential screening length is the same.",
+            "style": {
+              "scale": 0.55
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "debye",
+      "state": {
+        "c": 1.0
+      },
+      "elements": [
+        {
+          "id": "debye-title",
+          "frame": {
+            "x": 80.0,
+            "y": 40.0,
+            "w": 1320.0,
+            "h": 49.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Count every ion: the same salt concentration can screen differently",
+            "style": {
+              "scale": 0.95
+            }
+          }
+        },
+        {
+          "id": "debye-footer",
+          "frame": {
+            "x": 80.0,
+            "y": 950.0,
+            "w": 1440.0,
+            "h": 25.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "KEMM30 · Salt screening · 08",
+            "style": {
+              "scale": 0.5
+            }
+          }
+        },
+        {
+          "id": "debye-ionic-strength",
+          "frame": {
+            "x": 80.0,
+            "y": 160.0,
+            "w": 680.0,
+            "h": 175.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$$I=\\frac12\\sum_i c_i z_i^2$$",
+            "style": {
+              "scale": 0.85
+            }
+          }
+        },
+        {
+          "id": "debye-length",
+          "frame": {
+            "x": 840.0,
+            "y": 160.0,
+            "w": 680.0,
+            "h": 182.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$$\\ell_D=\\frac{3.04\\,\\mathrm{\\AA}}{\\sqrt{I/(1\\,\\mathrm M)}}$$",
+            "style": {
+              "scale": 0.85
+            }
+          }
+        },
+        {
+          "id": "debye-table",
+          "frame": {
+            "x": 80.0,
+            "y": 390.0,
+            "w": 1440.0,
+            "h": 330.0
+          },
+          "kind": "scene",
+          "config": {
+            "script": "let out=[];\nout.push(text(15,30,\"Salt (cation:anion valence)\").anchor(\"start\").size(28));\nout.push(text(470,30,\"Ions from salt concentration c\").anchor(\"start\").size(28));\nout.push(text(1070,30,\"I (mM)\").anchor(\"middle\").size(28));\nout.push(text(1320,30,\"ℓD (Å)\").anchor(\"middle\").size(28));\nlet names=[\"NaCl · 1:1\",\"Na₂SO₄ · 1:2\",\"MgSO₄ · 2:2\"];\nlet ions=[\"c Na⁺  +  c Cl⁻\",\"2c Na⁺  +  c SO₄²⁻\",\"c Mg²⁺  +  c SO₄²⁻\"];\nlet mult=[1.0,3.0,4.0];let fac=[\"c = \",\"3c = \",\"4c = \"];\nfor i in 0..3 {\n let yy=105.0+i*90.0;out.push(line(10,yy-45,1430,yy-45).stroke(\"line\").width(1));\n out.push(text(15,yy,names[i]).anchor(\"start\").size(31));\n out.push(text(470,yy,ions[i]).anchor(\"start\").size(29));\n out.push(text(1070,yy,fac[i]+fixed(mult[i]*c,1)).size(29));\n out.push(text(1320,yy,fixed(3.04/sqrt(mult[i]*c/1000.0),1)).fill(\"accent\").size(34));\n}out\n",
+            "size": [
+              1440.0,
+              330.0
+            ]
+          }
+        },
+        {
+          "id": "debye-concentration",
+          "frame": {
+            "x": 80.0,
+            "y": 735.0,
+            "w": 630.0,
+            "h": 49.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Salt concentration $c=$ {{c:.1}} mM",
+            "style": {
+              "scale": 0.8
+            }
+          }
+        },
+        {
+          "id": "debye-salt",
+          "frame": {
+            "x": 750.0,
+            "y": 750.0,
+            "w": 750.0,
+            "h": 40.0
+          },
+          "kind": "slider",
+          "config": {
+            "bind": "c",
+            "min": 0.5,
+            "max": 150.0,
+            "log": true
+          }
+        },
+        {
+          "id": "debye-distinction",
+          "frame": {
+            "x": 80.0,
+            "y": 835.0,
+            "w": 1440.0,
+            "h": 84.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Only for **1:1 salt** is $I=c$. With **ionic strength $I$**, the 3.04 formula applies to all three.  \n$c_i$: each ion concentration; $z_i$: signed valence. Water at 25 °C; full dissociation assumed.",
+            "style": {
+              "scale": 0.7
+            }
+          }
+        },
+        {
+          "id": "debye-aside",
+          "frame": {
+            "x": 1460.0,
+            "y": 42.0,
+            "w": 48.0,
+            "h": 48.0
+          },
+          "aside": "## Salt concentration is not always ionic strength\n\nThe displayed $c$ is analytical salt concentration. Each $c_i$ is the concentration of a separate ion species; $z_i$ is its signed valence. With full dissociation, $I=\\tfrac12\\sum_i c_i z_i^2$. NaCl gives $I=c$; Na$_2$SO$_4$ gives $I=\\tfrac12[2c(1)^2+c(-2)^2]=3c$; MgSO$_4$ gives $I=\\tfrac12[c(2)^2+c(-2)^2]=4c$. Valence ratios are absolute cation:anion charges, not particle counts. CaCl$_2$ (2:1) also gives $I=3c$.\n\nFor an ideal dilute electrolyte in water at 25 °C, $\\ell_D=3.04/\\sqrt{I/(1\\,\\mathrm M)}$ Å. This expression uses ionic strength and is NOT restricted to 1:1 salts. The shorthand with salt concentration, $\\ell_D=3.04/\\sqrt{c/(1\\,\\mathrm M)}$ Å, requires $I=c$, as for a pure 1:1 salt.\n\nAt $c=1$ mM, the three ionic strengths are 1, 3 and 4 mM and the ideal Debye lengths are 96.1, 55.5 and 48.1 Å. At the same ionic strength all three have the same ideal Debye length. Quadrupling $I$ halves the length.\n\nThe general screening relation is $\\kappa^2=e^2\\sum_i n_i z_i^2/(\\varepsilon_0\\varepsilon_r k_BT)=4\\pi\\ell_B\\sum_i n_i z_i^2$. If $c_i$ and $I$ are in mol/L, $n_i=1000N_Ac_i$ in m$^{-3}$, so $\\kappa^2=2e^2(1000N_A I)/(\\varepsilon_0\\varepsilon_r k_BT)$. Here $N_A$ is Avogadro's constant and $\\ell_B=e^2/(4\\pi\\varepsilon_0\\varepsilon_r k_BT)$ is Bjerrum length. The notes give the conversion to Å$^{-3}$ needed for Dill 23.12.\n\nThe numerical factor is rounded for water with $\\varepsilon_r=78.4$ at 25 °C. Ion association, correlations and salt-dependent solvent properties can invalidate these ideal predictions, especially for 2:2 electrolytes; full dissociation is an illustrative assumption here, not an assertion that MgSO$_4$ remains ideal. Sources: Dill & Bromberg, Chapter 23, Eqs. 23.8–23.10 and Table 23.1; general multivalent screening definition in https://doi.org/10.1093/gji/ggy124.\n",
+          "kind": "image",
+          "config": {
+            "src": "media/aside-info.svg",
+            "alt": "Definitions, assumptions and sources"
+          }
+        }
+      ]
+    },
+    {
+      "id": "plane",
+      "state": {
+        "psi0": 5.0,
+        "salt": 0.01
+      },
+      "builds": [
+        {
+          "element": "plane-eq"
+        },
+        {
+          "element": "plane-notice"
+        }
+      ],
+      "elements": [
+        {
+          "id": "plane-title",
+          "frame": {
+            "x": 80.0,
+            "y": 40.0,
+            "w": 1320.0,
+            "h": 80.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "A planar potential decays exponentially"
+          }
+        },
+        {
+          "id": "plane-footer",
+          "frame": {
+            "x": 80.0,
+            "y": 950.0,
+            "w": 1440.0,
+            "h": 30.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "KEMM30 · Salt screening · 09",
+            "style": {
+              "scale": 0.5
+            }
+          }
+        },
+        {
+          "id": "plane-fixed",
+          "frame": {
+            "x": 80.0,
+            "y": 145.0,
+            "w": 1440.0,
+            "h": 65.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Water at 25 °C · $I=10$ mM · $\\ell_D=30.4$ Å",
+            "style": {
+              "scale": 0.8
+            }
+          }
+        },
+        {
+          "id": "plane-scene",
+          "frame": {
+            "x": 80.0,
+            "y": 245.0,
+            "w": 1000.0,
+            "h": 580.0
+          },
+          "kind": "scene",
+          "config": {
+            "script": "let ld = 3.04 / sqrt(salt);\nlet p = plot(120, 35, 740, 350).x_lin(0, 100).y_lin(0, 20).text(28).axis_colour(\"text\");\nlet out = [p.axes(\"distance x from surface (Å)\", \"potential ψ (mV)\")];\nout.push(p.curve(|x| psi0 * exp(-x / ld)).stroke(\"blue\").width(4));\nout.push(p.vline(ld).stroke(\"line\").dash(6, 5));\nout.push(disc(p.x(ld), p.y(psi0 * exp(-1.0)), 9).fill(\"accent\"));\nout.push(text(490, 535, \"At x = ℓD: ψ = \" + fixed(psi0 * exp(-1.0), 2) + \" mV\").size(28));\nout",
+            "size": [
+              1000.0,
+              580.0
+            ]
+          }
+        },
+        {
+          "id": "plane-geometry",
+          "frame": {
+            "x": 1110.0,
+            "y": 220.0,
+            "w": 410.0,
+            "h": 190.0
+          },
+          "kind": "scene",
+          "config": {
+            "script": "[\nline(55, 15, 55, 145).stroke(\"orange\").width(7),\nline(55, 85, 350, 85).stroke(\"text\").width(2).arrow(),\ndisc(350, 85, 7).fill(\"blue\"),\ntext(205, 50, \"x\").size(31),\ntext(205, 155, \"distance from surface\").size(26)\n]",
+            "size": [
+              410.0,
+              190.0
+            ]
+          }
+        },
+        {
+          "id": "plane-label",
+          "frame": {
+            "x": 1130.0,
+            "y": 415.0,
+            "w": 380.0,
+            "h": 120.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Surface potential: $\\psi_0$ = {{psi0:.0}} mV",
+            "style": {
+              "scale": 0.85
+            }
+          }
+        },
+        {
+          "id": "plane-surface",
+          "frame": {
+            "x": 1130.0,
+            "y": 565.0,
+            "w": 370.0,
+            "h": 45.0
+          },
+          "kind": "slider",
+          "config": {
+            "bind": "psi0",
+            "min": 1.0,
+            "max": 15.0
+          }
+        },
+        {
+          "id": "plane-task",
+          "frame": {
+            "x": 1130.0,
+            "y": 660.0,
+            "w": 380.0,
+            "h": 120.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Change the surface potential.",
+            "style": {
+              "scale": 0.9
+            }
+          }
+        },
+        {
+          "id": "plane-eq",
+          "frame": {
+            "x": 1130.0,
+            "y": 790.0,
+            "w": 380.0,
+            "h": 120.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$\\psi(x)=\\psi_0e^{-\\kappa x}$",
+            "style": {
+              "scale": 0.9
+            }
+          }
+        },
+        {
+          "id": "plane-notice",
+          "frame": {
+            "x": 80.0,
+            "y": 845.0,
+            "w": 1000.0,
+            "h": 85.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "At one Debye length, 37% of the surface potential remains.",
+            "style": {
+              "scale": 0.9
+            }
+          }
+        },
+        {
+          "id": "plane-aside",
+          "frame": {
+            "x": 1460.0,
+            "y": 42.0,
+            "w": 48.0,
+            "h": 48.0
+          },
+          "aside": "## Recover a surface value\n\nThe surface value is $\\psi_0=\\psi(0)$. Distance $x$ is measured from the plane. Surface charge density $\\sigma$ is charge per area, in C/m$^2$. In $\\sigma=\\varepsilon_0\\varepsilon_r\\kappa\\psi_0$, use $\\psi_0$ in volts and $\\kappa$ in m$^{-1}$; $\\varepsilon_0$ is vacuum permittivity and $\\varepsilon_r$ is relative permittivity.\n\nGiven $\\psi(x)$, compute $\\psi_0=\\psi(x)e^{\\kappa x}$, then $\\sigma=\\varepsilon_0\\varepsilon_r\\kappa\\psi_0$. Use SI for $\\sigma$: volts and m$^{-1}$. This is the one-sided electrolyte boundary condition used in Dill Example 23.3. The potential reference is zero far into the electrolyte.",
+          "kind": "image",
+          "config": {
+            "src": "media/aside-info.svg",
+            "alt": "Open a short explanation"
+          }
+        }
+      ],
+      "skip": true
+    },
+    {
+      "id": "sphere",
+      "state": {
+        "a": 25.0,
+        "salt": 0.01
+      },
+      "builds": [
+        {
+          "element": "sphere-eq"
+        }
+      ],
+      "elements": [
+        {
+          "id": "sphere-title",
+          "frame": {
+            "x": 80.0,
+            "y": 40.0,
+            "w": 1320.0,
+            "h": 80.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Curvature adds geometric spreading"
+          }
+        },
+        {
+          "id": "sphere-footer",
+          "frame": {
+            "x": 80.0,
+            "y": 950.0,
+            "w": 1440.0,
+            "h": 30.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "KEMM30 · Salt screening · 10",
+            "style": {
+              "scale": 0.5
+            }
+          }
+        },
+        {
+          "id": "sphere-fixed",
+          "frame": {
+            "x": 80.0,
+            "y": 145.0,
+            "w": 1440.0,
+            "h": 80.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$I=10$ mM; $\\ell_D=30.4$ Å; $\\psi_a=\\psi(a)$ is the surface potential.",
+            "style": {
+              "scale": 0.8
+            }
+          }
+        },
+        {
+          "id": "sphere-scene",
+          "frame": {
+            "x": 80.0,
+            "y": 235.0,
+            "w": 1000.0,
+            "h": 520.0
+          },
+          "kind": "scene",
+          "config": {
+            "script": "let ld = 3.04 / sqrt(salt);\nlet p = plot(130, 35, 730, 350).x_lin(0, 100).y_lin(0, 1).text(28).axis_colour(\"text\");\nlet out = [p.axes(\"distance x from surface (Å)\", \"normalized potential ψ / ψa\")];\nout.push(p.curve(|x| exp(-x / ld)).stroke(\"text\").width(2).dash(7, 5).opacity(0.5));\nout.push(p.curve(|x| a / (a + x) * exp(-x / ld)).stroke(\"blue\").width(4));\nout.push(text(490, 535, \"Same ℓD: sphere (blue), plane (dashed)\").size(28));\nout",
+            "size": [
+              1000.0,
+              570.0
+            ]
+          }
+        },
+        {
+          "id": "sphere-geometry",
+          "frame": {
+            "x": 1110.0,
+            "y": 240.0,
+            "w": 410.0,
+            "h": 210.0
+          },
+          "kind": "scene",
+          "config": {
+            "script": "[\ndisc(85, 100, 50).fill(\"surface\").stroke(\"orange\").width(3),\ndisc(85, 100, 4).fill(\"text\"),\nline(85, 100, 135, 100).stroke(\"text\").width(2).arrow(),\ntext(112, 128, \"a\").size(26),\nline(85, 40, 355, 40).stroke(\"text\").width(2).arrow(),\ntext(210, 18, \"r\").size(28),\nline(135, 100, 355, 100).stroke(\"blue\").width(2).arrow(),\ndisc(355, 100, 7).fill(\"blue\"),\ntext(250, 150, \"x = r − a\").size(28)\n]",
+            "size": [
+              410.0,
+              210.0
+            ]
+          }
+        },
+        {
+          "id": "sphere-label",
+          "frame": {
+            "x": 1130.0,
+            "y": 485.0,
+            "w": 380.0,
+            "h": 85.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$a$ = {{a:.0}} Å"
+          }
+        },
+        {
+          "id": "sphere-radius",
+          "frame": {
+            "x": 1130.0,
+            "y": 605.0,
+            "w": 370.0,
+            "h": 45.0
+          },
+          "kind": "slider",
+          "config": {
+            "bind": "a",
+            "min": 5.0,
+            "max": 200.0
+          }
+        },
+        {
+          "id": "sphere-task",
+          "frame": {
+            "x": 1130.0,
+            "y": 690.0,
+            "w": 380.0,
+            "h": 135.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Increase the radius. How does the profile change?",
+            "style": {
+              "scale": 0.85
+            }
+          }
+        },
+        {
+          "id": "sphere-eq",
+          "frame": {
+            "x": 80.0,
+            "y": 770.0,
+            "w": 1440.0,
+            "h": 183.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$$\\psi(r)=\\frac{Q}{4\\pi\\varepsilon_0\\varepsilon_r r}\\,\\frac{e^{-\\kappa(r-a)}}{1+\\kappa a}$$",
+            "style": {
+              "scale": 0.9
+            }
+          }
+        },
+        {
+          "id": "sphere-aside",
+          "frame": {
+            "x": 1460.0,
+            "y": 42.0,
+            "w": 48.0,
+            "h": 48.0
+          },
+          "aside": "## One length, different geometries\n\nThe sphere has radius $a$ and total charge $Q$. Radial distance $r$ starts at the centre; surface distance is $x=r-a$. The subscript $a$ means evaluated at the surface: $\\psi_a=\\psi(a)$. Write $Q=Ze$, so $Z=Q/e$ is charge in elementary-charge units. The solvent has relative permittivity $\\varepsilon_r$; $\\varepsilon_0$ is vacuum permittivity. These formulas apply outside the sphere, $r\\ge a$.\n\nFor a sphere, $\\psi(r)/\\psi_a=(a/r)e^{-\\kappa(r-a)}$. For a plane, $\\psi(x)/\\psi_0=e^{-\\kappa x}$. Both have the same $\\kappa$ in the same electrolyte. An infinite cylinder uses modified Bessel functions; far away its decay also contains a geometric factor. A finite charged sphere is not a point charge placed at its centre in electrolyte extending to $r=0$.",
+          "kind": "image",
+          "config": {
+            "src": "media/aside-info.svg",
+            "alt": "Open a short explanation"
+          }
+        }
+      ]
+    },
+    {
+      "id": "inverse",
+      "builds": [
+        {
+          "element": "inverse-step1"
+        },
+        {
+          "element": "inverse-step2"
+        },
+        {
+          "element": "inverse-step3"
+        },
+        {
+          "element": "inverse-check"
+        }
+      ],
+      "elements": [
+        {
+          "id": "inverse-title",
+          "frame": {
+            "x": 80.0,
+            "y": 40.0,
+            "w": 1320.0,
+            "h": 80.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Recover a sphere's charge from its potential"
+          }
+        },
+        {
+          "id": "inverse-footer",
+          "frame": {
+            "x": 80.0,
+            "y": 950.0,
+            "w": 1440.0,
+            "h": 30.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "KEMM30 · Salt screening · 11",
+            "style": {
+              "scale": 0.5
+            }
+          }
+        },
+        {
+          "id": "inverse-given",
+          "frame": {
+            "x": 80.0,
+            "y": 155.0,
+            "w": 1440.0,
+            "h": 100.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$a=25$ Å; $I=10$ mM. At $r=45$ Å, $\\psi=1.0$ mV."
+          }
+        },
+        {
+          "id": "inverse-geometry",
+          "frame": {
+            "x": 80.0,
+            "y": 330.0,
+            "w": 450.0,
+            "h": 320.0
+          },
+          "kind": "scene",
+          "config": {
+            "script": "[\ndisc(105, 140, 75).fill(\"surface\").stroke(\"orange\").width(4),\ndisc(105, 140, 5).fill(\"text\"),\nline(105, 140, 180, 140).stroke(\"text\").width(2).arrow(),\ntext(135, 185, \"a = 25 Å\").size(27),\nline(105, 35, 240, 35).stroke(\"text\").width(2).arrow(),\ntext(180, 15, \"r = 45 Å\").size(28),\nline(180, 140, 240, 140).stroke(\"blue\").width(3).arrow(),\ndisc(240, 140, 8).fill(\"blue\"),\ntext(300, 190, \"x = r − a\").size(27),\ntext(240, 275, \"ψ(r) = 1.0 mV\").size(30)\n]",
+            "size": [
+              450.0,
+              320.0
+            ]
+          }
+        },
+        {
+          "id": "inverse-step1",
+          "frame": {
+            "x": 620.0,
+            "y": 295.0,
+            "w": 900.0,
+            "h": 150.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**1. Find the distances**\n\n$\\ell_D=30.4$ Å; $x=r-a=20$ Å.",
+            "style": {
+              "scale": 0.9
+            }
+          }
+        },
+        {
+          "id": "inverse-step2",
+          "frame": {
+            "x": 620.0,
+            "y": 480.0,
+            "w": 900.0,
+            "h": 160.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**2. Extrapolate to the surface**\n\n$\\psi_a=\\psi(r)\\,(r/a)e^{\\kappa(r-a)}=3.48$ mV.",
+            "style": {
+              "scale": 0.9
+            }
+          }
+        },
+        {
+          "id": "inverse-step3",
+          "frame": {
+            "x": 620.0,
+            "y": 675.0,
+            "w": 900.0,
+            "h": 160.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**3. Recover the charge**\n\n$Z=Q/e=\\Phi_a a(1+\\kappa a)/\\ell_B=0.87$.",
+            "style": {
+              "scale": 0.9
+            }
+          }
+        },
+        {
+          "id": "inverse-check",
+          "frame": {
+            "x": 80.0,
+            "y": 865.0,
+            "w": 1440.0,
+            "h": 75.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Check: $|\\Phi_a|=3.48/25.7=0.135$ — a weak potential.",
+            "style": {
+              "scale": 0.9,
+              "colour": "accent"
+            }
+          }
+        },
+        {
+          "id": "inverse-bjerrum",
+          "frame": {
+            "x": 80.0,
+            "y": 710.0,
+            "w": 450.0,
+            "h": 130.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Water: $\\ell_B=7.1$ Å (Bjerrum length).",
+            "style": {
+              "scale": 0.75
+            }
+          }
+        },
+        {
+          "id": "inverse-aside",
+          "frame": {
+            "x": 1460.0,
+            "y": 42.0,
+            "w": 48.0,
+            "h": 48.0
+          },
+          "aside": "## From potential to local concentrations\n\nThe surface subscript also gives $\\Phi_a=e\\psi_a/(k_BT)$. The sphere charge in elementary-charge units is $Z=Q/e$; $\\ell_B=7.1$ Å is the Bjerrum length used here. In the concentration formulas below, $c_\\infty$ is the bulk molar concentration of each ion species.\n\nAt the surface, $c_+=c_\\infty e^{-\\Phi_a}$ and $c_-=c_\\infty e^{\\Phi_a}$. Here $c_\\infty=10$ mM and $\\Phi_a=0.135$: $c_+\\approx8.73$ mM and $c_-\\approx11.45$ mM. For a negative sphere the roles exchange. A model fit can give a noninteger effective charge; a molecule's bare elementary charges are discrete.",
+          "kind": "image",
+          "config": {
+            "src": "media/aside-info.svg",
+            "alt": "Open a short explanation"
+          }
+        }
+      ]
+    },
+    {
+      "id": "pair",
+      "state": {
+        "mode": 1.0,
+        "q1": 1.0,
+        "q2": -1.0,
+        "salt": 0.01,
+        "x1": 250.0,
+        "x2": 550.0,
+        "y1": 250.0,
+        "y2": 250.0
+      },
+      "builds": [
+        {
+          "element": "pair-notice"
+        }
+      ],
+      "elements": [
+        {
+          "id": "pair-title",
+          "frame": {
+            "x": 80.0,
+            "y": 40.0,
+            "w": 1320.0,
+            "h": 80.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Does salt also weaken attraction?"
+          }
+        },
+        {
+          "id": "pair-footer",
+          "frame": {
+            "x": 80.0,
+            "y": 950.0,
+            "w": 1440.0,
+            "h": 30.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "KEMM30 · Salt screening · 12",
+            "style": {
+              "scale": 0.5
+            }
+          }
+        },
+        {
+          "id": "pair-label",
+          "frame": {
+            "x": 80.0,
+            "y": 150.0,
+            "w": 640.0,
+            "h": 80.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$I$ = {{salt * 1000.0:.1}} mM · water, $\\varepsilon_r=78.4$",
+            "style": {
+              "scale": 0.8
+            }
+          }
+        },
+        {
+          "id": "pair-salt",
+          "frame": {
+            "x": 750.0,
+            "y": 165.0,
+            "w": 340.0,
+            "h": 45.0
+          },
+          "kind": "slider",
+          "config": {
+            "bind": "salt",
+            "min": 0.001,
+            "max": 0.1,
+            "log": true
+          }
+        },
+        {
+          "id": "pair-mode",
+          "frame": {
+            "x": 1130.0,
+            "y": 150.0,
+            "w": 390.0,
+            "h": 60.0
+          },
+          "kind": "checkbox",
+          "config": {
+            "bind": "mode",
+            "label": "Finite spheres (a = 2 Å)"
+          }
+        },
+        {
+          "id": "pair-map-label",
+          "frame": {
+            "x": 80.0,
+            "y": 245.0,
+            "w": 680.0,
+            "h": 65.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$R$: centre–centre distance.",
+            "style": {
+              "scale": 0.8
+            }
+          }
+        },
+        {
+          "id": "pair-map",
+          "frame": {
+            "x": 80.0,
+            "y": 320.0,
+            "w": 680.0,
+            "h": 320.0
+          },
+          "kind": "scene",
+          "config": {
+            "script": "let ang = 10.0;                                  // scene units per Å\nlet a = mode * 2.0;\nlet lB = 7.1;\nlet kap = sqrt(salt) / 3.04;   // Å⁻¹\nlet ef = exp(kap * a) / (1.0 + kap * a);\nlet qs = [charge(q1 * ef, x1, y1), charge(q2 * ef, x2, y2)];\nlet out = [];\nlet screened = true;\nlet grid = ();\ntry {\n    grid = potential_grid(qs, width, height, 6, 20.0, kap / ang);\n} catch {\n    grid = potential_grid(qs, width, height, 6, 20.0);\n    screened = false;\n}\nout.push(heatmap(grid, 0.6 * lB * ang));\nfor c in [[x1, y1, q1], [x2, y2, q2]] {\n    out.push(disc(c[0], c[1], ang / kap).fill(\"none\").stroke(\"text\").width(1.5).dash(6, 6).opacity(0.6));\n    out.push(disc(c[0], c[1], 20.0).fill(if c[2] > 0.0 { \"blue\" } else { \"red\" }).stroke(\"text\").width(1));\n    out.push(text(c[0], c[1], if c[2] > 0.0 { \"+\" } else { \"−\" }).fill(\"background\").size(36));\n}\nout.push(text(984, 30, \"ℓD = \" + fixed(1.0 / kap, 1) + \" Å\").anchor(\"end\").size(34));\nif !screened {\n    out.push(text(500, 250, \"unscreened: this Blikfang lacks potential_grid(…, kappa)\").size(34).fill(\"red\"));\n}\nout",
+            "handles": [
+              {
+                "x": "x2",
+                "y": "y2",
+                "r": 24.0,
+                "tap": "q2 = -q2",
+                "within": {
+                  "x": 290.0,
+                  "y": 249.0,
+                  "w": 540.0,
+                  "h": 2.0
+                }
+              }
+            ],
+            "size": [
+              1000.0,
+              500.0
+            ]
+          }
+        },
+        {
+          "id": "pair-plot",
+          "frame": {
+            "x": 800.0,
+            "y": 230.0,
+            "w": 720.0,
+            "h": 620.0
+          },
+          "kind": "scene",
+          "config": {
+            "script": "let a = mode * 2.0;\nlet lB = 7.1;\nlet kap = sqrt(salt) / 3.04;\nlet zz = q1 * q2;\nlet d = ((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)).sqrt() / 10.0;\nlet R = if d < 2.0 * a { 2.0 * a } else { d };\nlet f = (1.0 + kap * a) * (1.0 + kap * a);\nlet p = plot(125, 20, 440, 360).x_lin(4, 60).y_lin(-2, 2).text(23).axis_colour(\"text\");\nlet out = [p.axes(\"R  (Å)\", \"energy / kBT\")];\nout.push(p.hline(0).stroke(\"faint\").width(1));\n\n\nout.push(p.curve(|r| zz * lB / r).stroke(\"text\").width(2).dash(6, 4).opacity(0.55));\nout.push(p.curve(|r| zz * lB * (-kap * (r - 2.0 * a)).exp() / (f * r)).stroke(\"purple\").width(3));\nlet wR = zz * lB * (-kap * (R - 2.0 * a)).exp() / (f * R);\nlet xR = if R > 60.0 { 60.0 } else { R };\nlet yR = if wR > 6.0 { 6.0 } else if wR < -6.0 { -6.0 } else { wR };\nout.push(disc(p.x(xR), p.y(yR), 8).fill(\"purple\").stroke(\"none\"));\nout.push(text(560, 485, \"energy = \" + fixed(wR, 2) + \" kBT at R = \" + fixed(R, 1) + \" Å\").anchor(\"end\").size(22));\nout.push(text(p.x(58.0), p.y(zz * lB / 58.0) - 12, \"no salt\").anchor(\"end\").size(22).fill(\"text\"));\nout",
+            "size": [
+              580.0,
+              500.0
+            ]
+          }
+        },
+        {
+          "id": "pair-task",
+          "frame": {
+            "x": 80.0,
+            "y": 720.0,
+            "w": 680.0,
+            "h": 135.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**Coulomb:** $U_C/(k_BT)=z_1z_2\\ell_B/R$.  \n**Yukawa (screened):** $U_Y=U_Ce^{-R/\\ell_D}$.",
+            "style": {
+              "scale": 0.75
+            }
+          }
+        },
+        {
+          "id": "pair-notice",
+          "frame": {
+            "x": 80.0,
+            "y": 865.0,
+            "w": 1440.0,
+            "h": 75.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "More salt brings both attractive and repulsive energies closer to zero.",
+            "style": {
+              "scale": 0.9,
+              "colour": "accent"
+            }
+          }
+        },
+        {
+          "id": "pair-model-name",
+          "frame": {
+            "x": 80.0,
+            "y": 655.0,
+            "w": 680.0,
+            "h": 55.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Point-charge energies",
+            "style": {
+              "scale": 0.75
+            }
+          }
+        },
+        {
+          "id": "pair-aside",
+          "frame": {
+            "x": 1460.0,
+            "y": 42.0,
+            "w": 48.0,
+            "h": 48.0
+          },
+          "aside": "## Two labelled models\n\nThe unscreened Coulomb energy is $U_C(R)/(k_BT)=z_1z_2\\ell_B/R$. The screened Coulomb energy, also called the Yukawa energy, is $U_Y(R)=U_C(R)e^{-R/\\ell_D}$. Thus C means Coulomb and Y means Yukawa. Here $R$ is centre–centre separation, and the charges are $z_1e$ and $z_2e$. With finite spheres selected, the plotted free energy $w$ includes the radius correction given below. The dashed rings mark one Debye length, not a cloud boundary.\n\nPoint-charge mode: $U_Y/k_BT=z_1z_2\\ell_Be^{-\\kappa R}/R$. Finite-sphere mode: $w/k_BT=z_1z_2\\ell_Be^{-\\kappa(R-2a)}/[R(1+\\kappa a)^2]$. The map uses the matching isolated-sphere effective amplitude; it is a linear superposition illustration. Colours show potential sign, not ion concentration. Dragging keeps $R\\ge4$ Å. Distances on the map use 10 scene units per Å.",
+          "kind": "image",
+          "config": {
+            "src": "media/aside-info.svg",
+            "alt": "Open a short explanation"
+          }
+        }
+      ]
+    },
+    {
+      "id": "fractions",
+      "builds": [
+        {
+          "element": "fractions-fraction0"
+        },
+        {
+          "element": "fractions-fraction1"
+        },
+        {
+          "element": "fractions-fraction2"
+        },
+        {
+          "element": "fractions-notice"
+        }
+      ],
+      "elements": [
+        {
+          "id": "fractions-title",
+          "frame": {
+            "x": 80.0,
+            "y": 40.0,
+            "w": 1320.0,
+            "h": 80.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "How much electrostatic energy remains?"
+          }
+        },
+        {
+          "id": "fractions-footer",
+          "frame": {
+            "x": 80.0,
+            "y": 950.0,
+            "w": 1440.0,
+            "h": 30.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "KEMM30 · Salt screening · 13",
+            "style": {
+              "scale": 0.5
+            }
+          }
+        },
+        {
+          "id": "fractions-eq",
+          "frame": {
+            "x": 80.0,
+            "y": 140.0,
+            "w": 1440.0,
+            "h": 210.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$$\\frac{U_Y}{U_C}=\\frac{\\text{Yukawa energy}}{\\text{Coulomb energy}}=e^{-R/\\ell_D}$$",
+            "style": {
+              "scale": 1.05
+            }
+          }
+        },
+        {
+          "id": "fractions-distance",
+          "frame": {
+            "x": 80.0,
+            "y": 375.0,
+            "w": 1440.0,
+            "h": 65.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Ideal point charges · $R=30$ Å · water at 25 °C",
+            "style": {
+              "scale": 0.9,
+              "align": "center"
+            }
+          }
+        },
+        {
+          "id": "fractions-salt0",
+          "frame": {
+            "x": 80.0,
+            "y": 460.0,
+            "w": 420.0,
+            "h": 70.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "1 mM",
+            "style": {
+              "align": "center"
+            }
+          }
+        },
+        {
+          "id": "fractions-fraction0",
+          "frame": {
+            "x": 80.0,
+            "y": 540.0,
+            "w": 420.0,
+            "h": 165.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "73%",
+            "style": {
+              "scale": 2.5,
+              "colour": "accent",
+              "align": "center"
+            }
+          }
+        },
+        {
+          "id": "fractions-length0",
+          "frame": {
+            "x": 80.0,
+            "y": 720.0,
+            "w": 420.0,
+            "h": 80.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$\\ell_D=96.1$ Å",
+            "style": {
+              "scale": 0.9,
+              "align": "center"
+            }
+          }
+        },
+        {
+          "id": "fractions-salt1",
+          "frame": {
+            "x": 590.0,
+            "y": 460.0,
+            "w": 420.0,
+            "h": 70.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "10 mM",
+            "style": {
+              "align": "center"
+            }
+          }
+        },
+        {
+          "id": "fractions-fraction1",
+          "frame": {
+            "x": 590.0,
+            "y": 540.0,
+            "w": 420.0,
+            "h": 165.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "37%",
+            "style": {
+              "scale": 2.5,
+              "colour": "accent",
+              "align": "center"
+            }
+          }
+        },
+        {
+          "id": "fractions-length1",
+          "frame": {
+            "x": 590.0,
+            "y": 720.0,
+            "w": 420.0,
+            "h": 80.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$\\ell_D=30.4$ Å",
+            "style": {
+              "scale": 0.9,
+              "align": "center"
+            }
+          }
+        },
+        {
+          "id": "fractions-salt2",
+          "frame": {
+            "x": 1100.0,
+            "y": 460.0,
+            "w": 420.0,
+            "h": 70.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "100 mM",
+            "style": {
+              "align": "center"
+            }
+          }
+        },
+        {
+          "id": "fractions-fraction2",
+          "frame": {
+            "x": 1100.0,
+            "y": 540.0,
+            "w": 420.0,
+            "h": 165.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "4.4%",
+            "style": {
+              "scale": 2.5,
+              "colour": "accent",
+              "align": "center"
+            }
+          }
+        },
+        {
+          "id": "fractions-length2",
+          "frame": {
+            "x": 1100.0,
+            "y": 720.0,
+            "w": 420.0,
+            "h": 80.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$\\ell_D=9.61$ Å",
+            "style": {
+              "scale": 0.9,
+              "align": "center"
+            }
+          }
+        },
+        {
+          "id": "fractions-notice",
+          "frame": {
+            "x": 80.0,
+            "y": 865.0,
+            "w": 1440.0,
+            "h": 75.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "These are energy fractions, not aggregation probabilities.",
+            "style": {
+              "scale": 0.9
+            }
+          }
+        },
+        {
+          "id": "fractions-aside",
+          "frame": {
+            "x": 1460.0,
+            "y": 42.0,
+            "w": 48.0,
+            "h": 48.0
+          },
+          "aside": "## Energy is not an aggregation probability\n\nYukawa means screened Coulomb here: $U_Y(R)=U_C(R)e^{-R/\\ell_D}$. Both energies refer to the same charges at the same centre–centre separation $R$. Their ratio is the fraction of the unscreened electrostatic energy that remains.\n\nAt 30 Å, two monovalent point charges have $|U_C|/k_BT=7.1/30=0.237$. At 10 mM, multiply by $e^{-30/30.4}=0.373$ to get 0.0883. The ratio applies to energies of the same sign; it is not the ratio of forces and not a fraction of particles that aggregate. Finite spheres have an additional radius-dependent amplitude.",
+          "kind": "image",
+          "config": {
+            "src": "media/aside-info.svg",
+            "alt": "Open a short explanation"
+          }
+        }
+      ]
+    },
+    {
+      "id": "contact",
+      "builds": [
+        {
+          "element": "contact-eq"
+        },
+        {
+          "element": "contact-step1"
+        },
+        {
+          "element": "contact-step2"
+        },
+        {
+          "element": "contact-step3"
+        }
+      ],
+      "elements": [
+        {
+          "id": "contact-title",
+          "frame": {
+            "x": 80.0,
+            "y": 40.0,
+            "w": 1320.0,
+            "h": 52.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Contact turns the salt threshold into an algebra problem"
+          }
+        },
+        {
+          "id": "contact-footer",
+          "frame": {
+            "x": 80.0,
+            "y": 950.0,
+            "w": 1440.0,
+            "h": 25.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "KEMM30 · Salt screening · 14",
+            "style": {
+              "scale": 0.5
+            }
+          }
+        },
+        {
+          "id": "contact-geometry-label",
+          "frame": {
+            "x": 80.0,
+            "y": 175.0,
+            "w": 450.0,
+            "h": 68.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "At contact: $R=2a$"
+          }
+        },
+        {
+          "id": "contact-geometry",
+          "frame": {
+            "x": 80.0,
+            "y": 320.0,
+            "w": 450.0,
+            "h": 320.0
+          },
+          "kind": "scene",
+          "config": {
+            "script": "[\ndisc(120, 120, 100).fill(\"surface\").stroke(\"blue\").width(4),\ndisc(320, 120, 100).fill(\"surface\").stroke(\"blue\").width(4),\ntext(120, 110, \"Ze\").size(32),\ntext(320, 110, \"Ze\").size(32),\nline(120, 150, 220, 150).stroke(\"text\").width(2).arrow(),\ntext(170, 183, \"a\").size(28),\nline(120, 260, 320, 260).stroke(\"text\").width(2).arrow(),\ntext(220, 295, \"R = 2a\").size(30)\n]",
+            "size": [
+              450.0,
+              320.0
+            ]
+          }
+        },
+        {
+          "id": "contact-eq",
+          "frame": {
+            "x": 600.0,
+            "y": 155.0,
+            "w": 920.0,
+            "h": 188.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$$\\frac{w(2a)}{k_BT}=\\frac{Z^2\\ell_B}{2a(1+\\kappa a)^2}$$",
+            "style": {
+              "scale": 0.95
+            }
+          }
+        },
+        {
+          "id": "contact-given",
+          "frame": {
+            "x": 600.0,
+            "y": 375.0,
+            "w": 920.0,
+            "h": 56.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$Z=3$, $a=30$ Å. Target: $w(2a)=0.1\\,k_BT$.",
+            "style": {
+              "scale": 0.9
+            }
+          }
+        },
+        {
+          "id": "contact-step1",
+          "frame": {
+            "x": 600.0,
+            "y": 535.0,
+            "w": 920.0,
+            "h": 60.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$1+\\kappa a=\\sqrt{Z^2\\ell_B/(2a\\times0.1)}=3.26$",
+            "style": {
+              "scale": 0.95
+            }
+          }
+        },
+        {
+          "id": "contact-step2",
+          "frame": {
+            "x": 600.0,
+            "y": 675.0,
+            "w": 920.0,
+            "h": 58.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$\\kappa=0.0754$ Å$^{-1}$; $\\ell_D=13.3$ Å.",
+            "style": {
+              "scale": 0.95
+            }
+          }
+        },
+        {
+          "id": "contact-step3",
+          "frame": {
+            "x": 600.0,
+            "y": 795.0,
+            "w": 920.0,
+            "h": 68.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$I\\approx0.053$ M = 53 mM.",
+            "style": {
+              "colour": "accent"
+            }
+          }
+        },
+        {
+          "id": "contact-qualification",
+          "frame": {
+            "x": 80.0,
+            "y": 855.0,
+            "w": 480.0,
+            "h": 82.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Apply the stated stability criterion.",
+            "style": {
+              "scale": 0.8
+            }
+          }
+        },
+        {
+          "id": "contact-aside",
+          "frame": {
+            "x": 1460.0,
+            "y": 42.0,
+            "w": 48.0,
+            "h": 48.0
+          },
+          "aside": "## Effective charge is a far-field amplitude\n\nHere $w(R)$ is the finite-sphere interaction free energy, $Q=Ze$ is each sphere's charge and $R$ is centre–centre separation. Each sphere has radius $a$, so contact means $R=2a$. The target contact interaction energy is $w(2a)=0.1\\,k_BT$, so substitute $w(2a)/(k_BT)=0.1$ into the contact formula. Effective charge is $Q_{\\rm eff}=Z_{\\rm eff}e$; its meaning is explained below.\n\nFor a sphere, $Z_{\\rm eff}=Ze^{\\kappa a}/(1+\\kappa a)$. It can exceed $Z$ because it rewrites a potential outside an excluded core as $Z_{\\rm eff}\\ell_B e^{-\\kappa r}/r$. It is not a larger bare charge. For two identical spheres use $w/k_BT=Z_{\\rm eff}^2\\ell_B e^{-\\kappa R}/R$. At contact $R=2a$, the exponential factors cancel.",
+          "kind": "image",
+          "config": {
+            "src": "media/aside-info.svg",
+            "alt": "Open a short explanation"
+          }
+        }
+      ]
+    },
+    {
+      "id": "aggregation",
+      "state": {
+        "salt": 0.01
+      },
+      "builds": [
+        {
+          "element": "aggregation-notice"
+        }
+      ],
+      "elements": [
+        {
+          "id": "aggregation-title",
+          "frame": {
+            "x": 80.0,
+            "y": 40.0,
+            "w": 1320.0,
+            "h": 52.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "A lower barrier can make aggregation easier"
+          }
+        },
+        {
+          "id": "aggregation-footer",
+          "frame": {
+            "x": 80.0,
+            "y": 950.0,
+            "w": 1440.0,
+            "h": 25.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "KEMM30 · Salt screening · 15",
+            "style": {
+              "scale": 0.5
+            }
+          }
+        },
+        {
+          "id": "aggregation-prompt",
+          "frame": {
+            "x": 80.0,
+            "y": 150.0,
+            "w": 1440.0,
+            "h": 52.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "If repulsion weakens, must a suspension aggregate?"
+          }
+        },
+        {
+          "id": "aggregation-scene",
+          "frame": {
+            "x": 45.664859693877474,
+            "y": 265.92474489795916,
+            "w": 1032.4537627551022,
+            "h": 560.0
+          },
+          "kind": "scene",
+          "config": {
+            "script": "let ld = 3.04 / sqrt(salt);\nlet p = plot(160, 35, 700, 350).x_lin(0, 60).y_lin(-10, 16).text(28).axis_colour(\"text\");\nlet out = [p.axes(\"surface separation h (Å)\", \"kBT\")];\nout.push(p.hline(0).stroke(\"line\").width(1));\nout.push(p.curve(|h| -12.0 * exp(-h / 3.0)).stroke(\"orange\").width(3).dash(7, 5));\nout.push(p.curve(|h| 24.0 / (1.0 + 10.0 / ld) * exp(-h / ld) - 12.0 * exp(-h / 3.0)).stroke(\"blue\").width(4));\nout.push(text(490, 535, \"Total (blue); fixed attraction (orange)\").size(28));\nout",
+            "size": [
+              1000.0,
+              580.0
+            ]
+          }
+        },
+        {
+          "id": "aggregation-label",
+          "frame": {
+            "x": 1130.0,
+            "y": 330.0,
+            "w": 380.0,
+            "h": 68.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "$I$ = {{salt * 1000.0:.1}} mM"
+          }
+        },
+        {
+          "id": "aggregation-salt",
+          "frame": {
+            "x": 1130.0,
+            "y": 460.0,
+            "w": 370.0,
+            "h": 45.0
+          },
+          "kind": "slider",
+          "config": {
+            "bind": "salt",
+            "min": 0.001,
+            "max": 0.1,
+            "log": true
+          }
+        },
+        {
+          "id": "aggregation-task",
+          "frame": {
+            "x": 1130.0,
+            "y": 560.0,
+            "w": 380.0,
+            "h": 98.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Raise salt. The attraction stays fixed.",
+            "style": {
+              "scale": 0.95
+            }
+          }
+        },
+        {
+          "id": "aggregation-notice",
+          "frame": {
+            "x": 80.0,
+            "y": 860.0,
+            "w": 1440.0,
+            "h": 45.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Other forces and kinetics still matter. Measure size, turbidity, rheology or swelling.",
+            "style": {
+              "scale": 0.9
+            }
+          }
+        },
+        {
+          "id": "aggregation-aside",
+          "frame": {
+            "x": 1460.0,
+            "y": 42.0,
+            "w": 48.0,
+            "h": 48.0
+          },
+          "aside": "## An illustrative landscape\n\nDLVO theory combines screened electrostatic repulsion with van der Waals attraction; its name abbreviates Derjaguin, Landau, Verwey and Overbeek. Here $h$ is surface–surface separation and $w$ is interaction free energy. The plotted curves are illustrative, not a quantitative DLVO calculation.\n\nThe plotted model is $w/(k_BT)=24e^{-h/\\ell_D}/(1+10\\,\\mathrm{\\AA}/\\ell_D)-12e^{-h/(3\\,\\mathrm{\\AA})}$. It illustrates a salt-dependent repulsion and a fixed short-range attraction. It is not a fitted DLVO model, measured data or an aggregation-rate prediction. In gels, fixed charges also create ion partitioning and an osmotic pressure contribution (Donnan equilibrium); salt can reduce that contribution.",
+          "kind": "image",
+          "config": {
+            "src": "media/aside-info.svg",
+            "alt": "Open a short explanation"
+          }
+        }
+      ],
+      "skip": true
+    },
+    {
+      "id": "limits",
+      "builds": [
+        {
+          "element": "limits-valence"
+        },
+        {
+          "element": "limits-concentration"
+        },
+        {
+          "element": "limits-solvent"
+        },
+        {
+          "element": "limits-question"
+        },
+        {
+          "element": "limits-card"
+        },
+        {
+          "element": "limits-take-home",
+          "trigger": "with-previous"
+        }
+      ],
+      "elements": [
+        {
+          "id": "limits-title",
+          "frame": {
+            "x": 80.0,
+            "y": 40.0,
+            "w": 1320.0,
+            "h": 80.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Check the approximation before interpreting the result"
+          }
+        },
+        {
+          "id": "limits-footer",
+          "frame": {
+            "x": 80.0,
+            "y": 950.0,
+            "w": 1440.0,
+            "h": 30.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "KEMM30 · Salt screening · 16",
+            "style": {
+              "scale": 0.5
+            }
+          }
+        },
+        {
+          "id": "limits-potential",
+          "frame": {
+            "x": 80.0,
+            "y": 200.0,
+            "w": 680.0,
+            "h": 190.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**Strong surface potential**\n\nLinearization may fail. Full nonlinear PB may still help.",
+            "style": {
+              "scale": 0.95
+            }
+          }
+        },
+        {
+          "id": "limits-valence",
+          "frame": {
+            "x": 840.0,
+            "y": 200.0,
+            "w": 680.0,
+            "h": 190.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**Multivalent ions**\n\nCorrelations, binding and bridging can matter.",
+            "style": {
+              "scale": 0.95
+            }
+          }
+        },
+        {
+          "id": "limits-concentration",
+          "frame": {
+            "x": 80.0,
+            "y": 465.0,
+            "w": 680.0,
+            "h": 190.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**High salt**\n\nIon size, hydration and activity can matter.",
+            "style": {
+              "scale": 0.95
+            }
+          }
+        },
+        {
+          "id": "limits-solvent",
+          "frame": {
+            "x": 840.0,
+            "y": 465.0,
+            "w": 680.0,
+            "h": 220.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**Low $\\varepsilon_r$**\n\nStronger coupling and ion pairing can change the free-ion concentration.",
+            "style": {
+              "scale": 0.95
+            }
+          }
+        },
+        {
+          "id": "limits-question",
+          "frame": {
+            "x": 80.0,
+            "y": 735.0,
+            "w": 1440.0,
+            "h": 85.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Two salts give the same ideal Debye length. Must their experimental effects match?",
+            "style": {
+              "scale": 0.9
+            }
+          }
+        },
+        {
+          "id": "limits-card",
+          "frame": {
+            "x": 80.0,
+            "y": 830.0,
+            "w": 1440.0,
+            "h": 95.0
+          },
+          "style": {
+            "fill": "surface",
+            "border": {
+              "color": "accent",
+              "width": 3.0,
+              "dash": "solid"
+            }
+          },
+          "kind": "shape",
+          "config": {
+            "shape": "rect",
+            "radius": 16.0
+          }
+        },
+        {
+          "id": "limits-take-home",
+          "frame": {
+            "x": 110.0,
+            "y": 848.0,
+            "w": 1380.0,
+            "h": 65.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**Take-home:** Ionic strength sets the ideal range; specific chemistry also matters.",
+            "style": {
+              "scale": 0.85
+            }
+          }
+        },
+        {
+          "id": "limits-aside",
+          "frame": {
+            "x": 1460.0,
+            "y": 42.0,
+            "w": 48.0,
+            "h": 48.0
+          },
+          "aside": "## Lower permittivity changes two different lengths\n\nIon correlations are coupled fluctuations of ion positions omitted by a smooth mean field. Ion pairing is association of oppositely charged ions. Bridging occurs when an ion binds to two objects. Activity is the effective concentration that enters chemical potential; deviations from ideal concentration behavior can matter at high salt.\n\nAt fixed temperature and free-ion concentration, $\\ell_B\\propto1/\\varepsilon_r$ while $\\ell_D\\propto\\sqrt{\\varepsilon_r}$. Coulomb coupling becomes stronger even as the formal Debye length becomes shorter. Ion pairing may then change the free-ion concentration itself. There is no universal concentration cutoff for PB validity.",
+          "kind": "image",
+          "config": {
+            "src": "media/aside-info.svg",
+            "alt": "Open a short explanation"
+          }
+        }
+      ]
+    },
+    {
+      "id": "summary",
+      "builds": [
+        {
+          "element": "summary-claim2"
+        },
+        {
+          "element": "summary-claim3"
+        },
+        {
+          "element": "summary-prompt"
+        },
+        {
+          "element": "summary-question",
+          "trigger": "with-previous"
+        }
+      ],
+      "elements": [
+        {
+          "id": "summary-title",
+          "frame": {
+            "x": 80.0,
+            "y": 40.0,
+            "w": 1320.0,
+            "h": 80.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Choose the geometry, calculate, then check"
+          }
+        },
+        {
+          "id": "summary-footer",
+          "frame": {
+            "x": 80.0,
+            "y": 950.0,
+            "w": 1440.0,
+            "h": 30.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "KEMM30 · Salt screening · 17",
+            "style": {
+              "scale": 0.5
+            }
+          }
+        },
+        {
+          "id": "summary-claim1",
+          "frame": {
+            "x": 80.0,
+            "y": 165.0,
+            "w": 1440.0,
+            "h": 100.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**1. Picture the ions.** Counterions enrich; co-ions deplete."
+          }
+        },
+        {
+          "id": "summary-claim2",
+          "frame": {
+            "x": 80.0,
+            "y": 300.0,
+            "w": 1440.0,
+            "h": 120.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**2. Calculate the range.** $I=\\tfrac12\\sum_i c_i z_i^2$ and $\\ell_D\\propto I^{-1/2}$."
+          }
+        },
+        {
+          "id": "summary-claim3",
+          "frame": {
+            "x": 80.0,
+            "y": 455.0,
+            "w": 1440.0,
+            "h": 100.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "**3. Check the model.** Geometry, potential and chemistry matter."
+          }
+        },
+        {
+          "id": "summary-prompt",
+          "frame": {
+            "x": 80.0,
+            "y": 585.0,
+            "w": 1440.0,
+            "h": 85.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Ionic strength rises from 2 to 8 mM. What happens to the Debye length?",
+            "style": {
+              "scale": 0.95
+            }
+          }
+        },
+        {
+          "id": "summary-question",
+          "frame": {
+            "x": 80.0,
+            "y": 710.0,
+            "w": 1440.0,
+            "h": 80.0
+          },
+          "kind": "puzzle",
+          "config": {
+            "mode": "choice",
+            "options": [
+              {
+                "text": "It halves",
+                "correct": true
+              },
+              {
+                "text": "It falls to one quarter",
+                "hint": "The length scales with the inverse square root of ionic strength, not its inverse."
+              },
+              {
+                "text": "It doubles",
+                "hint": "More salt localizes the response; the ideal screening length becomes shorter."
+              }
+            ],
+            "feedback": {
+              "correct": "It halves: $\\ell_D(8)/\\ell_D(2)=\\sqrt{2/8}=1/2$.",
+              "reveal": "It halves: $\\ell_D(8)/\\ell_D(2)=\\sqrt{2/8}=1/2$."
+            },
+            "tries": 2
+          }
+        },
+        {
+          "id": "summary-aside",
+          "frame": {
+            "x": 1460.0,
+            "y": 42.0,
+            "w": 48.0,
+            "h": 48.0
+          },
+          "aside": "## Exercises and reading\n\nDill & Bromberg, Chapter 23, Exercises 23.1, 23.2, 23.3, 23.4 and 23.12. Also problem 2 of Intermolecular Interactions 4. The notes following the sections give derivations, worked examples with different parameters, and an exercise coverage map.",
+          "kind": "image",
+          "config": {
+            "src": "media/aside-info.svg",
+            "alt": "Open a short explanation"
+          }
+        }
+      ],
+      "skip": true
+    },
+    {
+      "id": "notes-motivation",
+      "skip": true,
+      "page": {
+        "notes": {
+          "src": "media/notes-motivation.md"
+        }
+      }
+    },
+    {
+      "id": "notes-pb",
+      "page": {
+        "notes": {
+          "src": "media/notes-pb.md"
+        }
+      }
+    },
+    {
+      "id": "notes-debye",
+      "page": {
+        "notes": {
+          "src": "media/notes-debye.md"
+        }
+      }
+    },
+    {
+      "id": "notes-geometry",
+      "page": {
+        "notes": {
+          "src": "media/notes-geometry.md"
+        }
+      }
+    },
+    {
+      "id": "notes-pairs",
+      "page": {
+        "notes": {
+          "src": "media/notes-pairs.md"
+        }
+      }
+    },
+    {
+      "id": "notes-reading",
+      "skip": true,
+      "page": {
+        "notes": {
+          "src": "media/notes-reading.md"
+        }
+      }
+    }
+  ]
+}
