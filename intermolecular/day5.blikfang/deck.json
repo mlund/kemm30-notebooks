@@ -612,6 +612,110 @@
             "alt": "Open a short explanation"
           }
         }
+      ],
+      "skip": true
+    },
+    {
+      "id": "pb-particles",
+      "state": {
+        "slice_x": 35.0
+      },
+      "elements": [
+        {
+          "id": "pb-particles-title",
+          "frame": {
+            "x": 80.0,
+            "y": 40.0,
+            "w": 1320.0,
+            "h": 49.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "A planar wall: watch ions and potential adjust",
+            "style": {
+              "scale": 0.95
+            }
+          }
+        },
+        {
+          "id": "pb-particles-intro",
+          "frame": {
+            "x": 80.0,
+            "y": 140.0,
+            "w": 1440.0,
+            "h": 42.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "Uniform ions → redistribute ions → revise potential → repeat. Drag the slice to inspect distance $x$.",
+            "style": {
+              "scale": 0.7
+            }
+          }
+        },
+        {
+          "id": "pb-particles-animation",
+          "frame": {
+            "x": 60.0,
+            "y": 225.0,
+            "w": 1480.0,
+            "h": 680.0
+          },
+          "kind": "explorable",
+          "config": {
+            "src": "media/pb-planar-particles-1.js",
+            "state": [
+              "slice_x"
+            ]
+          }
+        },
+        {
+          "id": "pb-particles-context",
+          "frame": {
+            "x": 80.0,
+            "y": 915.0,
+            "w": 1440.0,
+            "h": 29.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "10 mM 1:1 salt. Dot motion illustrates numerical updates, not molecular trajectories.",
+            "style": {
+              "scale": 0.55
+            }
+          }
+        },
+        {
+          "id": "pb-particles-footer",
+          "frame": {
+            "x": 80.0,
+            "y": 950.0,
+            "w": 1440.0,
+            "h": 25.0
+          },
+          "kind": "text",
+          "config": {
+            "text": "KEMM30 · Salt screening · 04b",
+            "style": {
+              "scale": 0.5
+            }
+          }
+        },
+        {
+          "id": "pb-particles-aside",
+          "frame": {
+            "x": 1460.0,
+            "y": 42.0,
+            "w": 48.0,
+            "h": 48.0
+          },
+          "aside": "## A mixed-ion view of PB self-consistency\n\nThis is an alternative illustration of the same numerical iteration as the preceding slide. The positive plane is on the left; a reservoir is on the right. Initially red positive ions and green negative ions have equal, spatially uniform concentrations. The initial potential is a linear guess from 25.7 mV at the wall to zero at 120 Å. These initial populations and the trial potential do not yet satisfy both PB relations together.\n\n**First step: redistribute ions.** Compute equilibrium concentrations from the potential guess: $c_+(x)=c_\\infty e^{-\\Phi(x)}$ and $c_-(x)=c_\\infty e^{\\Phi(x)}$, where $\\Phi=e\\psi/(k_BT)$. The positive wall enriches negative counterions and depletes positive co-ions. Negative dots move towards the wall and positive dots move away. The distant reservoir supplies or accepts particles as required to maintain the fixed reservoir concentration. Paths are an illustrative redistribution between two equilibrium guesses, rather than molecular trajectories or a simulation of diffusion.\n\nThe number and horizontal distribution of dots are chosen from the integrated Boltzmann concentrations. A fixed set of particle labels is transported by inverse cumulative distributions; new dots enter from the reservoir and excess dots leave into it. Their positions parallel to the plane are distributed uniformly. This makes the change in local density visible while keeping the reservoir exchange explicit.\n\n**Second step: revise the potential.** Hold the illustrated ions fixed while updating the potential using their smooth ionic charge density $\\rho=e(n_+-n_-)$. Planar Poisson's equation is $d^2\\psi/dx^2=-\\rho/(\\varepsilon_0\\varepsilon_r)$. Thus charge controls curvature, the change of the potential's slope with position. The solid purple curve is the current potential and the dashed curve is the previous guess. The ions then respond to the revised potential, and the process repeats until the two agree.\n\nThe outlined slice is 12 Å wide, centred at the draggable distance $x$ from the plane. Its two displayed counts are counts of the drawn symbols. The solver uses smooth Boltzmann densities, so finite illustrative counts need not reproduce very small local charge densities. The highlighted strip on the potential graph marks the same interval; the dot on the curve marks its centre. Drag the handle, or focus it and use left/right arrows, to compare different distances. The slice is an observation window: moving it does not alter the solution.\n\nThe model is an ideal 1:1 salt at 10 mM in water at 25 °C, with $\\ell_D=30.4$ Å and $k_BT/e=25.7$ mV. Here $e$ is positive elementary charge, $k_B$ is Boltzmann's constant, $T$ is absolute temperature, $n_\\pm$ are number densities, $\\varepsilon_0$ is vacuum permittivity and $\\varepsilon_r$ is relative permittivity. The finite interval has a reservoir boundary held at zero potential at 120 Å. It is the same finite-interval model as the preceding animation, not the infinite-reservoir analytic solution used in the concentration slide.\n\nThe Poisson equation is discretized on 41 points, using the previous Boltzmann distribution, and 30% of the computed profile is mixed with 70% of the previous potential to keep the iteration stable. Stop when the largest potential update is below $10^{-4}$ in $\\Phi$. The alternating sequence and mixing are a numerical algorithm for equilibrium, rather than a physical chronology. Play/Pause controls playback; Single step completes one redistribution or one potential update; Restart returns to uniform ions and the initial guess.\n",
+          "kind": "image",
+          "config": {
+            "src": "media/aside-info.svg",
+            "alt": "Model and animation explanation"
+          }
+        }
       ]
     },
     {
